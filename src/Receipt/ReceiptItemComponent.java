@@ -1,5 +1,8 @@
 package Receipt;
 
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -16,6 +19,8 @@ public class ReceiptItemComponent extends GridPane {
 
 	@FXML
 	private Label totalLabel;
+
+	private EventHandler<ReceiptItemComponentEvent> onRemoveEventHandler;
 
 	private ShoppingItem item;
 
@@ -45,11 +50,39 @@ public class ReceiptItemComponent extends GridPane {
 		totalLabel.setText(item.getTotal() + " kr");
 	}
 
+	@FXML
+	private void onRemove() {
+		ReceiptItemComponentEvent onRemoveEvent = new ReceiptItemComponentEvent(this, ReceiptItemComponentEvent.ON_REMOVE);
+		fireEvent(onRemoveEvent);
+	}
+
 	public void setItem(ShoppingItem value) {
 		item = value;
 		updateUI();
 	}
 	public ShoppingItem getItem() {
 		return item;
+	}
+
+	public void setOnRemove(EventHandler<ReceiptItemComponentEvent> value) {
+		onRemoveEventHandler = value;
+		addEventHandler(ReceiptItemComponentEvent.ON_REMOVE, value);
+	}
+	public EventHandler<ReceiptItemComponentEvent> getOnRemove() {
+		return onRemoveEventHandler;
+	}
+
+	public static class ReceiptItemComponentEvent extends Event {
+		public static final EventType<ReceiptItemComponentEvent> ROOT_EVENT = new EventType<>(Event.ANY, "ROOT_EVENT");
+		public static final EventType<ReceiptItemComponentEvent> ON_REMOVE = new EventType<>(ROOT_EVENT, "ON_REMOVE");
+
+		public ReceiptItemComponentEvent(ReceiptItemComponent source, EventType<ReceiptItemComponentEvent> eventType) {
+			super(source, null, eventType);
+		}
+
+		@Override
+		public ReceiptItemComponent getSource() {
+			return (ReceiptItemComponent)super.getSource();
+		}
 	}
 }
