@@ -1,5 +1,6 @@
 package Receipt;
 
+import javafx.event.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -30,6 +31,9 @@ public class ReceiptComponent extends GridPane {
 	private Button backButton;
 	@FXML
 	private Button checkoutButton;
+
+	private EventHandler<ReceiptControllerEvent> onBackEventHandler;
+	private EventHandler<ReceiptControllerEvent> onCheckoutEventHandler;
 
 	private final ShoppingCart cart;
 	private final Map<Integer, Label> receiptItems = new HashMap<>();
@@ -78,10 +82,37 @@ public class ReceiptComponent extends GridPane {
 
 	@FXML
 	private void onBackButton() {
-
+		ReceiptControllerEvent onBackEvent = new ReceiptControllerEvent(ReceiptControllerEvent.ON_BACK);
+		fireEvent(onBackEvent);
 	}
 	@FXML
 	private void onCheckoutButton() {
+		ReceiptControllerEvent onCheckoutEvent = new ReceiptControllerEvent(ReceiptControllerEvent.ON_CHECKOUT);
+		fireEvent(onCheckoutEvent);
+	}
 
+	public void setOnBack(EventHandler<ReceiptControllerEvent> value) {
+		onBackEventHandler = value;
+		addEventHandler(ReceiptControllerEvent.ON_BACK, value);
+	}
+	public EventHandler<ReceiptControllerEvent> getOnBack() {
+		return onBackEventHandler;
+	}
+	public void setOnCheckout(EventHandler<ReceiptControllerEvent> value) {
+		onCheckoutEventHandler = value;
+		addEventHandler(ReceiptControllerEvent.ON_CHECKOUT, value);
+	}
+	public EventHandler<ReceiptControllerEvent> getOnCheckout() {
+		return onCheckoutEventHandler;
+	}
+
+	public static class ReceiptControllerEvent extends Event {
+		public static final EventType<ReceiptControllerEvent> ROOT_EVENT = new EventType<>(Event.ANY, "ROOT_EVENT");
+		public static final EventType<ReceiptControllerEvent> ON_BACK = new EventType<>(ROOT_EVENT, "ON_BACK");
+		public static final EventType<ReceiptControllerEvent> ON_CHECKOUT = new EventType<>(ROOT_EVENT, "ON_CHECKOUT");
+
+		public ReceiptControllerEvent(EventType<ReceiptControllerEvent> eventType) {
+			super(eventType);
+		}
 	}
 }

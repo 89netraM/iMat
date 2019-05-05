@@ -48,4 +48,13 @@ public class MainWindow {
 			cart.addProduct(dataHandler.getProduct(id), amount);
 		}
 	}
+
+	@FXML
+	private void onBack() {
+		System.out.println("Back!");
+	}
+	@FXML
+	private void onCheckout() {
+		System.out.println("Checkout!");
+	}
 }

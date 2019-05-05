@@ -10,5 +10,5 @@
    <Button text="Add Item {1-10}" onAction="#addRandomItem" AnchorPane.topAnchor="50"/>
    <Button text="Remove Item 1" onAction="#removeItem" AnchorPane.topAnchor="100"/>
    <Button text="Remove Item {1-10}" onAction="#removeRandomItem" AnchorPane.topAnchor="150"/>
-   <ReceiptComponent prefWidth="300" AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0"/>
+   <ReceiptComponent prefWidth="300" AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0" onBack="#onBack" onCheckout="#onCheckout"/>
 </AnchorPane>
