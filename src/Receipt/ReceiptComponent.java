@@ -20,6 +20,8 @@ public class ReceiptComponent extends GridPane {
 	@FXML
 	private VBox receiptList;
 
+	private ReceiptItemComponent lastRemoved;
+	private int lastIndex;
 	@FXML
 	private GridPane undoPane;
 	@FXML
@@ -58,17 +60,36 @@ public class ReceiptComponent extends GridPane {
 		Product product = e.getShoppingItem().getProduct();
 
 		if (e.isAddEvent()) {
-			//Creates new UI component for the shopping item
-			ReceiptItemComponent item = new ReceiptItemComponent();
-			item.setItem(e.getShoppingItem());
+			if (lastRemoved != null && e.getShoppingItem() == lastRemoved.getItem()) {
+				receiptItems.put(product.getProductId(), lastRemoved);
+				receiptList.getChildren().add(lastIndex, lastRemoved);
 
-			receiptItems.put(product.getProductId(), item);
-			receiptList.getChildren().add(item);
+				lastRemoved = null;
+				undoPane.setVisible(false);
+			}
+			else {
+				//Creates new UI component for the shopping item
+				ReceiptItemComponent item = new ReceiptItemComponent();
+				item.setItem(e.getShoppingItem());
+				item.setOnRemove(this::onRemoveItem);
+
+				receiptItems.put(product.getProductId(), item);
+				receiptList.getChildren().add(item);
+			}
 		}
 		else {
-			if (e.getShoppingItem().getAmount() <= 0.0d) {
+			if (e.getShoppingItem().getAmount() <= 0.0d || !cart.getItems().contains(e.getShoppingItem())) {
 				//Updates existing UI component for the shopping item
-				receiptList.getChildren().remove(receiptItems.remove(product.getProductId()));
+				lastRemoved = receiptItems.remove(product.getProductId());
+
+				//If for some reason it's already gone, we can't remove it again.
+				if (lastRemoved != null) {
+					lastIndex = receiptList.getChildren().indexOf(lastRemoved);
+
+					receiptList.getChildren().remove(lastRemoved);
+
+					undoPane.setVisible(true);
+				}
 			}
 			else {
 				for (ReceiptItemComponent itemComponent : receiptItems.values()) {
@@ -78,9 +99,14 @@ public class ReceiptComponent extends GridPane {
 		}
 	}
 
+	private void onRemoveItem(ReceiptItemComponent.ReceiptItemComponentEvent e) {
+		cart.removeItem(e.getSource().getItem());
+	}
 	@FXML
 	private void onUndoButton() {
-
+		if (lastRemoved != null) {
+			cart.addItem(lastRemoved.getItem());
+		}
 	}
 
 	@FXML
@@ -110,7 +136,7 @@ public class ReceiptComponent extends GridPane {
 	}
 
 	public static class ReceiptComponentEvent extends Event {
-		public static final EventType<ReceiptComponentEvent> ROOT_EVENT = new EventType<>(Event.ANY, "ROOT_EVENT");
+		public static final EventType<ReceiptComponentEvent> ROOT_EVENT = new EventType<>(Event.ANY, "RECEIPTCOMPONENT_ROOT_EVENT");
 		public static final EventType<ReceiptComponentEvent> ON_BACK = new EventType<>(ROOT_EVENT, "ON_BACK");
 		public static final EventType<ReceiptComponentEvent> ON_CHECKOUT = new EventType<>(ROOT_EVENT, "ON_CHECKOUT");
 

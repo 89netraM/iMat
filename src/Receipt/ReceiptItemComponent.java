@@ -70,7 +70,7 @@ public class ReceiptItemComponent extends VBox {
 	}
 
 	public static class ReceiptItemComponentEvent extends Event {
-		public static final EventType<ReceiptItemComponentEvent> ROOT_EVENT = new EventType<>(Event.ANY, "ROOT_EVENT");
+		public static final EventType<ReceiptItemComponentEvent> ROOT_EVENT = new EventType<>(Event.ANY, "RECEIPTITEMCOMPONENT_ROOT_EVENT");
 		public static final EventType<ReceiptItemComponentEvent> ON_REMOVE = new EventType<>(ROOT_EVENT, "ON_REMOVE");
 
 		public ReceiptItemComponentEvent(ReceiptItemComponent source, EventType<ReceiptItemComponentEvent> eventType) {

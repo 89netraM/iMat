@@ -41,8 +41,8 @@ public class MainWindow {
 			}
 			else {
 				item.get().setAmount(currentAmount + amount);
+				cart.fireShoppingCartChanged(item.get(), false);
 			}
-			cart.fireShoppingCartChanged(item.get(), false);
 		}
 		else if (amount > 0) {
 			cart.addProduct(dataHandler.getProduct(id), amount);
