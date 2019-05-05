@@ -4,11 +4,10 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 
-
 <fx:root type="HBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-	   <Button text="-" HBox.hgrow="NEVER" />
-	   <TextField HBox.hgrow="ALWAYS" />
-	   <Button text="+" HBox.hgrow="NEVER" />
+	   <Button minHeight="25.0" minWidth="25.0" text="-" HBox.hgrow="NEVER" />
+	   <TextField fx:id="amountTextField" alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS" />
+	   <Button minHeight="25.0" minWidth="25.0" text="+" HBox.hgrow="NEVER" />
    </children>
 </fx:root>
