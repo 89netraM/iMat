@@ -6,6 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import se.chalmers.cse.dat216.project.CartEvent;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
+import se.chalmers.cse.dat216.project.ShoppingCart;
 import se.chalmers.cse.dat216.project.ShoppingItem;
 
 import java.io.IOException;
@@ -14,6 +15,7 @@ public class ProductCounterComponent extends HBox {
 	@FXML
 	private TextField amountTextField;
 
+	private ShoppingCart cart;
 	private ShoppingItem item;
 	private double amount = 0;
 
@@ -29,7 +31,8 @@ public class ProductCounterComponent extends HBox {
 			throw new RuntimeException(ex);
 		}
 
-		IMatDataHandler.getInstance().getShoppingCart().addShoppingCartListener(this::onCartEvent);
+		cart = IMatDataHandler.getInstance().getShoppingCart();
+		cart.addShoppingCartListener(this::onCartEvent);
 	}
 
 	public void setShoppingItem(ShoppingItem value) {
@@ -46,6 +49,19 @@ public class ProductCounterComponent extends HBox {
 				updateUIAmount();
 			}
 		}
+	}
+
+	@FXML
+	private void onIncrease() {
+		changeAmount(+1.0d);
+	}
+	@FXML
+	private void onDecrease() {
+		changeAmount(-1.0d);
+	}
+	private void changeAmount(double change) {
+		item.setAmount(item.getAmount() + change);
+		cart.fireShoppingCartChanged(item, false);
 	}
 
 	private void updateUIAmount() {

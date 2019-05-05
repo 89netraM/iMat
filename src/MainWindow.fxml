@@ -14,7 +14,6 @@
 	<children>
 		<Button text="-" onAction="#minus" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0"/>
 		<Button text="+" onAction="#plus" AnchorPane.topAnchor="50" AnchorPane.leftAnchor="0"/>
-		<Button text="Load Product" onAction="#load" AnchorPane.topAnchor="100" AnchorPane.leftAnchor="0"/>
-		<ProductCounterComponent fx:id="counter" prefWidth="150" AnchorPane.leftAnchor="0" AnchorPane.bottomAnchor="0"/>
+		<ProductCounterComponent fx:id="counter" prefWidth="150" shoppingItem="$controller.item" AnchorPane.leftAnchor="0" AnchorPane.bottomAnchor="0"/>
 	</children>
 </AnchorPane>

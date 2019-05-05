@@ -6,8 +6,8 @@
 
 <fx:root type="HBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-	   <Button minHeight="25.0" minWidth="25.0" text="-" HBox.hgrow="NEVER" />
+	   <Button minHeight="25.0" minWidth="25.0" onAction="#onDecrease" text="-" HBox.hgrow="NEVER" />
 	   <TextField fx:id="amountTextField" alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS" />
-	   <Button minHeight="25.0" minWidth="25.0" text="+" HBox.hgrow="NEVER" />
+	   <Button minHeight="25.0" minWidth="25.0" onAction="#onIncrease" text="+" HBox.hgrow="NEVER" />
    </children>
 </fx:root>

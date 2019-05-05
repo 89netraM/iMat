@@ -1,4 +1,6 @@
 import ProductCounter.ProductCounterComponent;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.ShoppingCart;
@@ -8,7 +10,7 @@ public class MainWindow {
 	@FXML
 	private ProductCounterComponent counter;
 
-	private ShoppingItem item;
+	private ObjectProperty<ShoppingItem> item = new SimpleObjectProperty<>();
 
 	private ShoppingCart cart;
 
@@ -16,7 +18,7 @@ public class MainWindow {
 		IMatDataHandler IMat = IMatDataHandler.getInstance();
 		cart = IMat.getShoppingCart();
 		cart.addProduct(IMat.getProduct(1));
-		item = cart.getItems().get(0);
+		item.setValue(cart.getItems().get(0));
 	}
 
 	@FXML
@@ -29,14 +31,14 @@ public class MainWindow {
 	}
 
 	private void change(double change) {
-		item.setAmount(item.getAmount() + change);
-		cart.fireShoppingCartChanged(item, false);
+		item.getValue().setAmount(item.getValue().getAmount() + change);
+		cart.fireShoppingCartChanged(item.getValue(), false);
 	}
 
-	@FXML
-	private void load() {
-		if (counter != null) {
-			counter.setShoppingItem(item);
-		}
+	public ShoppingItem getItem() {
+		return item.getValue();
+	}
+	public void setItem(ShoppingItem value) {
+		item.setValue(value);
 	}
 }
