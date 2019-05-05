@@ -17,7 +17,6 @@ public class ProductCounterComponent extends HBox {
 
 	private ShoppingCart cart;
 	private ShoppingItem item;
-	private double amount = 0;
 
 	public ProductCounterComponent() {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ProductCounterComponent.fxml"));
@@ -45,9 +44,7 @@ public class ProductCounterComponent extends HBox {
 
 	private void onCartEvent(CartEvent e) {
 		if (e.getShoppingItem() == item) {
-			if (item.getAmount() != amount) {
-				updateUIAmount();
-			}
+			updateUIAmount();
 		}
 	}
 
@@ -65,7 +62,6 @@ public class ProductCounterComponent extends HBox {
 	}
 
 	private void updateUIAmount() {
-		amount = item.getAmount();
-		amountTextField.setText(Double.toString(amount));
+		amountTextField.setText(Double.toString(item.getAmount()));
 	}
 }
