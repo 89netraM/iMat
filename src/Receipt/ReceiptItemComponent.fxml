@@ -26,7 +26,7 @@
 			</rowConstraints>
 			<children>
 				<Label fx:id="nameLabel" />
-				<Button fx:id="removeButton" text="x" GridPane.columnIndex="1" />
+				<Button text="x" GridPane.columnIndex="1" />
 			</children>
 		</GridPane>
 		<GridPane GridPane.rowIndex="1">
