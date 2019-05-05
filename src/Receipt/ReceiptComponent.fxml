@@ -19,7 +19,7 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
    </rowConstraints>
    <children>
-      <ScrollPane>
+      <ScrollPane fitToWidth="true">
          <content>
             <VBox fx:id="receiptList" />
          </content>

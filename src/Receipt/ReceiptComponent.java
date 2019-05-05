@@ -36,7 +36,7 @@ public class ReceiptComponent extends GridPane {
 	private EventHandler<ReceiptComponentEvent> onCheckoutEventHandler;
 
 	private final ShoppingCart cart;
-	private final Map<Integer, Label> receiptItems = new HashMap<>();
+	private final Map<Integer, ReceiptItemComponent> receiptItems = new HashMap<>();
 
 	public ReceiptComponent() {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ReceiptComponent.fxml"));
@@ -59,18 +59,21 @@ public class ReceiptComponent extends GridPane {
 
 		if (e.isAddEvent()) {
 			//Creates new UI component for the shopping item
-			Label label = new Label(product.getName() + ": " + e.getShoppingItem().getAmount());
+			ReceiptItemComponent item = new ReceiptItemComponent();
+			item.setItem(e.getShoppingItem());
 
-			receiptItems.put(product.getProductId(), label);
-			receiptList.getChildren().add(label);
+			receiptItems.put(product.getProductId(), item);
+			receiptList.getChildren().add(item);
 		}
 		else {
-			if (e.getShoppingItem().getAmount() > 0.0d) {
+			if (e.getShoppingItem().getAmount() <= 0.0d) {
 				//Updates existing UI component for the shopping item
-				receiptItems.get(product.getProductId()).setText(product.getName() + ": " + e.getShoppingItem().getAmount());
+				receiptList.getChildren().remove(receiptItems.remove(product.getProductId()));
 			}
 			else {
-				receiptList.getChildren().remove(receiptItems.remove(product.getProductId()));
+				for (ReceiptItemComponent itemComponent : receiptItems.values()) {
+					itemComponent.onCartEvent(e);
+				}
 			}
 		}
 	}

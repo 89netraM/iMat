@@ -6,14 +6,13 @@ import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import se.chalmers.cse.dat216.project.CartEvent;
-import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.ShoppingItem;
 
 import java.io.IOException;
 
-public class ReceiptItemComponent extends GridPane {
+public class ReceiptItemComponent extends VBox {
 	@FXML
 	private Label nameLabel;
 
@@ -35,11 +34,9 @@ public class ReceiptItemComponent extends GridPane {
 		catch (IOException ex) {
 			throw new RuntimeException(ex);
 		}
-
-		IMatDataHandler.getInstance().getShoppingCart().addShoppingCartListener(this::onCartEvent);
 	}
 
-	private void onCartEvent(CartEvent e) {
+	void onCartEvent(CartEvent e) {
 		if (e.getShoppingItem() == item) {
 			updateUI();
 		}
