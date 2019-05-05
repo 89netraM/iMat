@@ -32,8 +32,8 @@ public class ReceiptComponent extends GridPane {
 	@FXML
 	private Button checkoutButton;
 
-	private EventHandler<ReceiptControllerEvent> onBackEventHandler;
-	private EventHandler<ReceiptControllerEvent> onCheckoutEventHandler;
+	private EventHandler<ReceiptComponentEvent> onBackEventHandler;
+	private EventHandler<ReceiptComponentEvent> onCheckoutEventHandler;
 
 	private final ShoppingCart cart;
 	private final Map<Integer, Label> receiptItems = new HashMap<>();
@@ -82,36 +82,36 @@ public class ReceiptComponent extends GridPane {
 
 	@FXML
 	private void onBackButton() {
-		ReceiptControllerEvent onBackEvent = new ReceiptControllerEvent(ReceiptControllerEvent.ON_BACK);
+		ReceiptComponentEvent onBackEvent = new ReceiptComponentEvent(ReceiptComponentEvent.ON_BACK);
 		fireEvent(onBackEvent);
 	}
 	@FXML
 	private void onCheckoutButton() {
-		ReceiptControllerEvent onCheckoutEvent = new ReceiptControllerEvent(ReceiptControllerEvent.ON_CHECKOUT);
+		ReceiptComponentEvent onCheckoutEvent = new ReceiptComponentEvent(ReceiptComponentEvent.ON_CHECKOUT);
 		fireEvent(onCheckoutEvent);
 	}
 
-	public void setOnBack(EventHandler<ReceiptControllerEvent> value) {
+	public void setOnBack(EventHandler<ReceiptComponentEvent> value) {
 		onBackEventHandler = value;
-		addEventHandler(ReceiptControllerEvent.ON_BACK, value);
+		addEventHandler(ReceiptComponentEvent.ON_BACK, value);
 	}
-	public EventHandler<ReceiptControllerEvent> getOnBack() {
+	public EventHandler<ReceiptComponentEvent> getOnBack() {
 		return onBackEventHandler;
 	}
-	public void setOnCheckout(EventHandler<ReceiptControllerEvent> value) {
+	public void setOnCheckout(EventHandler<ReceiptComponentEvent> value) {
 		onCheckoutEventHandler = value;
-		addEventHandler(ReceiptControllerEvent.ON_CHECKOUT, value);
+		addEventHandler(ReceiptComponentEvent.ON_CHECKOUT, value);
 	}
-	public EventHandler<ReceiptControllerEvent> getOnCheckout() {
+	public EventHandler<ReceiptComponentEvent> getOnCheckout() {
 		return onCheckoutEventHandler;
 	}
 
-	public static class ReceiptControllerEvent extends Event {
-		public static final EventType<ReceiptControllerEvent> ROOT_EVENT = new EventType<>(Event.ANY, "ROOT_EVENT");
-		public static final EventType<ReceiptControllerEvent> ON_BACK = new EventType<>(ROOT_EVENT, "ON_BACK");
-		public static final EventType<ReceiptControllerEvent> ON_CHECKOUT = new EventType<>(ROOT_EVENT, "ON_CHECKOUT");
+	public static class ReceiptComponentEvent extends Event {
+		public static final EventType<ReceiptComponentEvent> ROOT_EVENT = new EventType<>(Event.ANY, "ROOT_EVENT");
+		public static final EventType<ReceiptComponentEvent> ON_BACK = new EventType<>(ROOT_EVENT, "ON_BACK");
+		public static final EventType<ReceiptComponentEvent> ON_CHECKOUT = new EventType<>(ROOT_EVENT, "ON_CHECKOUT");
 
-		public ReceiptControllerEvent(EventType<ReceiptControllerEvent> eventType) {
+		public ReceiptComponentEvent(EventType<ReceiptComponentEvent> eventType) {
 			super(eventType);
 		}
 	}
