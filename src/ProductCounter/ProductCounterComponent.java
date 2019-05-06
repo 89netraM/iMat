@@ -1,5 +1,6 @@
 package ProductCounter;
 
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
@@ -32,6 +33,8 @@ public class ProductCounterComponent extends HBox {
 
 		cart = IMatDataHandler.getInstance().getShoppingCart();
 		cart.addShoppingCartListener(this::onCartEvent);
+
+		amountTextField.focusedProperty().addListener(this::onFocusChange);
 	}
 
 	public void setShoppingItem(ShoppingItem value) {
@@ -57,11 +60,28 @@ public class ProductCounterComponent extends HBox {
 		changeAmount(-1.0d);
 	}
 	private void changeAmount(double change) {
-		item.setAmount(item.getAmount() + change);
+		setAmount(item.getAmount() + change);
+	}
+	private void setAmount(double amount) {
+		item.setAmount(amount);
 		cart.fireShoppingCartChanged(item, false);
 	}
 
 	private void updateUIAmount() {
 		amountTextField.setText(Double.toString(item.getAmount()));
+	}
+
+	private void onFocusChange(ObservableValue<? extends Boolean> observable, boolean oldValue, boolean newValue) {
+		if (!newValue) {
+			readTextValue();
+		}
+	}
+	@FXML
+	private void readTextValue() {
+		try {
+			double d = Double.parseDouble(amountTextField.getText());
+			setAmount(d);
+		}
+		catch (NumberFormatException ignored) { }
 	}
 }
