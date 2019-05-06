@@ -38,13 +38,17 @@ public class ProductCounterComponent extends HBox {
 			throw new RuntimeException(ex);
 		}
 
+		//Listen to shoppingCart updates
 		cart = IMatDataHandler.getInstance().getShoppingCart();
 		cart.addShoppingCartListener(this::onCartEvent);
 
+		//Listen to focus updates of the textField
 		amountTextField.focusedProperty().addListener(this::onFocusChange);
+		//Formats the text to a double on enter or unfocus
 		amountTextField.setTextFormatter(new TextFormatter<>(new DoubleStringConverter()));
 	}
 
+	//Used by the FXML Loader to set the shoppingItem property from FXML.
 	public void setShoppingItem(ShoppingItem value) {
 		item = value;
 		updateUIAmount();
@@ -53,16 +57,19 @@ public class ProductCounterComponent extends HBox {
 		return item;
 	}
 
+	//On cart updates, if it involves this item: update the UI.
 	private void onCartEvent(CartEvent e) {
 		if (e.getShoppingItem() == item) {
 			updateUIAmount();
 		}
 	}
 
+	//Triggered when the user taps the + button
 	@FXML
 	private void onIncrease() {
 		changeAmount(+1.0d);
 	}
+	//Triggered when the user taps the - button
 	@FXML
 	private void onDecrease() {
 		changeAmount(-1.0d);
@@ -70,16 +77,24 @@ public class ProductCounterComponent extends HBox {
 	private void changeAmount(double change) {
 		setAmount(item.getAmount() + change);
 	}
+	/**
+	 * Updates the shoppingItem with the new amount and fires a event at the shopping cart.
+	 * This component itself listens to this event to update the amount in the textField.
+	 * @param    amount    The new amount.
+	 */
 	private void setAmount(double amount) {
 		item.setAmount(amount);
 		cart.fireShoppingCartChanged(item, false);
 	}
 
+	//Updates all UI parts to reflect the current state.
 	private void updateUIAmount() {
 		amountTextField.setText(Double.toString(item.getAmount()));
 
 		if (!item.getProduct().getUnitSuffix().equals(unitLabel.getText())) {
 			unitLabel.setText(item.getProduct().getUnitSuffix());
+
+			//Calculates the with of the label to offset the text in the textField by an appropriate amount
 			double labelWidth = Toolkit.getToolkit().getFontLoader().computeStringWidth(unitLabel.getText(), unitLabel.getFont());
 			amountTextField.setPadding(new Insets(0, unitLabel.getPadding().getLeft() + labelWidth + unitLabel.getPadding().getRight(), 0, 0));
 		}
@@ -90,6 +105,9 @@ public class ProductCounterComponent extends HBox {
 			readTextValue();
 		}
 	}
+
+	//Is triggered when the user presses `Enter` in the textField.
+	//Also used when the user changes focus from the textField.
 	@FXML
 	private void readTextValue() {
 		try {
