@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
 <fx:root type="HBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
 	   <Button minHeight="25.0" minWidth="25.0" onAction="#onDecrease" text="-" HBox.hgrow="NEVER" />
-	   <TextField fx:id="amountTextField" onAction="#readTextValue" alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS" />
+      <AnchorPane HBox.hgrow="ALWAYS">
+         <children>
+      	   <TextField fx:id="amountTextField" alignment="CENTER_RIGHT" onAction="#readTextValue" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Label fx:id="unitLabel" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <padding>
+                  <Insets left="2.0" right="3.0" />
+               </padding>
+            </Label>
+         </children>
+      </AnchorPane>
 	   <Button minHeight="25.0" minWidth="25.0" onAction="#onIncrease" text="+" HBox.hgrow="NEVER" />
    </children>
 </fx:root>
