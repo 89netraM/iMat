@@ -1,5 +1,6 @@
 package Receipt;
 
+import ProductCounter.ProductCounterComponent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
@@ -15,6 +16,9 @@ import java.io.IOException;
 public class ReceiptItemComponent extends VBox {
 	@FXML
 	private Label nameLabel;
+
+	@FXML
+	private ProductCounterComponent counter;
 
 	@FXML
 	private Label totalLabel;
@@ -55,6 +59,7 @@ public class ReceiptItemComponent extends VBox {
 
 	public void setItem(ShoppingItem value) {
 		item = value;
+		counter.setShoppingItem(item);
 		updateUI();
 	}
 	public ShoppingItem getItem() {
