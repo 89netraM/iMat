@@ -92,9 +92,7 @@ public class ReceiptComponent extends GridPane {
 				}
 			}
 			else {
-				for (ReceiptItemComponent itemComponent : receiptItems.values()) {
-					itemComponent.onCartEvent(e);
-				}
+				receiptItems.get(product.getProductId()).onCartEvent(e);
 			}
 		}
 	}
