@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
-<?import Receipt.ReceiptComponent?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-
-<?import javafx.scene.control.Button?>
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainWindow">
-   <Button text="Add Item 1" onAction="#addItem" AnchorPane.topAnchor="0"/>
-   <Button text="Add Item {1-10}" onAction="#addRandomItem" AnchorPane.topAnchor="50"/>
-   <Button text="Remove Item 1" onAction="#removeItem" AnchorPane.topAnchor="100"/>
-   <Button text="Remove Item {1-10}" onAction="#removeRandomItem" AnchorPane.topAnchor="150"/>
-   <ReceiptComponent prefWidth="300" AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0" onBack="#onBack" onCheckout="#onCheckout"/>
+<AnchorPane xmlns="http://javafx.com/javafx"
+			xmlns:fx="http://javafx.com/fxml"
+			fx:controller="MainWindow"
+			prefHeight="400.0" prefWidth="600.0">
 </AnchorPane>
