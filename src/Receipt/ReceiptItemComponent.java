@@ -43,6 +43,7 @@ public class ReceiptItemComponent extends VBox {
 	void onCartEvent(CartEvent e) {
 		if (e.getShoppingItem() == item) {
 			updateUI();
+			counter.onCartEvent(e);
 		}
 	}
 
