@@ -20,6 +20,7 @@ public class ReceiptComponent extends GridPane {
 	@FXML
 	private VBox receiptList;
 
+	//region Undo
 	private ReceiptItemComponent lastRemoved;
 	private int lastIndex;
 	@FXML
@@ -28,7 +29,9 @@ public class ReceiptComponent extends GridPane {
 	private Label undoText;
 	@FXML
 	private Button undoButton;
+	//endregion
 
+	//region Navigation buttons
 	@FXML
 	private Button backButton;
 	@FXML
@@ -36,8 +39,11 @@ public class ReceiptComponent extends GridPane {
 
 	private EventHandler<ReceiptComponentEvent> onBackEventHandler;
 	private EventHandler<ReceiptComponentEvent> onCheckoutEventHandler;
+	//endregion
 
 	private final ShoppingCart cart;
+	//A list of all previously and currently used `ReceiptItemComponent`, so we don't have to create a new one every
+	//time we add one back.
 	private final Map<Integer, ReceiptItemComponent> receiptItems = new HashMap<>();
 
 	public ReceiptComponent() {
@@ -61,6 +67,8 @@ public class ReceiptComponent extends GridPane {
 
 		if (e.isAddEvent()) {
 			if (lastRemoved != null && e.getShoppingItem() == lastRemoved.getItem()) {
+				//For when this add event in fact is a undo event
+
 				receiptItems.put(product.getProductId(), lastRemoved);
 				receiptList.getChildren().add(lastIndex, lastRemoved);
 
@@ -70,6 +78,8 @@ public class ReceiptComponent extends GridPane {
 				clearUndoItem();
 			}
 			else {
+				//Regular adding event
+
 				//Creates new UI component for the shopping item
 				ReceiptItemComponent item = new ReceiptItemComponent();
 				item.setItem(e.getShoppingItem());
@@ -83,6 +93,8 @@ public class ReceiptComponent extends GridPane {
 		}
 		else {
 			if (e.getShoppingItem().getAmount() <= 0.0d || !cart.getItems().contains(e.getShoppingItem())) {
+				//Removing the item. Either from actually removing it, or because the amount is under zero
+
 				//Updates existing UI component for the shopping item
 				lastRemoved = receiptItems.remove(product.getProductId());
 
@@ -101,11 +113,15 @@ public class ReceiptComponent extends GridPane {
 				}
 			}
 			else {
+				//Just updating the amount of an item
 				receiptItems.get(product.getProductId()).onCartEvent(e);
 			}
 		}
 	}
 
+	/**
+	 * Resets the saved undo history, and hides the undo panel.
+	 */
 	private void clearUndoItem() {
 		lastRemoved = null;
 		undoPane.setVisible(false);
@@ -117,10 +133,13 @@ public class ReceiptComponent extends GridPane {
 	@FXML
 	private void onUndoButton() {
 		if (lastRemoved != null) {
+			//If an undo is possible: add it back to the cart, and let the event do the rest.
 			cart.addItem(lastRemoved.getItem());
 		}
 	}
 
+	//region Navigation Buttons
+	//These buttons are for sending events about global navigation to the `MainController`.
 	@FXML
 	private void onBackButton() {
 		ReceiptComponentEvent onBackEvent = new ReceiptComponentEvent(ReceiptComponentEvent.ON_BACK);
@@ -132,6 +151,11 @@ public class ReceiptComponent extends GridPane {
 		fireEvent(onCheckoutEvent);
 	}
 
+	/**
+	 * Used mainly through FXML to set an event handler for the Back buttons action.
+	 * Used in FXML like this: `onBack="#eventHandlerMethod"`
+	 * @param    value    The event handler method.
+	 */
 	public void setOnBack(EventHandler<ReceiptComponentEvent> value) {
 		if (onBackEventHandler != null) {
 			removeEventHandler(ReceiptComponentEvent.ON_BACK, onBackEventHandler);
@@ -143,6 +167,12 @@ public class ReceiptComponent extends GridPane {
 	public EventHandler<ReceiptComponentEvent> getOnBack() {
 		return onBackEventHandler;
 	}
+
+	/**
+	 * Used mainly through FXML to set an event handler for the Checkout buttons action.
+	 * Used in FXML like this: `onCheckout="#eventHandlerMethod"`
+	 * @param    value    The event handler method.
+	 */
 	public void setOnCheckout(EventHandler<ReceiptComponentEvent> value) {
 		if (onCheckoutEventHandler != null) {
 			removeEventHandler(ReceiptComponentEvent.ON_CHECKOUT, onCheckoutEventHandler);
@@ -164,4 +194,5 @@ public class ReceiptComponent extends GridPane {
 			super(eventType);
 		}
 	}
+	//endregion
 }
