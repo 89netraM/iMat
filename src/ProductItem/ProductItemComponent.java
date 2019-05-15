@@ -1,4 +1,4 @@
-package components.ProductItem;
+package ProductItem;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,15 +9,15 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
-public class ProductItem extends VBox {
+public class ProductItemComponent extends VBox {
     @FXML
     private Label description;
 
     @FXML
     private ImageView image;
 
-    public ProductItem() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/components/ProductItem/ProductItem.xml"));
+    public ProductItemComponent() {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ProductItemComponent/ProductItemComponent.xml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
