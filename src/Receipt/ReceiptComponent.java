@@ -96,6 +96,7 @@ public class ReceiptComponent extends GridPane {
 						lastRemoved.getItem().setAmount(1.0d);
 					}
 
+					undoText.setText(String.format("\"%1s\" togs bort", lastRemoved.getItem().getProduct().getName()));
 					undoPane.setVisible(true);
 				}
 			}

@@ -33,8 +33,8 @@
           <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
+             <Label fx:id="undoText" GridPane.columnIndex="0" />
             <Button fx:id="undoButton" mnemonicParsing="false" onAction="#onUndoButton" text="Ångra" GridPane.columnIndex="1" />
-            <Label fx:id="undoText" />
          </children>
       </GridPane>
       <Button fx:id="backButton" mnemonicParsing="false" onAction="#onBackButton" text="⬅ Tillbaka" visible="false" GridPane.rowIndex="2" />
