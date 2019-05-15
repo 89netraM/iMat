@@ -133,6 +133,10 @@ public class ReceiptComponent extends GridPane {
 	}
 
 	public void setOnBack(EventHandler<ReceiptComponentEvent> value) {
+		if (onBackEventHandler != null) {
+			removeEventHandler(ReceiptComponentEvent.ON_BACK, onBackEventHandler);
+		}
+
 		onBackEventHandler = value;
 		addEventHandler(ReceiptComponentEvent.ON_BACK, value);
 	}
@@ -140,6 +144,10 @@ public class ReceiptComponent extends GridPane {
 		return onBackEventHandler;
 	}
 	public void setOnCheckout(EventHandler<ReceiptComponentEvent> value) {
+		if (onCheckoutEventHandler != null) {
+			removeEventHandler(ReceiptComponentEvent.ON_CHECKOUT, onCheckoutEventHandler);
+		}
+
 		onCheckoutEventHandler = value;
 		addEventHandler(ReceiptComponentEvent.ON_CHECKOUT, value);
 	}
