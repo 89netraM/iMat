@@ -64,6 +64,9 @@ public class ReceiptComponent extends GridPane {
 				receiptItems.put(product.getProductId(), lastRemoved);
 				receiptList.getChildren().add(lastIndex, lastRemoved);
 
+				//It shouldn't be out of sync, but for safety's sake:
+				lastRemoved.onCartEvent(e);
+
 				lastRemoved = null;
 				undoPane.setVisible(false);
 			}
@@ -87,6 +90,10 @@ public class ReceiptComponent extends GridPane {
 					lastIndex = receiptList.getChildren().indexOf(lastRemoved);
 
 					receiptList.getChildren().remove(lastRemoved);
+
+					if (lastRemoved.getItem().getAmount() <= 0.0d) {
+						lastRemoved.getItem().setAmount(1.0d);
+					}
 
 					undoPane.setVisible(true);
 				}
