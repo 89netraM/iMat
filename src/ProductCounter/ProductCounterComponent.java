@@ -40,7 +40,6 @@ public class ProductCounterComponent extends HBox {
 
 		//Listen to shoppingCart updates
 		cart = IMatDataHandler.getInstance().getShoppingCart();
-		cart.addShoppingCartListener(this::onCartEvent);
 
 		//Listen to focus updates of the textField
 		amountTextField.focusedProperty().addListener(this::onFocusChange);
@@ -57,8 +56,11 @@ public class ProductCounterComponent extends HBox {
 		return item;
 	}
 
-	//On cart updates, if it involves this item: update the UI.
-	private void onCartEvent(CartEvent e) {
+	/**
+	 * A parent should call this when a `shoppingCart` event occurs.
+	 * @param    e    Should be the same as the original `shoppingCart` event received.
+	 */
+	public void onCartEvent(CartEvent e) {
 		if (e.getShoppingItem() == item) {
 			updateUIAmount();
 		}
