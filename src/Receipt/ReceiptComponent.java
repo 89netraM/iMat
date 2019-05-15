@@ -67,8 +67,7 @@ public class ReceiptComponent extends GridPane {
 				//It shouldn't be out of sync, but for safety's sake:
 				lastRemoved.onCartEvent(e);
 
-				lastRemoved = null;
-				undoPane.setVisible(false);
+				clearUndoItem();
 			}
 			else {
 				//Creates new UI component for the shopping item
@@ -78,6 +77,8 @@ public class ReceiptComponent extends GridPane {
 
 				receiptItems.put(product.getProductId(), item);
 				receiptList.getChildren().add(item);
+
+				clearUndoItem();
 			}
 		}
 		else {
@@ -102,6 +103,11 @@ public class ReceiptComponent extends GridPane {
 				receiptItems.get(product.getProductId()).onCartEvent(e);
 			}
 		}
+	}
+
+	private void clearUndoItem() {
+		lastRemoved = null;
+		undoPane.setVisible(false);
 	}
 
 	private void onRemoveItem(ReceiptItemComponent.ReceiptItemComponentEvent e) {
