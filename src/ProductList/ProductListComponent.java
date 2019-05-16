@@ -7,11 +7,11 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class ProductListComponent extends VBox {
+public class ProductListComponent {
     private ArrayList<ProductItemComponent> productItemComponents;
 
     public ProductListComponent() {
-        this.productItemComponents = new ArrayList<ProductItemComponent>();
+        this.productItemComponents = new ArrayList<>();
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ProductList/ProductListComponent.xml"));
         fxmlLoader.setRoot(this);
@@ -29,12 +29,8 @@ public class ProductListComponent extends VBox {
         return this.productItemComponents;
     }
 
-    public void addProductItemComponent(ProductItemComponent ProductItemComponent) {
+    public void addProductItemComponent(final ProductItemComponent ProductItemComponent) {
         this.productItemComponents.add(ProductItemComponent);
-    }
-
-    public void removeProductItemComponent(ProductItemComponent ProductItemComponent) {
-        this.productItemComponents.remove(ProductItemComponent);
     }
 
     public void clearProductItemComponents(){

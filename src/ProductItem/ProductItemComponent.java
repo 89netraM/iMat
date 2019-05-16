@@ -4,12 +4,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
-public class ProductItemComponent extends VBox {
+public class ProductItemComponent {
     @FXML
     private Label description;
 
@@ -17,7 +16,7 @@ public class ProductItemComponent extends VBox {
     private ImageView image;
 
     public ProductItemComponent() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ProductItemComponent/ProductItemComponent.xml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ProductItem/ProductItemComponent.xml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
@@ -29,11 +28,11 @@ public class ProductItemComponent extends VBox {
         }
     }
 
-    public void setDescription(Label description) {
+    public void setDescription(final Label description) {
         this.description = description;
     }
 
-    public void setImage(ImageView image) {
+    public void setImage(final ImageView image) {
         this.image = image;
     }
 
