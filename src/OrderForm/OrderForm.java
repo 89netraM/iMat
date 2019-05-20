@@ -9,8 +9,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import se.chalmers.cse.dat216.project.CreditCard;
+import se.chalmers.cse.dat216.project.Customer;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -18,7 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class OrderForm extends HBox implements Initializable {
+public class OrderForm extends AnchorPane implements Initializable {
 
     @FXML private AnchorPane OrderFormComponent;
     @FXML private AnchorPane OrderForm;
@@ -43,7 +45,7 @@ public class OrderForm extends HBox implements Initializable {
     @FXML private TextField cvcCode;
 
 
-   /*
+
     public OrderForm() {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("OrderForm.fxml"));
@@ -57,14 +59,20 @@ public class OrderForm extends HBox implements Initializable {
         }
 
     }
-    */
+
 
     private final Model model = Model.getInstance();
+    private final IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
 
 
     @Override
     public void initialize(URL url, ResourceBundle rb){
 
+       // iMatDataHandler.resetFirstRun();      //kallas bara för att återställa hela programmet
+        if(iMatDataHandler.isFirstRun()){
+            iMatDataHandler.reset();
+        }
+        setupAccountPane();
 
     }
 
@@ -88,17 +96,21 @@ public class OrderForm extends HBox implements Initializable {
 
     }
 
-    private void setupAccountPane() {
+    private void updateCustomer(){
 
-        cardType.getItems().addAll(model.getCardTypes());
+        Customer customer = model.getCustomer();
 
-        month.getItems().addAll(model.getMonths());
-
-        year.getItems().addAll(model.getYears());
+        customer.setFirstName(firstName.getText());
+        customer.setLastName(lastName.getText());
+        customer.setEmail(email.getText());
+        customer.setPhoneNumber(phone.getText());
+        customer.setAddress(address.getText());
+        customer.setPostCode(postCode.getText());
+        customer.setPostAddress(postAddress.getText());
 
     }
 
-    private void updateAccountPanel() {
+    private void updatePaymentFormPanel() {
 
         CreditCard card = model.getCreditCard();
 
@@ -112,7 +124,59 @@ public class OrderForm extends HBox implements Initializable {
         cvcCode.setText(""+card.getVerificationCode());
 
         // purchasesLabel.setText(model.getNumberOfOrders()+ " tidigare inköp hos iMat");
+    }
+
+    private void updateAddressFormPanel(){
+
+        Customer customer = model.getCustomer();
+
+        firstName.setText(customer.getFirstName());
+        lastName.setText(customer.getLastName());
+        email.setText(customer.getEmail());
+        phone.setText(customer.getPhoneNumber());
+        address.setText(customer.getAddress());
+        postCode.setText(customer.getPostCode());
+        postAddress.setText(customer.getPostAddress());
 
     }
+
+    private void setupAccountPane() {
+
+        cardType.getItems().addAll(model.getCardTypes());
+
+        month.getItems().addAll(model.getMonths());
+
+        year.getItems().addAll(model.getYears());
+    }
+
+    @FXML
+    public void addressFormToFront (){
+        AdressForm.toFront();
+        OrderForm.toBack();
+        updateAddressFormPanel();
+    }
+
+    @FXML
+    public void paymentFormToFront (){
+        PaymentForm.toFront();
+        OrderForm.toBack();
+        updatePaymentFormPanel();
+    }
+
+    @FXML
+    public void saveAddressInfo (){
+        OrderForm.toFront();
+        AdressForm.toBack();
+        updateCustomer();
+
+    }
+
+    @FXML
+    public void savePaymentInfo (){
+        OrderForm.toFront();
+        PaymentForm.toBack();
+        updateCreditCard();
+    }
+
 
 }

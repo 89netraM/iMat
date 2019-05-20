@@ -1,3 +1,4 @@
+import OrderForm.Model;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,6 +8,14 @@ import javafx.stage.Stage;
 public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
+
+		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+			@Override
+			public void run() {
+				Model.getInstance().shutDown();
+			}
+		}));
+
 	}
 
 	@Override

@@ -10,117 +10,31 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="OrderFormComponent" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="OrderForm">
+<fx:root stylesheets="@OrderForm.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
 <children>
-    <AnchorPane fx:id="OrderForm" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: rgba(70, 127, 109, 1)rgba(70, 127, 109, 1);">
-        <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4fff5" height="511.0" layoutX="14.0" layoutY="19.0" stroke="BLACK" strokeType="INSIDE" width="330.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4fff5" height="511.0" layoutX="356.0" layoutY="19.0" stroke="BLACK" strokeType="INSIDE" width="330.0" />
-            <Button fx:id="changeAdress" layoutX="56.0" layoutY="253.0" mnemonicParsing="false" prefHeight="116.0" prefWidth="247.0" style="-fx-background-color: rgba(199, 234, 219, 1);" text="Klicka här för att ändra leveransuppgifter" textAlignment="CENTER" wrapText="true">
-                <font>
-                    <Font name="System Font" size="18.0" />
-                </font>
-            </Button>
-            <Button fx:id="changePaymentMethod" layoutX="398.0" layoutY="253.0" mnemonicParsing="false" prefHeight="116.0" prefWidth="247.0" style="-fx-background-color: rgba(199, 234, 219, 1);" text="Klicka här för att ändra betalningsuppgifter" textAlignment="CENTER" wrapText="true">
-                <font>
-                    <Font name="System Font" size="18.0" />
-                </font>
-            </Button>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#467f6d" height="30.0" layoutX="35.0" layoutY="44.0" stroke="TRANSPARENT" strokeType="INSIDE" width="288.0" />
-            <Label layoutX="82.0" layoutY="44.0" prefHeight="30.0" prefWidth="194.0" text="Adressinformation" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="22.0" />
-               </font>
-            </Label>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#467f6d" height="30.0" layoutX="378.0" layoutY="44.0" stroke="TRANSPARENT" strokeType="INSIDE" width="288.0" />
-            <Label layoutX="409.0" layoutY="44.0" prefHeight="30.0" prefWidth="227.0" text="Betalningsinformation" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="22.0" />
-               </font>
-            </Label>
-        </children>
-    </AnchorPane>
     <StackPane prefHeight="600.0" prefWidth="700.0">
         <children>
-            <AnchorPane fx:id="AdressForm" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: rgba(0, 0, 0, 0.75);">
+            <AnchorPane fx:id="PaymentForm" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: rgba(0, 0, 0, 0.4);">
                 <children>
-                    <AnchorPane layoutX="30.0" layoutY="30.0" prefHeight="540.0" prefWidth="640.0" style="-fx-background-color: rgba(244, 255, 245, 1);" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
-                        <children>
-                            <Label layoutX="62.0" layoutY="77.0" prefHeight="26.0" prefWidth="66.0" text="Namn:" textAlignment="RIGHT" AnchorPane.leftAnchor="62.0" AnchorPane.topAnchor="77.0">
-                                <font>
-                                    <Font size="18.0" />
-                                </font>
-                            </Label>
-                            <TextField fx:id="firstName" layoutX="120.0" layoutY="77.0" prefHeight="27.0" prefWidth="194.0" promptText="Förnamn" style="-fx-background-color: rgba(199, 234, 219, 1);" />
-                            <TextField fx:id="lastName" layoutX="334.0" layoutY="77.0" prefHeight="27.0" prefWidth="194.0" promptText="Efternamn" style="-fx-background-color: rgba(199, 234, 219, 1);" />
-                            <Label layoutX="55.0" layoutY="137.0" prefHeight="26.0" prefWidth="76.0" text="E-post:" textAlignment="RIGHT">
-                                <font>
-                                    <Font size="18.0" />
-                                </font>
-                            </Label>
-                            <TextField fx:id="email" layoutX="120.0" layoutY="137.0" prefHeight="27.0" prefWidth="227.0" promptText="exampleemail@gmail.comexampleemail@gmail.com" />
-                            <Label layoutX="48.0" layoutY="199.0" prefHeight="23.0" prefWidth="76.0" text="Telefon:">
-                                <font>
-                                    <Font size="18.0" />
-                                </font>
-                            </Label>
-                            <TextField fx:id="phone" layoutX="120.0" layoutY="197.0" prefHeight="27.0" prefWidth="168.0" promptText="+46733123456" />
-                            <Label layoutX="53.0" layoutY="257.0" prefHeight="23.0" prefWidth="68.0" text="Adress:">
-                                <font>
-                                    <Font size="18.0" />
-                                </font>
-                            </Label>
-                            <TextField fx:id="address" layoutX="120.0" layoutY="257.0" prefHeight="27.0" prefWidth="168.0" promptText="Richertsgatan 2D" />
-                            <Label layoutX="43.0" layoutY="317.0" prefHeight="23.0" prefWidth="77.0" text="Postkod:">
-                                <font>
-                                    <Font size="18.0" />
-                                </font>
-                            </Label>
-                            <TextField fx:id="postCode" layoutX="120.0" layoutY="317.0" prefHeight="27.0" prefWidth="168.0" promptText="412 81" />
-                            <Label layoutX="17.0" layoutY="377.0" prefHeight="23.0" prefWidth="105.0" text="Postadress:">
-                                <font>
-                                    <Font size="18.0" />
-                                </font>
-                            </Label>
-                            <TextField fx:id="postAddress" layoutX="120.0" layoutY="377.0" prefHeight="27.0" prefWidth="168.0" promptText="Göteborg" />
-                        <Button fx:id="saveAddressInfo" layoutX="230.0" layoutY="446.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="181.0" style="-fx-background-color: rgba(70, 127, 109, 1);" text="Spara mina uppgifter" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Button>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#467f6d" height="30.0" layoutX="129.0" layoutY="14.0" stroke="TRANSPARENT" strokeType="INSIDE" width="354.0" />
-                            <Label layoutX="217.0" layoutY="14.0" prefHeight="30.0" prefWidth="194.0" text="Adressinformation" textAlignment="CENTER" textFill="WHITE">
-                                <font>
-                                    <Font name="System Bold" size="22.0" />
-                                </font>
-                            </Label>
-                        <Separator layoutX="39.0" layoutY="60.0" prefHeight="3.0" prefWidth="564.0" />
-                        <Separator layoutX="30.0" layoutY="425.0" prefHeight="3.0" prefWidth="564.0" />
-                        </children>
-                    </AnchorPane>
-                </children>
-            </AnchorPane>
-            <AnchorPane fx:id="PaymentForm" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: rgba(0, 0, 0, 0.75);">
-                <children>
-                    <AnchorPane layoutX="30.0" layoutY="30.0" prefHeight="540.0" prefWidth="640.0" style="-fx-background-color: rgba(244, 255, 245, 1);" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
+                    <AnchorPane layoutX="30.0" layoutY="30.0" prefHeight="540.0" prefWidth="640.0" style="-fx-background-color: rgba(244, 255, 245, 1);" styleClass="paneForm" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
                         <children>
                             <Label layoutX="337.0" layoutY="257.0" text="/">
                                 <font>
                                     <Font name="System Bold" size="20.0" />
                                 </font>
                             </Label>
-                        <Button fx:id="savePaymentInfo" layoutX="227.0" layoutY="458.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="181.0" style="-fx-background-color: rgba(70, 127, 109, 1);" text="Spara mina uppgifter" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                        <Button fx:id="savePaymentInfo" layoutX="230.0" layoutY="446.0" mnemonicParsing="false" onAction="#savePaymentInfo" prefHeight="68.0" prefWidth="181.0" styleClass="buttonInfo" text="Spara mina uppgifter" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Button>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#467f6d" height="30.0" layoutX="144.0" layoutY="14.0" stroke="TRANSPARENT" strokeType="INSIDE" width="354.0" />
+                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#467f6d" height="30.0" layoutX="144.0" layoutY="14.0" stroke="TRANSPARENT" strokeType="INSIDE" width="354.0" />
                         <Label layoutX="222.0" layoutY="14.0" prefHeight="30.0" prefWidth="227.0" text="Betalningsinformation" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="22.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="firstAndLastName" layoutX="250.0" layoutY="77.0" prefHeight="27.0" prefWidth="308.0" promptText="Förnamn, Efternamn" style="-fx-background-color: rgba(199, 234, 219, 1);" />
+                        <TextField fx:id="firstAndLastName" layoutX="250.0" layoutY="77.0" prefHeight="27.0" prefWidth="308.0" promptText="Förnamn, Efternamn" />
                         <ComboBox fx:id="cardType" layoutX="250.0" layoutY="137.0" prefHeight="27.0" prefWidth="181.0" />
                         <TextField fx:id="cardNumber" layoutX="250.0" layoutY="197.0" prefHeight="27.0" prefWidth="168.0" promptText="12345678901234" />
                         <Label layoutX="136.0" layoutY="197.0" prefHeight="23.0" prefWidth="117.0" text="Kortnummer:">
@@ -151,12 +65,100 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="cvcCode" layoutX="250.0" layoutY="317.0" prefHeight="27.0" prefWidth="50.0" text="123" />
+                        <TextField fx:id="cvcCode" layoutX="250.0" layoutY="317.0" prefHeight="27.0" prefWidth="50.0" promptText="123" />
+                        </children>
+                    </AnchorPane>
+                </children>
+            </AnchorPane>
+            <AnchorPane fx:id="AdressForm" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: rgba(0, 0, 0, 0.4);">
+                <children>
+                    <AnchorPane layoutX="30.0" layoutY="30.0" prefHeight="540.0" prefWidth="640.0" style="-fx-background-color: rgba(244, 255, 245, 1);" styleClass="paneForm" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
+                        <children>
+                            <Label layoutX="62.0" layoutY="77.0" prefHeight="26.0" prefWidth="66.0" text="Namn:" textAlignment="RIGHT" AnchorPane.leftAnchor="62.0" AnchorPane.topAnchor="77.0">
+                                <font>
+                                    <Font size="18.0" />
+                                </font>
+                            </Label>
+                            <TextField fx:id="firstName" layoutX="120.0" layoutY="77.0" prefHeight="27.0" prefWidth="194.0" promptText="Förnamn" />
+                            <TextField fx:id="lastName" layoutX="334.0" layoutY="77.0" prefHeight="27.0" prefWidth="194.0" promptText="Efternamn" />
+                            <Label layoutX="55.0" layoutY="137.0" prefHeight="26.0" prefWidth="76.0" text="E-post:" textAlignment="RIGHT">
+                                <font>
+                                    <Font size="18.0" />
+                                </font>
+                            </Label>
+                            <TextField fx:id="email" layoutX="120.0" layoutY="137.0" prefHeight="27.0" prefWidth="227.0" promptText="exampleemail@gmail.com" />
+                            <Label layoutX="48.0" layoutY="199.0" prefHeight="23.0" prefWidth="76.0" text="Telefon:">
+                                <font>
+                                    <Font size="18.0" />
+                                </font>
+                            </Label>
+                            <TextField fx:id="phone" layoutX="120.0" layoutY="197.0" prefHeight="27.0" prefWidth="168.0" promptText="+46733123456" />
+                            <Label layoutX="53.0" layoutY="257.0" prefHeight="23.0" prefWidth="68.0" text="Adress:">
+                                <font>
+                                    <Font size="18.0" />
+                                </font>
+                            </Label>
+                            <TextField fx:id="address" layoutX="120.0" layoutY="257.0" prefHeight="27.0" prefWidth="168.0" promptText="Richertsgatan 2D" />
+                            <Label layoutX="43.0" layoutY="317.0" prefHeight="23.0" prefWidth="77.0" text="Postkod:">
+                                <font>
+                                    <Font size="18.0" />
+                                </font>
+                            </Label>
+                            <TextField fx:id="postCode" layoutX="120.0" layoutY="317.0" prefHeight="27.0" prefWidth="168.0" promptText="412 81" />
+                            <Label layoutX="17.0" layoutY="377.0" prefHeight="23.0" prefWidth="105.0" text="Postadress:">
+                                <font>
+                                    <Font size="18.0" />
+                                </font>
+                            </Label>
+                            <TextField fx:id="postAddress" layoutX="120.0" layoutY="377.0" prefHeight="27.0" prefWidth="168.0" promptText="Göteborg" />
+                        <Button fx:id="saveAddressInfo" layoutX="230.0" layoutY="446.0" mnemonicParsing="false" onAction="#saveAddressInfo" prefHeight="68.0" prefWidth="181.0" styleClass="buttonInfo" text="Spara mina uppgifter" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#467f6d" height="30.0" layoutX="129.0" layoutY="14.0" stroke="TRANSPARENT" strokeType="INSIDE" width="354.0" />
+                            <Label layoutX="217.0" layoutY="14.0" prefHeight="30.0" prefWidth="194.0" text="Adressinformation" textAlignment="CENTER" textFill="WHITE">
+                                <font>
+                                    <Font name="System Bold" size="22.0" />
+                                </font>
+                            </Label>
+                        <Separator layoutX="39.0" layoutY="60.0" prefHeight="3.0" prefWidth="564.0" />
+                        <Separator layoutX="30.0" layoutY="425.0" prefHeight="3.0" prefWidth="564.0" />
                         </children>
                     </AnchorPane>
                 </children>
             </AnchorPane>
         </children>
     </StackPane>
+    <AnchorPane fx:id="OrderForm" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: rgba(70, 127, 109, 1)rgba(70, 127, 109, 1);">
+        <children>
+            <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#f4fff5" height="511.0" layoutX="14.0" layoutY="19.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="rectangle" width="330.0" />
+            <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#f4fff5" height="511.0" layoutX="356.0" layoutY="19.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="rectangle" width="330.0" />
+            <Button fx:id="changeAdress" layoutX="56.0" layoutY="369.0" mnemonicParsing="false" onAction="#addressFormToFront" prefHeight="116.0" prefWidth="247.0" styleClass="buttonInfo" text="Klicka här för att ändra leveransuppgifter" textAlignment="CENTER" wrapText="true">
+                <font>
+                    <Font name="System Font" size="18.0" />
+                </font>
+            </Button>
+            <Button fx:id="changePaymentMethod" layoutX="398.0" layoutY="369.0" mnemonicParsing="false" onAction="#paymentFormToFront" prefHeight="116.0" prefWidth="247.0" styleClass="buttonInfo" text="Klicka här för att ändra betalningsuppgifter" textAlignment="CENTER" wrapText="true">
+                <font>
+                    <Font name="System Font" size="18.0" />
+                </font>
+            </Button>
+            <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#467f6d" height="30.0" layoutX="35.0" layoutY="44.0" stroke="TRANSPARENT" strokeType="INSIDE" width="288.0" />
+            <Label layoutX="82.0" layoutY="44.0" prefHeight="30.0" prefWidth="194.0" text="Adressinformation" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#467f6d" height="30.0" layoutX="378.0" layoutY="44.0" stroke="TRANSPARENT" strokeType="INSIDE" width="288.0" />
+            <Label layoutX="409.0" layoutY="44.0" prefHeight="30.0" prefWidth="227.0" text="Betalningsinformation" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Button layoutX="28.0" layoutY="541.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="123.0" styleClass="buttonForm" text="Tillbaka" />
+            <Button layoutX="543.0" layoutY="541.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="123.0" styleClass="buttonForm" text="Nästa" />
+        </children>
+    </AnchorPane>
 </children>
-</AnchorPane>
+</fx:root>
