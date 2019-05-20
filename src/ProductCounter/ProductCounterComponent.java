@@ -3,7 +3,7 @@ package ProductCounter;
 import com.sun.javafx.tk.Toolkit;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -15,9 +15,10 @@ import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.ShoppingCart;
 import se.chalmers.cse.dat216.project.ShoppingItem;
 
-import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class ProductCounterComponent extends HBox {
+public class ProductCounterComponent extends HBox implements Initializable {
 	@FXML
 	private TextField amountTextField;
 	@FXML
@@ -26,32 +27,12 @@ public class ProductCounterComponent extends HBox {
 	private ShoppingCart cart;
 	private ShoppingItem item;
 
-	public ProductCounterComponent() {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ProductCounterComponent.fxml"));
-		fxmlLoader.setRoot(this);
-		fxmlLoader.setController(this);
-
-		try {
-			fxmlLoader.load();
-		}
-		catch (IOException ex) {
-			throw new RuntimeException(ex);
-		}
-
-		//Listen to shoppingCart updates
-		cart = IMatDataHandler.getInstance().getShoppingCart();
-
-		//Listen to focus updates of the textField
-		amountTextField.focusedProperty().addListener(this::onFocusChange);
-		//Formats the text to a double on enter or unfocus
-		amountTextField.setTextFormatter(new TextFormatter<>(new DoubleStringConverter()));
-	}
-
 	//Used by the FXML Loader to set the shoppingItem property from FXML.
 	public void setShoppingItem(ShoppingItem value) {
 		item = value;
 		updateUIAmount();
 	}
+
 	public ShoppingItem getShoppingItem() {
 		return item;
 	}
@@ -117,5 +98,16 @@ public class ProductCounterComponent extends HBox {
 			setAmount(d);
 		}
 		catch (NumberFormatException ignored) { }
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		//Listen to shoppingCart updates
+		cart = IMatDataHandler.getInstance().getShoppingCart();
+
+		//Listen to focus updates of the textField
+		amountTextField.focusedProperty().addListener(this::onFocusChange);
+		//Formats the text to a double on enter or unfocus
+		amountTextField.setTextFormatter(new TextFormatter<>(new DoubleStringConverter()));
 	}
 }

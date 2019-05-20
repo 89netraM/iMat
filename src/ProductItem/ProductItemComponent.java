@@ -1,46 +1,43 @@
 package ProductItem;
 
+import ProductCounter.ProductCounterComponent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
+import se.chalmers.cse.dat216.project.IMatDataHandler;
+import se.chalmers.cse.dat216.project.Product;
 
-import java.io.IOException;
+import java.io.File;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class ProductItemComponent {
+public class ProductItemComponent implements Initializable {
     @FXML
     private Label description;
 
     @FXML
     private ImageView image;
 
-    public ProductItemComponent() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ProductItem/ProductItemComponent.xml"));
-        fxmlLoader.setRoot(this);
-        fxmlLoader.setController(this);
+    @FXML
+    private Label price;
 
-        try {
-            fxmlLoader.load();
-        }
-        catch (IOException exception) {
-            throw new RuntimeException(exception);
-        }
+    @FXML
+    private ProductCounterComponent productCounter;
+
+    private Product product;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        this.product = IMatDataHandler.getInstance().getProducts().get(0);
+        this.loadFromProduct(this.product);
     }
 
-    public void setDescription(final Label description) {
-        this.description = description;
-    }
-
-    public void setImage(final ImageView image) {
-        this.image = image;
-    }
-
-    public ImageView getImage() {
-        return image;
-    }
-
-    public Label getDescription() {
-        return description;
+    private void loadFromProduct(Product product) {
+        File image = new File(IMatDataHandler.getInstance().imatDirectory() + "/images/" + this.product.getImageName());
+        this.image.setImage(new Image(image.toURI().toString(), true));
+        this.price.setText(Double.toString(product.getPrice()));
+        this.description.setText(product.getName());
     }
 }
