@@ -150,21 +150,21 @@ public class OrderForm extends AnchorPane implements Initializable {
     }
 
     @FXML
-    public void addressFormToFront (){
+    private void addressFormToFront (){
         AdressForm.toFront();
         OrderForm.toBack();
         updateAddressFormPanel();
     }
 
     @FXML
-    public void paymentFormToFront (){
+    private void paymentFormToFront (){
         PaymentForm.toFront();
         OrderForm.toBack();
         updatePaymentFormPanel();
     }
 
     @FXML
-    public void saveAddressInfo (){
+    private void saveAddressInfo (){
         OrderForm.toFront();
         AdressForm.toBack();
         updateCustomer();
@@ -172,7 +172,7 @@ public class OrderForm extends AnchorPane implements Initializable {
     }
 
     @FXML
-    public void savePaymentInfo (){
+    private void savePaymentInfo (){
         OrderForm.toFront();
         PaymentForm.toBack();
         updateCreditCard();

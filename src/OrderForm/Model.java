@@ -68,7 +68,6 @@ public class Model {
     }
 
 
-
     public List<String> getCardTypes() {
         return availableCardTypes;
     }
@@ -88,7 +87,6 @@ public class Model {
     public Customer getCustomer() {
         return iMatDataHandler.getCustomer();
     }
-
 
 
     public void shutDown() {
