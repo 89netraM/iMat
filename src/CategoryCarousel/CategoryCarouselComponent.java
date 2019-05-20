@@ -7,6 +7,8 @@ import se.chalmers.cse.dat216.project.ProductCategory;
 import java.io.IOException;
 
 public class CategoryCarouselComponent extends ScrollPane {
+	private ProductCategory selectedCategory = ProductCategory.BREAD;
+
 	public CategoryCarouselComponent() {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CategoryCarouselComponent.fxml"));
 		fxmlLoader.setRoot(this);
@@ -19,4 +21,11 @@ public class CategoryCarouselComponent extends ScrollPane {
 			throw new RuntimeException(ex);
 		}
 	}
+	public void setSelectedCategory(ProductCategory selectedCategory) {
+		this.selectedCategory = selectedCategory;
+	}
+	public ProductCategory getSelectedCategory() {
+		return selectedCategory;
+	}
+
 }
