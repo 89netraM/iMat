@@ -6,8 +6,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import CategoryCarousel.CategoryCarouselComponent?>
 <AnchorPane xmlns="http://javafx.com/javafx"
 			xmlns:fx="http://javafx.com/fxml"
 			fx:controller="MainWindow"
 			prefHeight="400.0" prefWidth="600.0">
+	<children>
+		<CategoryCarouselComponent AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"/>
+	</children>
 </AnchorPane>
