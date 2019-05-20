@@ -1,19 +1,12 @@
 package OrderForm;
 
 import javafx.fxml.FXML;
-<<<<<<< Updated upstream
-=======
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
->>>>>>> Stashed changes
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-<<<<<<< Updated upstream
-
-public class OrderForm {
-=======
 import javafx.scene.layout.HBox;
 import se.chalmers.cse.dat216.project.CreditCard;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
@@ -26,7 +19,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class OrderForm extends HBox implements Initializable {
->>>>>>> Stashed changes
 
     @FXML private AnchorPane OrderFormComponent;
     @FXML private AnchorPane OrderForm;
@@ -44,14 +36,12 @@ public class OrderForm extends HBox implements Initializable {
     @FXML private AnchorPane PaymentForm;
     @FXML private Button savePaymentInfo;
     @FXML private TextField firstAndLastName;
-    @FXML private ComboBox<?> cardType;
+    @FXML private ComboBox cardType;
     @FXML private TextField cardNumber;
-    @FXML private ComboBox<?> month;
-    @FXML private ComboBox<?> year;
+    @FXML private ComboBox month;
+    @FXML private ComboBox year;
     @FXML private TextField cvcCode;
 
-<<<<<<< Updated upstream
-=======
 
    /*
     public OrderForm() {
@@ -76,7 +66,7 @@ public class OrderForm extends HBox implements Initializable {
     public void initialize(URL url, ResourceBundle rb){
 
 
-   }
+    }
 
     private void updateCreditCard() {
 
@@ -125,5 +115,4 @@ public class OrderForm extends HBox implements Initializable {
 
     }
 
->>>>>>> Stashed changes
 }
