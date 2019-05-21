@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 
-<?import javafx.scene.layout.VBox?>
-<fx:root xmlns:fx="http://javafx.com/fxml/1" fx:id="vbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-         minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" type="VBox"
+<?import javafx.scene.layout.FlowPane?>
+<fx:root xmlns:fx="http://javafx.com/fxml/1" fx:id="flowPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+         minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" type="FlowPane"
          xmlns="http://javafx.com/javafx/11.0.1"/>
