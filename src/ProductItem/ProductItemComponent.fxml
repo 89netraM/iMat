@@ -3,12 +3,15 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="140.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ProductItem.ProductItemComponent">
-   <children>
-      <ImageView fx:id="image" fitHeight="106.0" fitWidth="141.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="price" layoutX="155.0" layoutY="50.0" text="Price" />
-      <fx:include source="../ProductCounter/ProductCounterComponent.fxml" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="100.0" />
-      <Label fx:id="description" layoutX="155.0" layoutY="14.0" text="Description" />
-   </children>
-</AnchorPane>
+<?import ProductCounter.ProductCounterComponent?>
+<fx:root xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+         prefHeight="140.0" prefWidth="400.0" type="AnchorPane"
+         xmlns="http://javafx.com/javafx/11.0.1">
+    <children>
+        <ImageView fx:id="image" fitHeight="106.0" fitWidth="141.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true"
+                   preserveRatio="true"/>
+        <Label fx:id="price" layoutX="155.0" layoutY="50.0" text="Price"/>
+        <Label fx:id="description" layoutX="155.0" layoutY="14.0" text="Description"/>
+        <ProductCounterComponent fx:id="productCounter" layoutX="200" layoutY="80"/>
+    </children>
+</fx:root>

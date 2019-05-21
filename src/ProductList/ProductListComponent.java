@@ -1,38 +1,34 @@
 package ProductList;
 
 import ProductItem.ProductItemComponent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.VBox;
+import se.chalmers.cse.dat216.project.Product;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class ProductListComponent {
+public class ProductListComponent extends VBox {
     private ArrayList<ProductItemComponent> productItemComponents;
+
+    @FXML
+    private VBox vbox;
 
     public ProductListComponent() {
         this.productItemComponents = new ArrayList<>();
-
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ProductList/ProductListComponent.xml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ProductListComponent.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
-
         try {
             fxmlLoader.load();
-        }
-        catch (IOException exception) {
+        } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
     }
 
-    public ArrayList<ProductItemComponent> getProductItemComponents() {
-        return this.productItemComponents;
-    }
-
-    public void addProductItemComponent(final ProductItemComponent ProductItemComponent) {
-        this.productItemComponents.add(ProductItemComponent);
-    }
-
-    public void clearProductItemComponents(){
-        this.productItemComponents.clear();
+    public void addProduct(Product product) {
+        ProductItemComponent productItem = new ProductItemComponent(product);
+        this.vbox.getChildren().add(productItem);
     }
 }
