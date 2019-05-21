@@ -12,9 +12,7 @@ import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ProductCategory;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class CategoryCarouselComponent extends ScrollPane {
 	private final IMatDataHandler dataHandler;
@@ -24,7 +22,7 @@ public class CategoryCarouselComponent extends ScrollPane {
 
 	private EventHandler<CategoryCarouselComponentEvent> onSelectHandler;
 
-	private final List<CategoryCarouselItemComponent> carouselItems;
+	private final Map<ProductCategory, CategoryCarouselItemComponent> carouselItems;
 	private ProductCategory selectedCategory = ProductCategory.BREAD;
 
 	public CategoryCarouselComponent() {
@@ -42,15 +40,15 @@ public class CategoryCarouselComponent extends ScrollPane {
 		dataHandler = IMatDataHandler.getInstance();
 
 		carouselItems = generateCarouselItems();
-		box.getChildren().addAll(carouselItems);
-		carouselItems.get(0).setIsSelected(true);
+		box.getChildren().addAll(carouselItems.values());
+
 	}
 
-	private List<CategoryCarouselItemComponent> generateCarouselItems() {
-		List<CategoryCarouselItemComponent> items = new ArrayList<>();
+	private Map<ProductCategory, CategoryCarouselItemComponent> generateCarouselItems() {
+		Map<ProductCategory, CategoryCarouselItemComponent> items = new HashMap<>();
 
 		for (ProductCategory pc : ProductCategory.values()) {
-			items.add(new CategoryCarouselItemComponent(pc));
+			items.put(pc, new CategoryCarouselItemComponent(pc));
 		}
 
 		return items;
@@ -58,6 +56,9 @@ public class CategoryCarouselComponent extends ScrollPane {
 
 	public void setSelectedCategory(ProductCategory selectedCategory) {
 		this.selectedCategory = selectedCategory;
+
+		clearSelection();
+		carouselItems.get(selectedCategory).setIsSelected(true);
 
 		Event event = new CategoryCarouselComponentEvent(
 				this,
@@ -68,6 +69,12 @@ public class CategoryCarouselComponent extends ScrollPane {
 	}
 	public ProductCategory getSelectedCategory() {
 		return selectedCategory;
+	}
+
+	private void clearSelection() {
+		for (CategoryCarouselItemComponent item : carouselItems.values()) {
+			item.setIsSelected(false);
+		}
 	}
 
 	public void setOnSelect(EventHandler<CategoryCarouselComponentEvent> onSelectHandler) {
