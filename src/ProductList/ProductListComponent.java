@@ -13,13 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductListComponent extends FlowPane {
-    private ArrayList<ProductItemComponent> productItemComponents;
-
     @FXML
     private FlowPane flowPane;
 
     public ProductListComponent() {
-        this.productItemComponents = new ArrayList<>();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ProductListComponent.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
