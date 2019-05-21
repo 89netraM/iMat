@@ -1,5 +1,6 @@
 package CategoryCarousel;
 
+import Animations.ValueAnimation;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
@@ -7,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
+import javafx.util.Duration;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ProductCategory;
@@ -16,6 +18,8 @@ import java.util.*;
 
 public class CategoryCarouselComponent extends ScrollPane {
 	private final IMatDataHandler dataHandler;
+
+	private final ValueAnimation scrollAnimation;
 
 	@FXML
 	private HBox box;
@@ -39,10 +43,16 @@ public class CategoryCarouselComponent extends ScrollPane {
 
 		dataHandler = IMatDataHandler.getInstance();
 
+		scrollAnimation = new ValueAnimation(Duration.millis(300), this::scrollAnimator);
+
 		carouselItems = generateCarouselItems();
 		box.getChildren().addAll(carouselItems);
 		//Selects the first category
 		setSelectedCategory(ProductCategory.values()[0]);
+	}
+
+	private void scrollAnimator(double value) {
+		this.setHvalue(value);
 	}
 
 	private List<CategoryCarouselItemComponent> generateCarouselItems() {
@@ -64,7 +74,7 @@ public class CategoryCarouselComponent extends ScrollPane {
 		clearSelection();
 
 		carouselItems.get(selectedCategory.ordinal()).setIsSelected(true);
-		this.setHvalue(selectedCategory.ordinal() / (carouselItems.size() - 1.0d));
+		scrollAnimation.play(getHvalue(), getScrollPositionOfIndex(selectedCategory.ordinal()));
 
 		Event event = new CategoryCarouselComponentEvent(
 				this,
@@ -73,6 +83,11 @@ public class CategoryCarouselComponent extends ScrollPane {
 		);
 		fireEvent(event);
 	}
+
+	private double getScrollPositionOfIndex(int index) {
+		return index / (carouselItems.size() - 1.0d);
+	}
+
 	public ProductCategory getSelectedCategory() {
 		return selectedCategory;
 	}
