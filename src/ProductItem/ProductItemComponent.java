@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 public class ProductItemComponent extends AnchorPane implements Initializable {
     @FXML
     private Label description;
-    
+
     @FXML
     private ImageView image;
 
@@ -37,6 +37,7 @@ public class ProductItemComponent extends AnchorPane implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ProductItemComponent.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
+
         try {
             fxmlLoader.load();
         } catch (IOException exception) {

@@ -8,6 +8,7 @@ import se.chalmers.cse.dat216.project.Product;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProductListComponent extends VBox {
     private ArrayList<ProductItemComponent> productItemComponents;
@@ -31,4 +32,18 @@ public class ProductListComponent extends VBox {
         ProductItemComponent productItem = new ProductItemComponent(product);
         this.vbox.getChildren().add(productItem);
     }
+
+    public void setProducts(List<Product> products) {
+        this.clear();
+
+        for (Product product : products) {
+            this.addProduct(product);
+        }
+    }
+
+    public void clear() {
+        this.vbox.getChildren().clear();
+    }
+
+
 }
