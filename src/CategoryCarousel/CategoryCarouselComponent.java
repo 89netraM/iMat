@@ -43,6 +43,7 @@ public class CategoryCarouselComponent extends ScrollPane {
 
 		carouselItems = generateCarouselItems();
 		box.getChildren().addAll(carouselItems);
+		carouselItems.get(0).setIsSelected(true);
 	}
 
 	private List<CategoryCarouselItemComponent> generateCarouselItems() {
