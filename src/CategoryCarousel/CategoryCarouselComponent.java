@@ -41,14 +41,18 @@ public class CategoryCarouselComponent extends ScrollPane {
 
 		carouselItems = generateCarouselItems();
 		box.getChildren().addAll(carouselItems.values());
-
+		//Selects the first category
+		setSelectedCategory(carouselItems.keySet().iterator().next());
 	}
 
 	private Map<ProductCategory, CategoryCarouselItemComponent> generateCarouselItems() {
 		Map<ProductCategory, CategoryCarouselItemComponent> items = new HashMap<>();
 
 		for (ProductCategory pc : ProductCategory.values()) {
-			items.put(pc, new CategoryCarouselItemComponent(pc));
+			CategoryCarouselItemComponent item = new CategoryCarouselItemComponent(pc);
+			item.setOnMouseClicked(m -> setSelectedCategory(pc));
+
+			items.put(pc, item);
 		}
 
 		return items;
