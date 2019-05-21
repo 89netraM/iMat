@@ -3,20 +3,28 @@ package CategoryCarousel;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.HBox;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ProductCategory;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CategoryCarouselComponent extends ScrollPane {
 	private final IMatDataHandler dataHandler;
 
+	@FXML
+	private HBox box;
+
 	private EventHandler<CategoryCarouselComponentEvent> onSelectHandler;
 
+	private final List<CategoryCarouselItemComponent> carouselItems;
 	private ProductCategory selectedCategory = ProductCategory.BREAD;
 
 	public CategoryCarouselComponent() {
@@ -32,6 +40,19 @@ public class CategoryCarouselComponent extends ScrollPane {
 		}
 
 		dataHandler = IMatDataHandler.getInstance();
+
+		carouselItems = generateCarouselItems();
+		box.getChildren().addAll(carouselItems);
+	}
+
+	private List<CategoryCarouselItemComponent> generateCarouselItems() {
+		List<CategoryCarouselItemComponent> items = new ArrayList<>();
+
+		for (ProductCategory pc : ProductCategory.values()) {
+			items.add(new CategoryCarouselItemComponent(pc));
+		}
+
+		return items;
 	}
 
 	public void setSelectedCategory(ProductCategory selectedCategory) {
