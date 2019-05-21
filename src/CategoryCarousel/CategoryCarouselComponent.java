@@ -22,7 +22,7 @@ public class CategoryCarouselComponent extends ScrollPane {
 
 	private EventHandler<CategoryCarouselComponentEvent> onSelectHandler;
 
-	private final Map<ProductCategory, CategoryCarouselItemComponent> carouselItems;
+	private final List<CategoryCarouselItemComponent> carouselItems;
 	private ProductCategory selectedCategory = ProductCategory.BREAD;
 
 	public CategoryCarouselComponent() {
@@ -40,19 +40,19 @@ public class CategoryCarouselComponent extends ScrollPane {
 		dataHandler = IMatDataHandler.getInstance();
 
 		carouselItems = generateCarouselItems();
-		box.getChildren().addAll(carouselItems.values());
+		box.getChildren().addAll(carouselItems);
 		//Selects the first category
-		setSelectedCategory(carouselItems.keySet().iterator().next());
+		setSelectedCategory(ProductCategory.values()[0]);
 	}
 
-	private Map<ProductCategory, CategoryCarouselItemComponent> generateCarouselItems() {
-		Map<ProductCategory, CategoryCarouselItemComponent> items = new HashMap<>();
+	private List<CategoryCarouselItemComponent> generateCarouselItems() {
+		List<CategoryCarouselItemComponent> items = new LinkedList<>();
 
 		for (ProductCategory pc : ProductCategory.values()) {
 			CategoryCarouselItemComponent item = new CategoryCarouselItemComponent(pc);
 			item.setOnMouseClicked(m -> setSelectedCategory(pc));
 
-			items.put(pc, item);
+			items.add(item);
 		}
 
 		return items;
@@ -62,11 +62,13 @@ public class CategoryCarouselComponent extends ScrollPane {
 		this.selectedCategory = selectedCategory;
 
 		clearSelection();
-		carouselItems.get(selectedCategory).setIsSelected(true);
+
+		carouselItems.get(selectedCategory.ordinal()).setIsSelected(true);
+		this.setHvalue(selectedCategory.ordinal() / (carouselItems.size() - 1.0d));
 
 		Event event = new CategoryCarouselComponentEvent(
 				this,
-				dataHandler.getProducts(selectedCategory),
+				getSelectedCategoryProducts(),
 				CategoryCarouselComponentEvent.ON_SELECT
 		);
 		fireEvent(event);
@@ -76,9 +78,13 @@ public class CategoryCarouselComponent extends ScrollPane {
 	}
 
 	private void clearSelection() {
-		for (CategoryCarouselItemComponent item : carouselItems.values()) {
+		for (CategoryCarouselItemComponent item : carouselItems) {
 			item.setIsSelected(false);
 		}
+	}
+
+	public List<Product> getSelectedCategoryProducts() {
+		return dataHandler.getProducts(selectedCategory);
 	}
 
 	public void setOnSelect(EventHandler<CategoryCarouselComponentEvent> onSelectHandler) {
