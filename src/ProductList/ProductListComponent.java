@@ -26,7 +26,12 @@ public class ProductListComponent extends FlowPane {
         }
     }
 
-    public void setProducts(List<Product> products) {
+    private void addProduct(final Product product) {
+        ProductItemComponent productItem = new ProductItemComponent(product);
+        this.flowPane.getChildren().add(productItem);
+    }
+
+    public void setProducts(final List<Product> products) {
         this.clear();
         for (Product product : products) {
             this.addProduct(product);
