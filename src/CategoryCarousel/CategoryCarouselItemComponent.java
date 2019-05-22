@@ -38,7 +38,7 @@ public class CategoryCarouselItemComponent extends GridPane {
 		}
 
 		this.category = category;
-		label.setText(category.toString());
+		label.setText(getCategoryName(category));
 
 		File file = new File(IMatDataHandler.getInstance().imatDirectory() + "/category_icons/" + category + ".png");
 		Image imageSrc = new Image(file.toURI().toString(), 100.0d, 100.0d, true, true, true);
@@ -59,5 +59,54 @@ public class CategoryCarouselItemComponent extends GridPane {
 	}
 	public boolean getIsSelected() {
 		return isSelected;
+	}
+
+	private String getCategoryName(ProductCategory category) {
+		switch (category) {
+			case POD:
+				return "Baljväxter";
+			case BREAD:
+				return "Bröd";
+			case BERRY:
+				return "Bär";
+			case CITRUS_FRUIT:
+				return "Citrus frukter";
+			case HOT_DRINKS:
+				return "Varma drycker";
+			case COLD_DRINKS:
+				return "Kalla drycker";
+			case EXOTIC_FRUIT:
+				return "Exotiska frukter";
+			case FISH:
+				return "Fisk";
+			case VEGETABLE_FRUIT:
+				return "Grönsaker";
+			case CABBAGE:
+				return "Kol";
+			case MEAT:
+				return "Kött";
+			case DAIRIES:
+				return "Mejeri";
+			case MELONS:
+				return "Meloner";
+			case FLOUR_SUGAR_SALT:
+				return "Torra varor";
+			case NUTS_AND_SEEDS:
+				return "Nötter och frön";
+			case PASTA:
+				return "Pasta";
+			case POTATO_RICE:
+				return "Potatis och ris";
+			case ROOT_VEGETABLE:
+				return "Rotfrukter";
+			case FRUIT:
+				return "Frukter";
+			case SWEET:
+				return "Godis";
+			case HERB:
+				return "Örter";
+		}
+
+		return category.toString();
 	}
 }
