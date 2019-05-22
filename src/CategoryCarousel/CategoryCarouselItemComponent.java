@@ -1,11 +1,13 @@
 package CategoryCarousel;
 
+import Animations.ValueAnimation;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.util.Duration;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.ProductCategory;
 
@@ -13,7 +15,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class CategoryCarouselItemComponent extends GridPane {
-	private static final String SelectedClass = "selected";
+	private static final String SelectedClass = "isSelected";
 
 	@FXML
 	private ImageView image;
@@ -22,6 +24,7 @@ public class CategoryCarouselItemComponent extends GridPane {
 	private Label label;
 
 	private boolean isSelected = false;
+	private final ValueAnimation selectedAnimation = new ValueAnimation(Duration.millis(300), this::animationAction);
 
 	private final ProductCategory category;
 
@@ -45,24 +48,19 @@ public class CategoryCarouselItemComponent extends GridPane {
 		image.setImage(imageSrc);
 	}
 
-	public void setIsSelected(boolean selected) {
-		isSelected = selected;
-
-		if (isSelected) {
-			if (!this.getStyleClass().contains(SelectedClass)) {
-				this.getStyleClass().add(SelectedClass);
-			}
-
-			image.setFitHeight(100.0d);
+	public void setIsSelected(boolean isSelected) {
+		if (this.isSelected != isSelected) {
+			selectedAnimation.play(image.getFitHeight(), isSelected ? 100.0d : 50.0d);
 		}
-		else {
-			this.getStyleClass().remove(SelectedClass);
 
-			image.setFitHeight(50.0d);
-		}
+		this.isSelected = isSelected;
 	}
 	public boolean getIsSelected() {
 		return isSelected;
+	}
+
+	private void animationAction(double value) {
+		image.setFitHeight(value);
 	}
 
 	private String getCategoryName(ProductCategory category) {
