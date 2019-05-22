@@ -1,11 +1,14 @@
 package CategoryCarousel;
 
 import Animations.ValueAnimation;
+import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
@@ -14,6 +17,7 @@ import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ProductCategory;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.*;
 
 public class CategoryCarouselComponent extends ScrollPane {
@@ -49,6 +53,18 @@ public class CategoryCarouselComponent extends ScrollPane {
 		box.getChildren().addAll(carouselItems);
 		//Selects the first category
 		setSelectedCategory(ProductCategory.values()[0]);
+
+		this.widthProperty().addListener(this::widthListener);
+	}
+
+	private void widthListener(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+		calculateInnerPadding();
+	}
+
+	private void calculateInnerPadding() {
+		//CategoryItem width: 100.0d. Should find better way of getting the width.
+		double padding = (getWidth() - 100.0d) / 2.0d;
+		box.setPadding(new Insets(0, padding, 0, padding));
 	}
 
 	private void scrollAnimator(double value) {
