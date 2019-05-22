@@ -24,7 +24,7 @@ public class CategoryCarouselComponent extends GridPane {
 
 	private final IMatDataHandler dataHandler;
 
-	private final DoubleAnimation scrollAnimation;
+	private final DoubleAnimation scrollAnimation = new DoubleAnimation(this::scrollAnimator, Duration.millis(300));
 
 	@FXML
 	private HBox box;
@@ -51,8 +51,6 @@ public class CategoryCarouselComponent extends GridPane {
 
 		dataHandler = IMatDataHandler.getInstance();
 
-		scrollAnimation = new DoubleAnimation(this::scrollAnimator, Duration.millis(300));
-
 		carouselItems = generateCarouselItems();
 		box.getChildren().addAll(carouselItems);
 		//Selects the first category
@@ -71,15 +69,21 @@ public class CategoryCarouselComponent extends GridPane {
 		box.setPadding(new Insets(0, padding, 0, padding));
 	}
 
+	//Called when the user clicks the left "scroll" button.
 	@FXML
 	private void leftClick() {
-		scrollAnimation.play(scrollBox.getHvalue(), scrollBox.getHvalue() - scrollLength / ProductCategory.values().length);
+		//Scrolls `scrollLength` items to the left.
+		scrollAnimation.play(scrollBox.getHvalue(), scrollBox.getHvalue() - (scrollLength / (carouselItems.size() - 1)));
 	}
+	//Called when the user clicks the right "scroll" button.
 	@FXML
 	private void rightClick() {
-		scrollAnimation.play(scrollBox.getHvalue(), scrollBox.getHvalue() + scrollLength / ProductCategory.values().length);
+		//Scrolls `scrollLength` items to the left.
+		scrollAnimation.play(scrollBox.getHvalue(), scrollBox.getHvalue() + (scrollLength / (carouselItems.size() - 1)));
 	}
 
+	//Is the action of the `scrollAnimator`.
+	//Every step of the animation this method updates the horizontal scroll position.
 	private void scrollAnimator(double value) {
 		scrollBox.setHvalue(value);
 	}
@@ -113,6 +117,11 @@ public class CategoryCarouselComponent extends GridPane {
 		fireEvent(event);
 	}
 
+	/**
+	 * Gets the scroll position (0.0 - 1.0) of the item with the index `index`.
+	 * @param    index    The index of the intended element.
+	 * @return    Returns the scroll position of the element (0.0 - 1.0).
+	 */
 	private double getScrollPositionOfIndex(int index) {
 		return index / (carouselItems.size() - 1.0d);
 	}
@@ -121,16 +130,26 @@ public class CategoryCarouselComponent extends GridPane {
 		return selectedCategory;
 	}
 
+	//Un selects all category items.
 	private void clearSelection() {
 		for (CategoryCarouselItemComponent item : carouselItems) {
 			item.setIsSelected(false);
 		}
 	}
 
+	/**
+	 * Gets the currently selected category.
+	 * @return    Returns the currently selected category.
+	 */
 	public List<Product> getSelectedCategoryProducts() {
 		return dataHandler.getProducts(selectedCategory);
 	}
 
+	/**
+	 * Sets the event handler for when a new category is selected.
+	 * Can be used from `fxml` as: `onSelect="#eventHandelr"`.
+	 * @param    onSelectHandler    The new event handler.
+	 */
 	public void setOnSelect(EventHandler<CategoryCarouselComponentEvent> onSelectHandler) {
 		if (this.onSelectHandler != null) {
 			removeEventHandler(CategoryCarouselComponentEvent.ON_SELECT, this.onSelectHandler);

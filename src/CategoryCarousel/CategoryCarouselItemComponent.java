@@ -15,8 +15,6 @@ import java.io.File;
 import java.io.IOException;
 
 public class CategoryCarouselItemComponent extends GridPane {
-	private static final String SelectedClass = "isSelected";
-
 	@FXML
 	private ImageView image;
 
@@ -41,13 +39,21 @@ public class CategoryCarouselItemComponent extends GridPane {
 		}
 
 		this.category = category;
+
+		//Sets the label to a nice name.
 		label.setText(getCategoryName(category));
 
+		//Sets the image from a category icon.
 		File file = new File(IMatDataHandler.getInstance().imatDirectory() + "/category_icons/" + category + ".png");
 		Image imageSrc = new Image(file.toURI().toString(), 100.0d, 100.0d, true, true, true);
 		image.setImage(imageSrc);
 	}
 
+	/**
+	 * Sets whether or not this is category is selected.
+	 * If the selection change it's shown with an animation.
+	 * @param    isSelected    The new selection state.
+	 */
 	public void setIsSelected(boolean isSelected) {
 		if (this.isSelected != isSelected) {
 			selectedAnimation.play(image.getFitHeight(), isSelected ? 100.0d : 50.0d);
@@ -59,10 +65,17 @@ public class CategoryCarouselItemComponent extends GridPane {
 		return isSelected;
 	}
 
+	//Is the action of the `selectedAnimation`.
+	//Every step of the animation this method updates the height of the image.
 	private void animationAction(double value) {
 		image.setFitHeight(value);
 	}
 
+	/**
+	 * Turns a `ProductCategory` enum into a human readable name.
+	 * @param    category    The category.
+	 * @return    Returns a human readable name.
+	 */
 	private String getCategoryName(ProductCategory category) {
 		switch (category) {
 			case POD:
