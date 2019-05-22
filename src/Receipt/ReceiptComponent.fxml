@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<fx:root prefHeight="600.0" prefWidth="300.0" type="GridPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints vgrow="ALWAYS" />
+      <RowConstraints minHeight="25.0" vgrow="NEVER" />
+      <RowConstraints minHeight="30.0" vgrow="NEVER" />
+   </rowConstraints>
+   <children>
+      <ScrollPane fitToWidth="true">
+         <content>
+            <VBox fx:id="receiptList" />
+         </content>
+      </ScrollPane>
+      <GridPane fx:id="undoPane" visible="false" GridPane.rowIndex="1">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+             <Label fx:id="undoText" GridPane.columnIndex="0" />
+            <Button fx:id="undoButton" mnemonicParsing="false" onAction="#onUndoButton" text="Ångra" GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
+      <Button fx:id="backButton" mnemonicParsing="false" onAction="#onBackButton" text="⬅ Tillbaka" visible="false" GridPane.rowIndex="2" />
+      <Button fx:id="checkoutButton" mnemonicParsing="false" onAction="#onCheckoutButton" text="Kassan ➡" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+   </children>
+</fx:root>
