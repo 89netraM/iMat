@@ -72,7 +72,7 @@ public class OrderForm extends AnchorPane implements Initializable {
         if(iMatDataHandler.isFirstRun()){
             iMatDataHandler.reset();
         }
-        setupAccountPane();
+        setupPaymentPane();
 
     }
 
@@ -140,7 +140,7 @@ public class OrderForm extends AnchorPane implements Initializable {
 
     }
 
-    private void setupAccountPane() {
+    private void setupPaymentPane() {
 
         cardType.getItems().addAll(model.getCardTypes());
 
