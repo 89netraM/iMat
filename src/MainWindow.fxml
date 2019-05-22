@@ -3,6 +3,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import OrderForm.OrderForm ?>
 
 <ScrollPane hbarPolicy="NEVER" maxHeight="1280.0" maxWidth="1280.0" minHeight="800.0" minViewportHeight="800.0" minViewportWidth="1280.0" minWidth="1280.0" prefHeight="800.0" prefViewportHeight="800.0" prefViewportWidth="1280.0" prefWidth="0.0" vbarPolicy="NEVER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainWindow">
    <content>
@@ -21,7 +22,11 @@
             </AnchorPane>
             <AnchorPane layoutX="1279.0" prefHeight="800.0" prefWidth="940.0">
                <children>
-                  <Pane fx:id="paymentPane" prefHeight="800.0" prefWidth="940.0" style="-fx-background-color: #96a;" />
+                  <Pane fx:id="paymentPane" prefHeight="800.0" prefWidth="940.0" style="-fx-background-color: #96a;">
+                     <children>
+                        <OrderForm />
+                     </children>
+                  </Pane>
                </children>
             </AnchorPane>
             <AnchorPane layoutX="2219.0" minWidth="1280.0" prefHeight="800.0" prefWidth="1280.0">
