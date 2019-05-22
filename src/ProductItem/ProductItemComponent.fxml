@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import ProductCounter.ProductCounterComponent?>
 <fx:root xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-         prefHeight="140.0" prefWidth="400.0" type="AnchorPane"
+         prefHeight="100.0" prefWidth="240.0" type="AnchorPane"
          xmlns="http://javafx.com/javafx/11.0.1">
     <children>
         <ImageView fx:id="image" fitHeight="106.0" fitWidth="141.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true"

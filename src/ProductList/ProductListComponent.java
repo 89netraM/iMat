@@ -33,7 +33,7 @@ public class ProductListComponent extends FlowPane {
 
     public void setProducts(final List<Product> products) {
         this.clear();
-        for (Product product : products) {
+        for (final Product product : products) {
             this.addProduct(product);
         }
     }

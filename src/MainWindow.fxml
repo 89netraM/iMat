@@ -6,6 +6,7 @@
 <?import OrderForm.OrderForm ?>
 <?import Delivery.DeliveryComponent ?>
 
+<?import ProductList.ProductListComponent?>
 <ScrollPane hbarPolicy="NEVER" maxHeight="1280.0" maxWidth="1280.0" minHeight="800.0" minViewportHeight="800.0" minViewportWidth="1280.0" minWidth="1280.0" prefHeight="800.0" prefViewportHeight="800.0" prefViewportWidth="1280.0" prefWidth="0.0" vbarPolicy="NEVER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainWindow">
    <content>
       <AnchorPane fx:id="shopPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="3500.0">
@@ -13,7 +14,11 @@
             <AnchorPane prefHeight="800.0" prefWidth="1280.0">
                <children>
                   <Pane fx:id="searchPane" prefHeight="160.0" prefWidth="940.0" style="-fx-background-color: #DDD;" />
-                  <Pane fx:id="productsPane" layoutY="160.0" prefHeight="640.0" prefWidth="940.0" style="-fx-background-color: #fefe;" />
+                  <ScrollPane fx:id="productsPane" layoutY="160.0" prefHeight="640.0" prefWidth="940.0" style="-fx-background-color: #fefe;">
+                     <content>
+                        <ProductListComponent fx:id="productListController" />
+                     </content>
+                  </ScrollPane>
                   <ScrollPane hbarPolicy="NEVER" layoutX="940.0" minViewportHeight="800.0" minViewportWidth="340.0" minWidth="340.0" prefHeight="800.0" prefWidth="340.0">
                     <content>
                         <Pane fx:id="receiptPane" maxHeight="800.0" maxWidth="800.0" minWidth="360.0" prefHeight="800.0" prefWidth="360.0" style="-fx-background-color: #3aa31a;" />
