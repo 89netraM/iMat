@@ -17,12 +17,12 @@
       <RowConstraints vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <Button mnemonicParsing="false" text="&lt;" textOverrun="CLIP" onAction="#leftClick" GridPane.columnIndex="0" />
-      <ScrollPane fx:id="scrollBox" fitToHeight="true" vbarPolicy="NEVER" hbarPolicy="NEVER" GridPane.columnIndex="1">
+      <Button mnemonicParsing="false" onAction="#leftClick" text="&lt;" textOverrun="CLIP" GridPane.columnIndex="0" />
+      <ScrollPane fx:id="scrollBox" fitToHeight="true" hbarPolicy="NEVER" vbarPolicy="NEVER" GridPane.columnIndex="1">
          <content>
-            <HBox fx:id="box" />
+            <HBox fx:id="box" alignment="BOTTOM_CENTER" />
          </content>
       </ScrollPane>
-      <Button mnemonicParsing="false" text="&gt;" textOverrun="CLIP" onAction="#rightClick" GridPane.columnIndex="2" />
+      <Button mnemonicParsing="false" onAction="#rightClick" text="&gt;" textOverrun="CLIP" GridPane.columnIndex="2" />
    </children>
 </fx:root>

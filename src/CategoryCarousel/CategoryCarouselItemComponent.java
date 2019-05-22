@@ -52,9 +52,13 @@ public class CategoryCarouselItemComponent extends GridPane {
 			if (!this.getStyleClass().contains(SelectedClass)) {
 				this.getStyleClass().add(SelectedClass);
 			}
+
+			image.setFitHeight(100.0d);
 		}
 		else {
 			this.getStyleClass().remove(SelectedClass);
+
+			image.setFitHeight(50.0d);
 		}
 	}
 	public boolean getIsSelected() {
