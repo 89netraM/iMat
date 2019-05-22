@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 
-
-<fx:root type="ScrollPane" fitToHeight="true" vbarPolicy="NEVER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <content>
-      <HBox fx:id="box" />
-   </content>
+<fx:root type="GridPane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+   <columnConstraints>
+      <ColumnConstraints hgrow="ALWAYS" />
+      <ColumnConstraints hgrow="ALWAYS" />
+      <ColumnConstraints hgrow="ALWAYS" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <Button mnemonicParsing="false" text="&lt;" textOverrun="CLIP" onAction="#leftClick" GridPane.columnIndex="0" />
+      <ScrollPane fx:id="scrollBox" fitToHeight="true" vbarPolicy="NEVER" hbarPolicy="NEVER" GridPane.columnIndex="1">
+         <content>
+            <HBox fx:id="box" />
+         </content>
+      </ScrollPane>
+      <Button mnemonicParsing="false" text="&gt;" textOverrun="CLIP" onAction="#rightClick" GridPane.columnIndex="2" />
+   </children>
 </fx:root>

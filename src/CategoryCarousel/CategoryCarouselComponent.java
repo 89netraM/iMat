@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
@@ -20,13 +21,18 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
-public class CategoryCarouselComponent extends ScrollPane {
+public class CategoryCarouselComponent extends GridPane {
+	private static final double scrollLength = 3.0d;
+
 	private final IMatDataHandler dataHandler;
 
 	private final ValueAnimation scrollAnimation;
 
 	@FXML
 	private HBox box;
+
+	@FXML
+	private ScrollPane scrollBox;
 
 	private EventHandler<CategoryCarouselComponentEvent> onSelectHandler;
 
@@ -54,7 +60,7 @@ public class CategoryCarouselComponent extends ScrollPane {
 		//Selects the first category
 		setSelectedCategory(ProductCategory.values()[0]);
 
-		this.widthProperty().addListener(this::widthListener);
+		scrollBox.widthProperty().addListener(this::widthListener);
 	}
 
 	private void widthListener(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -63,12 +69,21 @@ public class CategoryCarouselComponent extends ScrollPane {
 
 	private void calculateInnerPadding() {
 		//CategoryItem width: 100.0d. Should find better way of getting the width.
-		double padding = (getWidth() - 100.0d) / 2.0d;
+		double padding = (scrollBox.getWidth() - 100.0d) / 2.0d;
 		box.setPadding(new Insets(0, padding, 0, padding));
 	}
 
+	@FXML
+	private void leftClick() {
+		scrollAnimation.play(scrollBox.getHvalue(), scrollBox.getHvalue() - scrollLength / ProductCategory.values().length);
+	}
+	@FXML
+	private void rightClick() {
+		scrollAnimation.play(scrollBox.getHvalue(), scrollBox.getHvalue() + scrollLength / ProductCategory.values().length);
+	}
+
 	private void scrollAnimator(double value) {
-		this.setHvalue(value);
+		scrollBox.setHvalue(value);
 	}
 
 	private List<CategoryCarouselItemComponent> generateCarouselItems() {
@@ -90,7 +105,7 @@ public class CategoryCarouselComponent extends ScrollPane {
 		clearSelection();
 
 		carouselItems.get(selectedCategory.ordinal()).setIsSelected(true);
-		scrollAnimation.play(getHvalue(), getScrollPositionOfIndex(selectedCategory.ordinal()));
+		scrollAnimation.play(scrollBox.getHvalue(), getScrollPositionOfIndex(selectedCategory.ordinal()));
 
 		Event event = new CategoryCarouselComponentEvent(
 				this,
