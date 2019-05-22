@@ -7,7 +7,6 @@ import javafx.scene.layout.FlowPane;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ProductCategory;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,21 +26,9 @@ public class ProductListComponent extends FlowPane {
         }
     }
 
-    public void addProduct(Product product) {
-        ProductItemComponent productItem = new ProductItemComponent(product);
-        this.flowPane.getChildren().add(productItem);
-    }
-
     public void setProducts(List<Product> products) {
         this.clear();
         for (Product product : products) {
-            this.addProduct(product);
-        }
-    }
-
-    public void setProductsFromCategory(ProductCategory productCategory) {
-        this.clear();
-        for (Product product : IMatDataHandler.getInstance().getProducts(productCategory)) {
             this.addProduct(product);
         }
     }
