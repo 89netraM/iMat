@@ -1,13 +1,12 @@
 package CategoryCarousel;
 
-import Animations.ValueAnimation;
+import Animations.DoubleAnimation;
 import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
@@ -18,7 +17,6 @@ import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ProductCategory;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.*;
 
 public class CategoryCarouselComponent extends GridPane {
@@ -26,7 +24,7 @@ public class CategoryCarouselComponent extends GridPane {
 
 	private final IMatDataHandler dataHandler;
 
-	private final ValueAnimation scrollAnimation;
+	private final DoubleAnimation scrollAnimation;
 
 	@FXML
 	private HBox box;
@@ -53,7 +51,7 @@ public class CategoryCarouselComponent extends GridPane {
 
 		dataHandler = IMatDataHandler.getInstance();
 
-		scrollAnimation = new ValueAnimation(Duration.millis(300), this::scrollAnimator);
+		scrollAnimation = new DoubleAnimation(this::scrollAnimator, Duration.millis(300));
 
 		carouselItems = generateCarouselItems();
 		box.getChildren().addAll(carouselItems);

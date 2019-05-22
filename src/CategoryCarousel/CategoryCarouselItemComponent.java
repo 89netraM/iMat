@@ -1,6 +1,6 @@
 package CategoryCarousel;
 
-import Animations.ValueAnimation;
+import Animations.DoubleAnimation;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -24,7 +24,7 @@ public class CategoryCarouselItemComponent extends GridPane {
 	private Label label;
 
 	private boolean isSelected = false;
-	private final ValueAnimation selectedAnimation = new ValueAnimation(Duration.millis(300), this::animationAction);
+	private final DoubleAnimation selectedAnimation = new DoubleAnimation(this::animationAction, Duration.millis(300));
 
 	private final ProductCategory category;
 
