@@ -1,5 +1,1 @@
-<<<<<<< Updated upstream
-MasterCard;Mårten, Åsberg;4;18;1234567890;123;end
-=======
 Visa;johan gottlander;4;18;1234123412341234;0;end
->>>>>>> Stashed changes
