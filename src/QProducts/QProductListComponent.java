@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.Map;
 
 public class QProductListComponent extends GridPane {
+	private static double ItemAnimationHeight = 25.0d;
+
 	@FXML
 	private FlowPane holder;
 
@@ -27,6 +29,8 @@ public class QProductListComponent extends GridPane {
 	private Button nextButton;
 
 	private Map<Product, QProductListItemComponent> productComponents = new HashMap<>();
+
+	private DoubleAnimation revealAnimation = new DoubleAnimation(this::revealAction, Duration.millis(300));
 
 	private EventHandler<QProductListComponentEvent> onPreviousEventHandler;
 	private EventHandler<QProductListComponentEvent> onNextEventHandler;
@@ -54,6 +58,13 @@ public class QProductListComponent extends GridPane {
 
 			holder.getChildren().add(productComponents.get(p));
 		}
+
+		revealAnimation.play();
+	}
+
+	private void revealAction(double value) {
+		holder.setOpacity(value);
+		holder.setTranslateY(ItemAnimationHeight - ItemAnimationHeight * value);
 	}
 
 	public void setPrevious(String previous) {
