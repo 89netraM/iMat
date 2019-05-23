@@ -74,8 +74,6 @@ public class ReceiptComponent extends GridPane {
 
 				//It shouldn't be out of sync, but for safety's sake:
 				lastRemoved.onCartEvent(e);
-
-				clearUndoItem();
 			}
 			else {
 				//Regular adding event
@@ -87,9 +85,9 @@ public class ReceiptComponent extends GridPane {
 
 				receiptItems.put(product.getProductId(), item);
 				receiptList.getChildren().add(item);
-
-				clearUndoItem();
 			}
+
+			clearUndoItem();
 		}
 		else {
 			if (e.getShoppingItem().getAmount() <= 0.0d || !cart.getItems().contains(e.getShoppingItem())) {
@@ -128,6 +126,7 @@ public class ReceiptComponent extends GridPane {
 	}
 
 	private void onRemoveItem(ReceiptItemComponent.ReceiptItemComponentEvent e) {
+		e.getSource().getItem().setAmount(0.0d);
 		cart.removeItem(e.getSource().getItem());
 	}
 	@FXML
@@ -139,6 +138,14 @@ public class ReceiptComponent extends GridPane {
 	}
 
 	//region Navigation Buttons
+	public void setBackButtonEnabled(boolean enabled) {
+		backButton.setVisible(enabled);
+		checkoutButton.setVisible(!enabled);
+	}
+	public void setCheckoutButtonEnabled(boolean enabled) {
+		setBackButtonEnabled(!enabled);
+	}
+
 	//These buttons are for sending events about global navigation to the `MainController`.
 	@FXML
 	private void onBackButton() {

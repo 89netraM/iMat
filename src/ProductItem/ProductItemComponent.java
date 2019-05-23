@@ -8,9 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import se.chalmers.cse.dat216.project.IMatDataHandler;
-import se.chalmers.cse.dat216.project.Product;
-import se.chalmers.cse.dat216.project.ShoppingItem;
+import se.chalmers.cse.dat216.project.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,6 +30,9 @@ public class ProductItemComponent extends AnchorPane implements Initializable {
 
     private Product product;
 
+    private ShoppingCart shoppingCart;
+    private ShoppingItem shoppingItem;
+
     public ProductItemComponent(Product product) {
         this.product = product;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ProductItemComponent.fxml"));
@@ -43,6 +44,10 @@ public class ProductItemComponent extends AnchorPane implements Initializable {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        shoppingCart = IMatDataHandler.getInstance().getShoppingCart();
+        shoppingCart.addShoppingCartListener(this::onCartEvent);
+        shoppingCart.addItem(shoppingItem);
     }
 
     @Override
@@ -51,6 +56,19 @@ public class ProductItemComponent extends AnchorPane implements Initializable {
         this.image.setImage(new Image(image.toURI().toString(), true));
         this.price.setText(Double.toString(this.product.getPrice()));
         this.description.setText(this.product.getName());
-        this.productCounter.setShoppingItem(new ShoppingItem(this.product));
+
+        shoppingItem = new ShoppingItem(this.product);
+        shoppingItem.setAmount(0.0d);
+        this.productCounter.setShoppingItem(shoppingItem);
+    }
+
+    private void onCartEvent(CartEvent e) {
+        if (e.getShoppingItem() == shoppingItem) {
+            productCounter.onCartEvent(e);
+
+            /*if (shoppingItem.getAmount() > 0.0d && !shoppingCart.getItems().contains(shoppingItem)) {
+                shoppingCart.addItem(shoppingItem);
+            }*/
+        }
     }
 }
