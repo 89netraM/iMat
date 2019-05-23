@@ -13,6 +13,7 @@ import se.chalmers.cse.dat216.project.Customer;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 
 import java.awt.event.ActionEvent;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -86,10 +87,11 @@ public class OrderForm extends AnchorPane implements Initializable {
             iMatDataHandler.reset();
         }
 
-        /*
-        logo.setImage(new Image(getClass().getClassLoader().getResourceAsStream(
-                "resources/images/iMatLogo.png")));
-                */
+
+        File file = new File("resources/images/iMatLogo.png");
+        Image imageSrc = new Image(file.toURI().toString());
+        logo.setImage(imageSrc);
+
 
         setupPaymentPane();
         updatePreview();

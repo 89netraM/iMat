@@ -1,1 +1,5 @@
+<<<<<<< Updated upstream
 Mårten;Åsberg;123456789;;marten.asberg@outlook.com;Gibraltargatan 94 Lgh 1709;12345;Göteborg;end
+=======
+Johan;Gottlander;;;;Richertsgatan 2D;;;end
+>>>>>>> Stashed changes
