@@ -11,7 +11,7 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 
-		//Runtime.getRuntime().addShutdownHook(new Thread(() -> Model.getInstance().shutDown()));
+		Runtime.getRuntime().addShutdownHook(new Thread(() -> Model.getInstance().shutDown()));
 	}
 
 	@Override
