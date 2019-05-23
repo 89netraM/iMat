@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root type="GridPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+	<columnConstraints>
+		<ColumnConstraints hgrow="ALWAYS"/>
+		<ColumnConstraints hgrow="NEVER"/>
+	</columnConstraints>
+
+	<TextField fx:id="searchText" promptText="Sök" onAction="#doSearch" GridPane.columnIndex="0"/>
+	<Button text="Sök" onAction="#doSearch" GridPane.columnIndex="1"/>
+</fx:root>
