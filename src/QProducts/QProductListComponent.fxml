@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<fx:root stylesheets="@styles.css,@../styles.css" type="GridPane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+    <rowConstraints>
+        <RowConstraints vgrow="ALWAYS" />
+        <RowConstraints vgrow="NEVER" />
+    </rowConstraints>
+
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+                GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.vgrow="ALWAYS">
+        <FlowPane fx:id="holder" hgap="10.0" vgap="10.0">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding></FlowPane>
+    </ScrollPane>
+
+    <Button fx:id="previousButton" alignment="CENTER_LEFT" onAction="#onPrevious" text="⬅" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
+    <Button fx:id="nextButton" onAction="#onNext" text="➡" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+</fx:root>

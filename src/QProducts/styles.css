@@ -1,0 +1,9 @@
+.product-item {
+    -fx-background-color: rgba(70, 127, 109, 1);
+    -fx-background-radius: 5;
+}
+.product-item .label {
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
