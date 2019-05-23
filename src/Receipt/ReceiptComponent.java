@@ -8,10 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import se.chalmers.cse.dat216.project.CartEvent;
-import se.chalmers.cse.dat216.project.IMatDataHandler;
-import se.chalmers.cse.dat216.project.Product;
-import se.chalmers.cse.dat216.project.ShoppingCart;
+import se.chalmers.cse.dat216.project.*;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -64,6 +61,10 @@ public class ReceiptComponent extends AnchorPane {
 
 		cart = IMatDataHandler.getInstance().getShoppingCart();
 		cart.addShoppingCartListener(this::shoppingCartListener);
+
+		for (ShoppingItem item : cart.getItems()) {
+			addShoppingItem(item);
+		}
 	}
 
 	private void shoppingCartListener(CartEvent e) {
@@ -81,14 +82,7 @@ public class ReceiptComponent extends AnchorPane {
 			}
 			else {
 				//Regular adding event
-
-				//Creates new UI component for the shopping item
-				ReceiptItemComponent item = new ReceiptItemComponent();
-				item.setItem(e.getShoppingItem());
-				item.setOnRemove(this::onRemoveItem);
-
-				receiptItems.put(product.getProductId(), item);
-				receiptList.getChildren().add(item);
+				addShoppingItem(e.getShoppingItem());
 			}
 
 			clearUndoItem();
@@ -105,6 +99,8 @@ public class ReceiptComponent extends AnchorPane {
 					lastIndex = receiptList.getChildren().indexOf(lastRemoved);
 
 					receiptList.getChildren().remove(lastRemoved);
+
+					cart.removeItem(lastRemoved.getItem());
 
 					if (lastRemoved.getItem().getAmount() <= 0.0d) {
 						lastRemoved.getItem().setAmount(1.0d);
@@ -123,6 +119,16 @@ public class ReceiptComponent extends AnchorPane {
 		total.setText("Totalt: " + cart.getTotal() + " kr");
 	}
 
+	private void addShoppingItem(ShoppingItem shoppingItem) {
+		//Creates new UI component for the shopping item
+		ReceiptItemComponent item = new ReceiptItemComponent();
+		item.setItem(shoppingItem);
+		item.setOnRemove(this::onRemoveItem);
+
+		receiptItems.put(shoppingItem.getProduct().getProductId(), item);
+		receiptList.getChildren().add(item);
+	}
+
 	/**
 	 * Resets the saved undo history, and hides the undo panel.
 	 */
@@ -132,7 +138,7 @@ public class ReceiptComponent extends AnchorPane {
 	}
 
 	private void onRemoveItem(ReceiptItemComponent.ReceiptItemComponentEvent e) {
-		e.getSource().getItem().setAmount(0.0d);
+		//e.getSource().getItem().setAmount(0.0d);
 		cart.removeItem(e.getSource().getItem());
 	}
 	@FXML
