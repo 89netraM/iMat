@@ -6,12 +6,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root type="GridPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<fx:root type="GridPane" stylesheets="@styles.css,@../styles.css" styleClass="search" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 	<columnConstraints>
 		<ColumnConstraints hgrow="ALWAYS"/>
 		<ColumnConstraints hgrow="NEVER"/>
 	</columnConstraints>
 
-	<TextField fx:id="searchText" promptText="Sök" onAction="#doSearch" GridPane.columnIndex="0"/>
-	<Button text="Sök" onAction="#doSearch" GridPane.columnIndex="1"/>
+	<TextField fx:id="searchText" styleClass="search-text" promptText="Sök" onAction="#doSearch" GridPane.columnIndex="0"/>
+	<Button text="Sök" styleClass="imat-button,search-button" onAction="#doSearch" GridPane.columnIndex="1"/>
 </fx:root>

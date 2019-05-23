@@ -14,16 +14,21 @@
         <RowConstraints vgrow="NEVER" />
     </rowConstraints>
 
-    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
-                GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.vgrow="ALWAYS">
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.vgrow="ALWAYS">
         <FlowPane fx:id="holder" hgap="10.0" vgap="10.0">
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding></FlowPane>
     </ScrollPane>
 
-    <Button fx:id="previousButton" alignment="CENTER_LEFT" onAction="#onPrevious" text="⬅" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
-    <Button fx:id="nextButton" onAction="#onNext" text="➡" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+    <Button fx:id="previousButton" alignment="CENTER_LEFT" onAction="#onPrevious" styleClass="imat-button" text="⬅" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+      <GridPane.margin>
+         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+      </GridPane.margin></Button>
+    <Button fx:id="nextButton" onAction="#onNext" styleClass="imat-button" text="➡" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+      <GridPane.margin>
+         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+      </GridPane.margin></Button>
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
