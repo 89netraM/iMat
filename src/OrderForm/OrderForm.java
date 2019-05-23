@@ -1,5 +1,6 @@
 package OrderForm;
 
+import Delivery.DeliveryComponent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
@@ -80,6 +81,9 @@ public class OrderForm extends AnchorPane implements Initializable {
     private Label adressPreview;
     @FXML
     private ImageView logo;
+    @FXML ImageView logoMini;
+
+
     private EventHandler<OrderFormEvent> onNextHandler;
     public OrderForm() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("OrderForm.fxml"));
@@ -105,6 +109,9 @@ public class OrderForm extends AnchorPane implements Initializable {
         File file = new File("resources/images/iMatLogo.png");
         Image imageSrc = new Image(file.toURI().toString());
         logo.setImage(imageSrc);
+        File file2 = new File("resources/images/iMatLogo.png");
+        Image imageSrc2 = new Image(file2.toURI().toString());
+        logoMini.setImage(imageSrc);
         setupPaymentPane();
         updatePreview();
     }
@@ -207,6 +214,7 @@ public class OrderForm extends AnchorPane implements Initializable {
     private void onNextButton() {
         OrderForm.OrderFormEvent onNextEvent = new OrderForm.OrderFormEvent(this, OrderFormEvent.ON_NEXT);
         fireEvent(onNextEvent);
+
     }
 
     public EventHandler<OrderFormEvent> getOnNext() {

@@ -9,15 +9,19 @@ import Receipt.ReceiptComponent;
 import Receipt.ReceiptItemComponent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MainWindow implements Initializable {
     @FXML
     private CategoryCarouselComponent categoryCarousel;
+    @FXML private ImageView logo;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -26,6 +30,10 @@ public class MainWindow implements Initializable {
         productList.setProducts(categoryCarousel.getSelectedCategoryProducts());
 	    productList.setPrevious(categoryCarousel.getPreviousCategoryName());
 	    productList.setNext(categoryCarousel.getNextCategoryName());
+
+        File file = new File("resources/images/iMatLogo.png");
+        Image imageSrc = new Image(file.toURI().toString());
+        logo.setImage(imageSrc);
     }
 
     //region Slide Animation

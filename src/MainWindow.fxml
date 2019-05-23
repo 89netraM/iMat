@@ -15,12 +15,21 @@
 
 <?import QProducts.QProductListComponent?>
 <?import QSearch.QSearchComponent?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.shape.Rectangle?>
 <Pane xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainWindow">
    <HBox fx:id="masterBox" maxHeight="800" style="-fx-background-color: #467f6d;">
       <AnchorPane prefWidth="1280">
+          <ImageView fx:id="logo" fitHeight="44.0" fitWidth="125.0" layoutX="4.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                  <Image url="@../../resources/images/iMatLogo.png" />
+              </image>
+          </ImageView>
+          <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#F4FFF5" height="615.0" layoutX="2" layoutY="185" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="rectangle" width="938.0" />
          <AnchorPane AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="340" AnchorPane.topAnchor="0">
              <QSearchComponent onSearch="#onSearch"
-                               AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="10" prefHeight="50"/>
+                               AnchorPane.leftAnchor="120" AnchorPane.rightAnchor="120" AnchorPane.topAnchor="10" prefHeight="50"/>
 
              <CategoryCarouselComponent fx:id="categoryCarousel" onSelect="#categorySelect"
                                         AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="50" prefHeight="130"/>

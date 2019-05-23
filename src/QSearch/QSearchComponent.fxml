@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<fx:root type="GridPane" stylesheets="@styles.css,@../styles.css" styleClass="search" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<fx:root styleClass="search" stylesheets="@styles.css,@../styles.css" type="GridPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
 	<columnConstraints>
-		<ColumnConstraints hgrow="ALWAYS"/>
-		<ColumnConstraints hgrow="NEVER"/>
+		<ColumnConstraints hgrow="ALWAYS" />
+		<ColumnConstraints hgrow="NEVER" />
 	</columnConstraints>
 
-	<TextField fx:id="searchText" styleClass="search-text" promptText="Sök" onAction="#doSearch" GridPane.columnIndex="0"/>
-	<Button text="Sök" styleClass="imat-button,search-button" onAction="#doSearch" GridPane.columnIndex="1"/>
+	<TextField fx:id="searchText" onAction="#doSearch" promptText="Sök vara" styleClass="search-text" GridPane.columnIndex="0" />
+	<Button onAction="#doSearch" styleClass="imat-button,search-button" text="Sök" GridPane.columnIndex="1" />
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
 </fx:root>

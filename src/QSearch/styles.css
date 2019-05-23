@@ -3,10 +3,12 @@
 }
 
 .search .search-text {
+    -fx-background-color: #C7EADB;
     -fx-background-radius: 10 0 0 10;
     -fx-padding: 7;
 }
 
 .search .search-button {
     -fx-background-radius: 0 10 10 0;
+    -fx-background-color: #F4FFF5;
 }

@@ -1,5 +1,6 @@
 package Delivery;
 
+import OrderForm.Model;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
@@ -8,12 +9,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import se.chalmers.cse.dat216.project.Customer;
-import se.chalmers.cse.dat216.project.Order;
-import se.chalmers.cse.dat216.project.ShoppingItem;
+import se.chalmers.cse.dat216.project.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,9 +32,16 @@ public class DeliveryComponent extends AnchorPane implements Initializable {
     private Label customerAddress;
 
     @FXML
-    private Label customerCity;
+    private Label customerPostAddress;
+
+    @FXML
+    private ImageView logo;
 
     private EventHandler<DeliveryComponentEvent> onResetHandler;
+
+    private final Model model = Model.getInstance();
+    private final IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
+    Customer customer = model.getCustomer();
 
     public DeliveryComponent() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DeliveryComponent.fxml"));
@@ -48,6 +57,12 @@ public class DeliveryComponent extends AnchorPane implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        File file = new File("resources/images/iMatLogo.png");
+        Image imageSrc = new Image(file.toURI().toString());
+        logo.setImage(imageSrc);
+
+        updateCustomerAddress();
     }
 
     public void updateReceipt(final Order order) {
@@ -67,10 +82,10 @@ public class DeliveryComponent extends AnchorPane implements Initializable {
         this.orderContentsGrid.addRow(this.getGridRowCount(this.orderContentsGrid), orderTotalText, orderTotalCost);
     }
 
-    public void updateCustomerAddress(final Customer customer) {
-        this.customerAddress.setText(customer.getAddress());
-        this.customerCity.setText(customer.getPostAddress());
-        this.customerName.setText(
+    public void updateCustomerAddress() {
+        customerAddress.setText(customer.getAddress());
+        customerPostAddress.setText(customer.getPostAddress());
+        customerName.setText(
             String.format("%s %s", customer.getFirstName(), customer.getLastName())
         );
     }
