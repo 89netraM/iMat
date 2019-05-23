@@ -1,0 +1,41 @@
+.buttonInfo{
+ -fx-background-color: rgba(199, 234, 219, 1);
+ -fx-font-weight: bold;
+ -fx-background-radius: 10;
+ -fx-font-size: 18;
+ -fx-text-fill: black;
+}
+
+.buttonInfo:hover{
+-fx-background-color: #8dbca8;
+-fx-font-weight: bold;
+-fx-background-radius: 10;
+-fx-font-size: 18;
+-fx-text-fill: white;
+}
+
+.buttonForm{
+-fx-background-color: rgba(199, 234, 219, 1);
+-fx-font-weight: bold;
+-fx-background-radius: 20;
+-fx-font-size: 16;
+-fx-text-fill: black;
+}
+
+.buttonForm:hover{
+-fx-background-color: #f4fff5;
+-fx-font-weight: bold;
+-fx-background-radius: 20;
+-fx-font-size: 16;
+-fx-text-fill: black;
+}
+
+.paneForm{
+-fx-background-radius : 30;
+-fx-border-radius : 30;
+}
+
+.anchorPane {
+-fx-background-color: rgba(70, 127, 109, 1)rgba(70, 127, 109, 1);
+}
+
