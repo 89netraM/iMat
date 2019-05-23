@@ -76,6 +76,11 @@ public class OrderForm extends AnchorPane implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb){
 
+        ToggleGroup difficultyToggleGroup = new ToggleGroup();
+        delivery.setToggleGroup(difficultyToggleGroup);
+        pickUp.setToggleGroup(difficultyToggleGroup);
+        delivery.setSelected(true);
+
        // iMatDataHandler.resetFirstRun();      //kallas bara för att återställa hela programmet
         if(iMatDataHandler.isFirstRun()){
             iMatDataHandler.reset();
