@@ -9,7 +9,7 @@
 
 <?import ProductCounter.ProductCounterComponent?>
 
-<fx:root type="VBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root type="VBox" stylesheets="@../styles.css,@styles.css" styleClass="receipt-item" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
 	<children>
 		<GridPane>
 			<columnConstraints>
@@ -20,8 +20,8 @@
 				<RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
 			</rowConstraints>
 			<children>
-				<Label fx:id="nameLabel" />
-				<Button onAction="#onRemove" text="x" GridPane.columnIndex="1" />
+				<Label fx:id="nameLabel" styleClass="label,name" />
+				<Button onAction="#onRemove" styleClass="imat-button,remove" text="x" GridPane.columnIndex="1" />
 			</children>
 		</GridPane>
 		<GridPane>
@@ -34,7 +34,7 @@
 			</rowConstraints>
 			<children>
 				<ProductCounterComponent fx:id="counter"/>
-				<Label fx:id="totalLabel" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
+				<Label fx:id="totalLabel" styleClass="label" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
 			</children>
 		</GridPane>
 	</children>

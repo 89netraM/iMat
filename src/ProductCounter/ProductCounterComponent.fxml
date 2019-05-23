@@ -7,12 +7,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<fx:root type="HBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root type="HBox" stylesheets="@styles.css,@../styles.css" styleClass="counter" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-	   <Button minHeight="25.0" minWidth="25.0" onAction="#onDecrease" text="-" HBox.hgrow="NEVER" />
+	   <Button minHeight="25.0" minWidth="25.0" styleClass="imat-button,minus" onAction="#onDecrease" text="-" HBox.hgrow="NEVER" />
       <AnchorPane HBox.hgrow="ALWAYS">
          <children>
-      	   <TextField fx:id="amountTextField" alignment="CENTER_RIGHT" onAction="#readTextValue" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      	   <TextField fx:id="amountTextField" styleClass="field" alignment="CENTER_RIGHT" onAction="#readTextValue" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <Label fx:id="unitLabel" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <padding>
                   <Insets left="2.0" right="3.0" />
@@ -20,6 +20,6 @@
             </Label>
          </children>
       </AnchorPane>
-	   <Button minHeight="25.0" minWidth="25.0" onAction="#onIncrease" text="+" HBox.hgrow="NEVER" />
+	   <Button minHeight="25.0" minWidth="25.0" styleClass="imat-button,plus" onAction="#onIncrease" text="+" HBox.hgrow="NEVER" />
    </children>
 </fx:root>

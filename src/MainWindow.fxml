@@ -16,7 +16,7 @@
 <?import QProducts.QProductListComponent?>
 <?import QSearch.QSearchComponent?>
 <Pane xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainWindow">
-   <HBox fx:id="masterBox" maxHeight="800" style="-fx-background-color: #09cdda;">
+   <HBox fx:id="masterBox" maxHeight="800" style="-fx-background-color: #467f6d;">
       <AnchorPane prefWidth="1280">
          <AnchorPane AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="340" AnchorPane.topAnchor="0">
              <QSearchComponent onSearch="#onSearch"
