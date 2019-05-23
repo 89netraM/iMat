@@ -1,0 +1,9 @@
+.carousel .arrow {
+    -fx-font-size: 18;
+}
+
+.categoryLabel {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 12;
+}

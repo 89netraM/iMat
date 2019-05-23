@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -7,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<fx:root type="GridPane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root styleClass="carousel" stylesheets="@styles.css,@../styles.css" type="GridPane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>
       <ColumnConstraints hgrow="ALWAYS" />
       <ColumnConstraints hgrow="ALWAYS" />
@@ -17,12 +18,18 @@
       <RowConstraints vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <Button mnemonicParsing="false" onAction="#leftClick" text="&lt;" textOverrun="CLIP" GridPane.columnIndex="0" />
+      <Button mnemonicParsing="false" onAction="#leftClick" styleClass="imat-button,arrow" text="⬅" textOverrun="CLIP" GridPane.columnIndex="0">
+         <GridPane.margin>
+            <Insets right="10.0" />
+         </GridPane.margin></Button>
       <ScrollPane fx:id="scrollBox" fitToHeight="true" hbarPolicy="NEVER" vbarPolicy="NEVER" GridPane.columnIndex="1">
          <content>
             <HBox fx:id="box" alignment="BOTTOM_CENTER" />
          </content>
       </ScrollPane>
-      <Button mnemonicParsing="false" onAction="#rightClick" text="&gt;" textOverrun="CLIP" GridPane.columnIndex="2" />
+      <Button mnemonicParsing="false" onAction="#rightClick" styleClass="imat-button,arrow" text="➡" textOverrun="CLIP" GridPane.columnIndex="2">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin></Button>
    </children>
 </fx:root>

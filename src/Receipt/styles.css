@@ -1,0 +1,45 @@
+.receipt .back, .receipt .checkout {
+    -fx-font-size: 18;
+}
+
+.receipt .undoPane {
+    -fx-background-color: #f4fff5;
+    -fx-background-radius: 10;
+    -fx-padding: 10;
+}
+
+.receipt .receipt-pane {
+    -fx-background-color: #f4fff5;
+    -fx-background-radius: 0 0 10 10;
+    -fx-padding: 5;
+}
+
+.receipt-item {
+    -fx-background-color: #c7eadb;
+    -fx-background-radius: 10;
+    -fx-padding: 10;
+    -fx-text-fill: #000000;
+}
+
+.receipt-item .imat-button {
+     -fx-background-color: #f4fff5;
+}
+.receipt-item .imat-button:hover {
+    -fx-background-color: #bec6bf;
+}
+
+.receipt-item .remove {
+    -fx-text-fill: #ff0000;
+}
+
+.receipt-item .label.name {
+    -fx-font-weight: bold;
+}
+.receipt-item .label {
+    -fx-font-size: 14;
+}
+
+.total {
+    -fx-font-size: 18;
+    -fx-font-weight: bold;
+}

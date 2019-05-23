@@ -1,0 +1,15 @@
+.product-item {
+    -fx-background-color: #f4fff5;
+    -fx-background-radius: 5;
+}
+.product-item .label {
+    -fx-font-size: 14;
+    -fx-text-fill: black;
+}
+.product-item .label.bold {
+    -fx-font-weight: bold;
+}
+
+.product-list .arrow {
+    -fx-font-size: 18;
+}

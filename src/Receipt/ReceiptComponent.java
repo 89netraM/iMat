@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import se.chalmers.cse.dat216.project.CartEvent;
@@ -16,9 +17,12 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ReceiptComponent extends GridPane {
+public class ReceiptComponent extends AnchorPane {
 	@FXML
 	private VBox receiptList;
+
+	@FXML
+	private Label total;
 
 	//region Undo
 	private ReceiptItemComponent lastRemoved;
@@ -74,8 +78,6 @@ public class ReceiptComponent extends GridPane {
 
 				//It shouldn't be out of sync, but for safety's sake:
 				lastRemoved.onCartEvent(e);
-
-				clearUndoItem();
 			}
 			else {
 				//Regular adding event
@@ -87,9 +89,9 @@ public class ReceiptComponent extends GridPane {
 
 				receiptItems.put(product.getProductId(), item);
 				receiptList.getChildren().add(item);
-
-				clearUndoItem();
 			}
+
+			clearUndoItem();
 		}
 		else {
 			if (e.getShoppingItem().getAmount() <= 0.0d || !cart.getItems().contains(e.getShoppingItem())) {
@@ -117,6 +119,8 @@ public class ReceiptComponent extends GridPane {
 				receiptItems.get(product.getProductId()).onCartEvent(e);
 			}
 		}
+
+		total.setText("Totalt: " + cart.getTotal() + " kr");
 	}
 
 	/**
@@ -128,6 +132,7 @@ public class ReceiptComponent extends GridPane {
 	}
 
 	private void onRemoveItem(ReceiptItemComponent.ReceiptItemComponentEvent e) {
+		e.getSource().getItem().setAmount(0.0d);
 		cart.removeItem(e.getSource().getItem());
 	}
 	@FXML
@@ -139,6 +144,14 @@ public class ReceiptComponent extends GridPane {
 	}
 
 	//region Navigation Buttons
+	public void setBackButtonEnabled(boolean enabled) {
+		backButton.setVisible(enabled);
+		checkoutButton.setVisible(!enabled);
+	}
+	public void setCheckoutButtonEnabled(boolean enabled) {
+		setBackButtonEnabled(!enabled);
+	}
+
 	//These buttons are for sending events about global navigation to the `MainController`.
 	@FXML
 	private void onBackButton() {

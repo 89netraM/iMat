@@ -1,0 +1,20 @@
+.counter {
+    -fx-font-size: 14;
+}
+
+.counter .imat-button {
+     -fx-background-color: #f4fff5;
+}
+.counter .imat-button:hover {
+    -fx-background-color: #bec6bf;
+}
+
+.counter .minus {
+    -fx-background-radius: 10 0 0 10;
+}
+.counter .field {
+    -fx-background-radius: 0;
+}
+.counter .plus {
+    -fx-background-radius: 0 10 10 0;
+}

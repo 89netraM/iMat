@@ -1,0 +1,17 @@
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+.scroll-pane {
+   -fx-background-color: transparent;
+}
+
+.imat-button {
+    -fx-background-color: rgba(199, 234, 219, 1);
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-font-size: 12;
+    -fx-text-fill: black;
+}
+.imat-button:hover {
+    -fx-background-color: #8dbca8;
+}

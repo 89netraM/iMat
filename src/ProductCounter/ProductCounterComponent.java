@@ -98,7 +98,7 @@ public class ProductCounterComponent extends HBox {
 
 			//Calculates the with of the label to offset the text in the textField by an appropriate amount
 			double labelWidth = Toolkit.getToolkit().getFontLoader().computeStringWidth(unitLabel.getText(), unitLabel.getFont());
-			amountTextField.setPadding(new Insets(0, unitLabel.getPadding().getLeft() + labelWidth + unitLabel.getPadding().getRight(), 0, 0));
+			amountTextField.setPadding(new Insets(2, unitLabel.getPadding().getLeft() + labelWidth + unitLabel.getPadding().getRight() + 2, 2, 0));
 		}
 	}
 

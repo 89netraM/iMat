@@ -16,6 +16,6 @@
    </rowConstraints>
    <children>
       <ImageView fx:id="image" fitHeight="50.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" GridPane.rowIndex="0" />
-	  <Label fx:id="label" prefHeight="30" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+	  <Label fx:id="label" styleClass="categoryLabel" prefHeight="30" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
    </children>
 </fx:root>
