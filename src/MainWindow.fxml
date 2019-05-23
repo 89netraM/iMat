@@ -25,7 +25,7 @@
              <CategoryCarouselComponent fx:id="categoryCarousel" onSelect="#categorySelect"
                                         AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="50" prefHeight="130"/>
 
-             <QProductListComponent fx:id="productList"
+             <QProductListComponent fx:id="productList" onPrevious="#listPrevious" onNext="#listNext"
                                     AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="180"/>
          </AnchorPane>
 

@@ -7,3 +7,7 @@
     -fx-font-weight: bold;
     -fx-text-fill: white;
 }
+
+.product-list .arrow {
+    -fx-font-size: 18;
+}

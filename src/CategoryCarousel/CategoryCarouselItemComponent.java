@@ -76,7 +76,7 @@ public class CategoryCarouselItemComponent extends GridPane {
 	 * @param    category    The category.
 	 * @return    Returns a human readable name.
 	 */
-	private String getCategoryName(ProductCategory category) {
+	public static String getCategoryName(ProductCategory category) {
 		switch (category) {
 			case POD:
 				return "Baljväxter";

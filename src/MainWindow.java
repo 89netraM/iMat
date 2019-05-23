@@ -19,7 +19,11 @@ public class MainWindow implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+	    categoryCarousel.setSelectedIndex(0);
+
         productList.setProducts(categoryCarousel.getSelectedCategoryProducts());
+	    productList.setPrevious(categoryCarousel.getPreviousCategoryName());
+	    productList.setNext(categoryCarousel.getNextCategoryName());
     }
 
     //region Slide Animation
@@ -51,11 +55,25 @@ public class MainWindow implements Initializable {
     @FXML
     private void categorySelect(CategoryCarouselComponent.CategoryCarouselComponentEvent e) {
         productList.setProducts(e.getProducts());
+	    productList.setPrevious(categoryCarousel.getPreviousCategoryName());
+	    productList.setNext(categoryCarousel.getNextCategoryName());
     }
     @FXML
     private void onSearch(QSearchComponent.QSearchComponentEvent e) {
         productList.setProducts(e.getProducts());
+	    productList.setPrevious(null);
+	    productList.setNext(null);
+
         categoryCarousel.setSelectedCategory(null);
+    }
+
+    @FXML
+    private void listPrevious() {
+    	categoryCarousel.setSelectedIndex(categoryCarousel.getSelectedIndex() - 1);
+    }
+    @FXML
+    private void listNext() {
+	    categoryCarousel.setSelectedIndex(categoryCarousel.getSelectedIndex() + 1);
     }
 
     //endregion Product List

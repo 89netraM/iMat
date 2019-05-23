@@ -53,8 +53,6 @@ public class CategoryCarouselComponent extends GridPane {
 
 		carouselItems = generateCarouselItems();
 		box.getChildren().addAll(carouselItems);
-		//Selects the first category
-		setSelectedCategory(ProductCategory.values()[0]);
 
 		scrollBox.widthProperty().addListener(this::widthListener);
 	}
@@ -160,6 +158,30 @@ public class CategoryCarouselComponent extends GridPane {
 	}
 	public EventHandler<CategoryCarouselComponentEvent> getOnSelect() {
 		return onSelectHandler;
+	}
+
+	public void setSelectedIndex(Integer selectedIndex) {
+		setSelectedCategory(selectedIndex != null ? ProductCategory.values()[selectedIndex] : null);
+	}
+	public Integer getSelectedIndex() {
+		return selectedCategory != null ? selectedCategory.ordinal() : null;
+	}
+
+	public String getPreviousCategoryName() {
+		if (getSelectedIndex() != null && getSelectedIndex() > 0) {
+			return CategoryCarouselItemComponent.getCategoryName(ProductCategory.values()[getSelectedIndex() - 1]);
+		}
+		else {
+			return null;
+		}
+	}
+	public String getNextCategoryName() {
+		if (getSelectedIndex() != null && getSelectedIndex() < ProductCategory.values().length - 1) {
+			return CategoryCarouselItemComponent.getCategoryName(ProductCategory.values()[getSelectedIndex() + 1]);
+		}
+		else {
+			return null;
+		}
 	}
 
 	public static class CategoryCarouselComponentEvent extends Event {

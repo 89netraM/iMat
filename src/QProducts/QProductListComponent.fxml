@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<fx:root stylesheets="@styles.css,@../styles.css" type="GridPane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root stylesheets="@styles.css,@../styles.css" styleClass="product-list" type="GridPane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
     <rowConstraints>
         <RowConstraints vgrow="ALWAYS" />
         <RowConstraints vgrow="NEVER" />
@@ -21,15 +21,14 @@
          </padding></FlowPane>
     </ScrollPane>
 
-    <Button fx:id="previousButton" alignment="CENTER_LEFT" onAction="#onPrevious" styleClass="imat-button" text="⬅" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+    <Button fx:id="previousButton" alignment="CENTER_LEFT" onAction="#onPrevious" styleClass="imat-button,arrow" text="⬅" GridPane.halignment="LEFT" GridPane.rowIndex="1">
       <GridPane.margin>
          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-      </GridPane.margin></Button>
-    <Button fx:id="nextButton" onAction="#onNext" styleClass="imat-button" text="➡" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+      </GridPane.margin>
+    </Button>
+    <Button fx:id="nextButton" onAction="#onNext" styleClass="imat-button,arrow" text="➡" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
       <GridPane.margin>
          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-      </GridPane.margin></Button>
-   <columnConstraints>
-      <ColumnConstraints />
-   </columnConstraints>
+      </GridPane.margin>
+    </Button>
 </fx:root>
