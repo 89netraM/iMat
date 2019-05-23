@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<fx:root type="GridPane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root type="GridPane" stylesheets="@styles.css,@../styles.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>
       <ColumnConstraints hgrow="ALWAYS" />
       <ColumnConstraints hgrow="ALWAYS" />
@@ -17,12 +17,12 @@
       <RowConstraints vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <Button mnemonicParsing="false" onAction="#leftClick" text="&lt;" textOverrun="CLIP" GridPane.columnIndex="0" />
+      <Button styleClass="imat-button" mnemonicParsing="false" onAction="#leftClick" text="⬅" textOverrun="CLIP" GridPane.columnIndex="0" />
       <ScrollPane fx:id="scrollBox" fitToHeight="true" hbarPolicy="NEVER" vbarPolicy="NEVER" GridPane.columnIndex="1">
          <content>
             <HBox fx:id="box" alignment="BOTTOM_CENTER" />
          </content>
       </ScrollPane>
-      <Button mnemonicParsing="false" onAction="#rightClick" text="&gt;" textOverrun="CLIP" GridPane.columnIndex="2" />
+      <Button styleClass="imat-button" mnemonicParsing="false" onAction="#rightClick" text="➡" textOverrun="CLIP" GridPane.columnIndex="2" />
    </children>
 </fx:root>

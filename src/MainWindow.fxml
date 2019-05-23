@@ -13,22 +13,21 @@
 <?import ProductList.ProductListComponent?>
 <?import CategoryCarousel.CategoryCarouselComponent?>
 
+<?import QProducts.QProductListComponent?>
+<?import QSearch.QSearchComponent?>
 <Pane xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainWindow">
-   <HBox fx:id="masterBox" fillHeight="false" style="-fx-background-color: #09cdda;">
+   <HBox fx:id="masterBox" maxHeight="800" style="-fx-background-color: #09cdda;">
       <AnchorPane prefWidth="1280">
-         <GridPane AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="340" AnchorPane.topAnchor="0">
-            <rowConstraints>
-               <RowConstraints vgrow="NEVER" />
-               <RowConstraints vgrow="NEVER" />
-               <RowConstraints vgrow="ALWAYS" />
-            </rowConstraints>
+         <AnchorPane AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="340" AnchorPane.topAnchor="0">
+             <QSearchComponent onSearch="#onSearch"
+                               AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="10" prefHeight="50"/>
 
-            <CategoryCarouselComponent fx:id="categoryCarousel" GridPane.rowIndex="1" onSelect="#categorySelect"/>
+             <CategoryCarouselComponent fx:id="categoryCarousel" onSelect="#categorySelect"
+                                        AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="50" prefHeight="130"/>
 
-            <ScrollPane GridPane.rowIndex="2">
-               <ProductListComponent fx:id="productList"/>
-            </ScrollPane>
-         </GridPane>
+             <QProductListComponent fx:id="productList"
+                                    AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="180"/>
+         </AnchorPane>
 
          <ReceiptComponent fx:id="receipt" onCheckout="#toCheckout" onBack="#toStart"
                  prefWidth="340" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />

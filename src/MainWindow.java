@@ -1,6 +1,8 @@
 import Animations.DoubleAnimation;
 import CategoryCarousel.CategoryCarouselComponent;
 import ProductList.ProductListComponent;
+import QProducts.QProductListComponent;
+import QSearch.QSearchComponent;
 import Receipt.ReceiptComponent;
 import Receipt.ReceiptItemComponent;
 import javafx.fxml.FXML;
@@ -44,11 +46,16 @@ public class MainWindow implements Initializable {
     //And the events that update it.
 
     @FXML
-    private ProductListComponent productList;
+    private QProductListComponent productList;
 
     @FXML
     private void categorySelect(CategoryCarouselComponent.CategoryCarouselComponentEvent e) {
         productList.setProducts(e.getProducts());
+    }
+    @FXML
+    private void onSearch(QSearchComponent.QSearchComponentEvent e) {
+        productList.setProducts(e.getProducts());
+        categoryCarousel.setSelectedCategory(null);
     }
 
     //endregion Product List
