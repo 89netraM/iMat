@@ -1,5 +1,7 @@
 import Animations.DoubleAnimation;
 import CategoryCarousel.CategoryCarouselComponent;
+import Delivery.DeliveryComponent;
+import OrderForm.OrderForm;
 import ProductList.ProductListComponent;
 import QProducts.QProductListComponent;
 import QSearch.QSearchComponent;
@@ -44,6 +46,10 @@ public class MainWindow implements Initializable {
         slideAnimation.play(masterBox.getLayoutX(), 0.0d);
     }
 
+    private void slideToDelivery() {
+        slideAnimation.play(masterBox.getLayoutX(), -2220.0d);
+    }
+
     //endregion Slide Animation
 
     //region Product List
@@ -84,6 +90,9 @@ public class MainWindow implements Initializable {
     private ReceiptComponent receipt;
 
     @FXML
+    private OrderForm orderForm;
+
+    @FXML
     private void toCheckout() {
         slideToCheckout();
         receipt.setBackButtonEnabled(true);
@@ -92,6 +101,12 @@ public class MainWindow implements Initializable {
     @FXML
     private void toStart() {
         slideToStart();
+        receipt.setCheckoutButtonEnabled(true);
+    }
+
+    @FXML
+    private void toDelivery() {
+        slideToDelivery();
         receipt.setCheckoutButtonEnabled(true);
     }
 

@@ -1,22 +1,22 @@
 package Delivery;
 
-import com.sun.javafx.scene.web.Debugger;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import se.chalmers.cse.dat216.project.*;
-import sun.awt.im.InputMethodAdapter;
+import se.chalmers.cse.dat216.project.Customer;
+import se.chalmers.cse.dat216.project.Order;
+import se.chalmers.cse.dat216.project.ShoppingItem;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.function.Predicate;
 
 public class DeliveryComponent extends AnchorPane implements Initializable {
 
@@ -32,6 +32,8 @@ public class DeliveryComponent extends AnchorPane implements Initializable {
     @FXML
     private Label customerCity;
 
+    private EventHandler<DeliveryComponentEvent> onResetHandler;
+
     public DeliveryComponent() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DeliveryComponent.fxml"));
         fxmlLoader.setRoot(this);
@@ -46,10 +48,6 @@ public class DeliveryComponent extends AnchorPane implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    }
-
-    public void onResetButtonClick() {
-
     }
 
     public void updateReceipt(final Order order) {
@@ -91,5 +89,34 @@ public class DeliveryComponent extends AnchorPane implements Initializable {
         }
 
         return numRows;
+    }
+
+    @FXML
+    private void onResetButtonClick() {
+        DeliveryComponentEvent onResetEvent = new DeliveryComponentEvent(this, DeliveryComponentEvent.ON_RESET);
+        fireEvent(onResetEvent);
+    }
+
+
+    public void setOnReset(EventHandler<DeliveryComponentEvent> onResetHandler) {
+        if (this.onResetHandler != null) {
+            removeEventHandler(DeliveryComponent.DeliveryComponentEvent.ON_RESET, this.onResetHandler);
+        }
+        this.onResetHandler = onResetHandler;
+        addEventHandler(DeliveryComponent.DeliveryComponentEvent.ON_RESET, this.onResetHandler);
+    }
+
+    public EventHandler<DeliveryComponent.DeliveryComponentEvent> getOnReset() {
+        return onResetHandler;
+    }
+
+
+    public static class DeliveryComponentEvent extends Event {
+        public DeliveryComponentEvent(DeliveryComponent source, EventType<DeliveryComponentEvent> eventType) {
+            super(source, null, eventType);
+        }
+
+        public static final EventType<DeliveryComponentEvent> ROOT_EVENT = new EventType<>(Event.ANY, "DELIVERY_COMPONENTROOT_EVENT");
+        public static final EventType<DeliveryComponentEvent> ON_RESET = new EventType<>(ROOT_EVENT, "ON_RESET");
     }
 }
