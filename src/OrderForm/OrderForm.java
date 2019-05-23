@@ -213,12 +213,6 @@ public class OrderForm extends AnchorPane implements Initializable {
         return onNextHandler;
     }
 
-    /**
-     * Sets the event handler for when a new category is selected.
-     * Can be used from `fxml` as: `onNext="#eventHandelr"`.
-     *
-     * @param onNextHandler The new event handler.
-     */
     public void setOnNext(EventHandler<OrderFormEvent> onNextHandler) {
         if (this.onNextHandler != null) {
             removeEventHandler(OrderFormEvent.ON_NEXT, this.onNextHandler);
