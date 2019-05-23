@@ -17,7 +17,7 @@ public class QSearchComponent extends GridPane {
 	@FXML
 	private TextField searchText;
 
-	private EventHandler<SearchComponentEvent> onSearchHandler;
+	private EventHandler<QSearchComponentEvent> onSearchHandler;
 
 	public QSearchComponent() {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("QSearchComponent.fxml"));
@@ -34,33 +34,33 @@ public class QSearchComponent extends GridPane {
 
 	@FXML
 	private void doSearch() {
-		Event event = new SearchComponentEvent(
+		Event event = new QSearchComponentEvent(
 				this,
 				IMatDataHandler.getInstance().findProducts(searchText.getText()),
-				SearchComponentEvent.ON_SEARCH
+				QSearchComponentEvent.ON_SEARCH
 		);
 		fireEvent(event);
 	}
 
-	public void setOnSearch(EventHandler<SearchComponentEvent> onSelectHandler) {
+	public void setOnSearch(EventHandler<QSearchComponentEvent> onSelectHandler) {
 		if (this.onSearchHandler != null) {
-			removeEventHandler(SearchComponentEvent.ON_SEARCH, this.onSearchHandler);
+			removeEventHandler(QSearchComponentEvent.ON_SEARCH, this.onSearchHandler);
 		}
 
 		this.onSearchHandler = onSelectHandler;
-		addEventHandler(SearchComponentEvent.ON_SEARCH, this.onSearchHandler);
+		addEventHandler(QSearchComponentEvent.ON_SEARCH, this.onSearchHandler);
 	}
-	public EventHandler<SearchComponentEvent> getOnSearch() {
+	public EventHandler<QSearchComponentEvent> getOnSearch() {
 		return onSearchHandler;
 	}
 
-	public static class SearchComponentEvent extends Event {
-		public static final EventType<SearchComponentEvent> ROOT_EVENT = new EventType<>(Event.ANY, "SEARCHCOMPONENT_ROOT_EVENT");
-		public static final EventType<SearchComponentEvent> ON_SEARCH = new EventType<>(ROOT_EVENT, "ON_SEARCH");
+	public static class QSearchComponentEvent extends Event {
+		public static final EventType<QSearchComponentEvent> ROOT_EVENT = new EventType<>(Event.ANY, "QSEARCHCOMPONENT_ROOT_EVENT");
+		public static final EventType<QSearchComponentEvent> ON_SEARCH = new EventType<>(ROOT_EVENT, "ON_SEARCH");
 
 		private final List<Product> products;
 
-		public SearchComponentEvent(QSearchComponent source, List<Product> foundProducts, EventType<SearchComponentEvent> eventType) {
+		public QSearchComponentEvent(QSearchComponent source, List<Product> foundProducts, EventType<QSearchComponentEvent> eventType) {
 			super(source, null, eventType);
 			products = foundProducts;
 		}
