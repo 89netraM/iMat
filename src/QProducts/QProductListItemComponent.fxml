@@ -26,7 +26,7 @@
       </GridPane.margin></ImageView>
 
     <VBox prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
-        <Label fx:id="nameLabel" wrapText="true" />
+        <Label fx:id="nameLabel" styleClass="bold" wrapText="true" />
         <Label fx:id="priceLabel" />
       <GridPane.margin>
          <Insets left="5.0" top="5.0" />
