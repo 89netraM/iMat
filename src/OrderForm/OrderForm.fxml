@@ -183,6 +183,26 @@
                   <Font size="18.0" />
                </font>
             </RadioButton>
+            <Label fx:id="namePreview" layoutX="39.0" layoutY="101.0" prefHeight="20.0" prefWidth="288.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="adressPreview" layoutX="39.0" layoutY="134.0" prefHeight="20.0" prefWidth="288.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="cardTypePreview" layoutX="379.0" layoutY="101.0" prefHeight="20.0" prefWidth="288.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="cardPreview" layoutX="379.0" layoutY="134.0" prefHeight="20.0" prefWidth="288.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
         </children>
     </AnchorPane>
 </children>

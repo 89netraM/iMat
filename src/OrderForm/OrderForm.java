@@ -3,9 +3,9 @@ package OrderForm;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import se.chalmers.cse.dat216.project.CreditCard;
@@ -43,6 +43,13 @@ public class OrderForm extends AnchorPane implements Initializable {
     @FXML private ComboBox month;
     @FXML private ComboBox year;
     @FXML private TextField cvcCode;
+    @FXML private RadioButton pickUp;
+    @FXML private RadioButton delivery;
+    @FXML private Label namePreview;
+    @FXML private Label cardPreview;
+    @FXML private Label cardTypePreview;
+    @FXML private Label adressPreview;
+    @FXML private ImageView logo;
 
 
 
@@ -63,7 +70,8 @@ public class OrderForm extends AnchorPane implements Initializable {
 
     private final Model model = Model.getInstance();
     private final IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
-
+    CreditCard card = model.getCreditCard();
+    Customer customer = model.getCustomer();
 
     @Override
     public void initialize(URL url, ResourceBundle rb){
@@ -72,13 +80,28 @@ public class OrderForm extends AnchorPane implements Initializable {
         if(iMatDataHandler.isFirstRun()){
             iMatDataHandler.reset();
         }
+
+        /*
+        logo.setImage(new Image(getClass().getClassLoader().getResourceAsStream(
+                "resources/images/iMatLogo.png")));
+                */
+
         setupPaymentPane();
+        updatePreview();
+    }
+
+    private void updatePreview(){
+
+        namePreview.setText(customer.getFirstName() + " " + customer.getLastName());
+        adressPreview.setText(customer.getAddress());
+        //cardPreview.setText(card.getCardNumber());
+        cardTypePreview.setText(card.getCardType());
+        cardPreview.setText(formatCard(card));
 
     }
 
     private void updateCreditCard() {
 
-        CreditCard card = model.getCreditCard();
 
         card.setCardNumber(cardNumber.getText());
         card.setHoldersName(firstAndLastName.getText());
@@ -98,7 +121,6 @@ public class OrderForm extends AnchorPane implements Initializable {
 
     private void updateCustomer(){
 
-        Customer customer = model.getCustomer();
 
         customer.setFirstName(firstName.getText());
         customer.setLastName(lastName.getText());
@@ -112,7 +134,6 @@ public class OrderForm extends AnchorPane implements Initializable {
 
     private void updatePaymentFormPanel() {
 
-        CreditCard card = model.getCreditCard();
 
         cardNumber.setText(card.getCardNumber());
         firstAndLastName.setText(card.getHoldersName());
@@ -128,7 +149,6 @@ public class OrderForm extends AnchorPane implements Initializable {
 
     private void updateAddressFormPanel(){
 
-        Customer customer = model.getCustomer();
 
         firstName.setText(customer.getFirstName());
         lastName.setText(customer.getLastName());
@@ -168,6 +188,7 @@ public class OrderForm extends AnchorPane implements Initializable {
         OrderForm.toFront();
         AdressForm.toBack();
         updateCustomer();
+        updatePreview();
 
     }
 
@@ -176,6 +197,16 @@ public class OrderForm extends AnchorPane implements Initializable {
         OrderForm.toFront();
         PaymentForm.toBack();
         updateCreditCard();
+        updatePreview();
+    }
+
+    private String formatCard(CreditCard card) {
+
+        String cardNumber = card.getCardNumber();
+        String fc = cardNumber;
+        if (fc == null) return null;
+        char delimiter = ' ';
+        return fc.replaceAll(".{4}(?!$)", "$0" + delimiter);
     }
 
 
