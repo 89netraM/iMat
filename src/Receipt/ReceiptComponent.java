@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import se.chalmers.cse.dat216.project.CartEvent;
@@ -16,9 +17,12 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ReceiptComponent extends GridPane {
+public class ReceiptComponent extends AnchorPane {
 	@FXML
 	private VBox receiptList;
+
+	@FXML
+	private Label total;
 
 	//region Undo
 	private ReceiptItemComponent lastRemoved;
@@ -115,6 +119,8 @@ public class ReceiptComponent extends GridPane {
 				receiptItems.get(product.getProductId()).onCartEvent(e);
 			}
 		}
+
+		total.setText("Totalt: " + cart.getTotal() + " kr");
 	}
 
 	/**

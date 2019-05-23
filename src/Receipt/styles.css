@@ -38,3 +38,8 @@
 .receipt-item .label {
     -fx-font-size: 14;
 }
+
+.total {
+    -fx-font-size: 18;
+    -fx-font-weight: bold;
+}
