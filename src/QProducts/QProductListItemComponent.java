@@ -1,5 +1,6 @@
 package QProducts;
 
+import ProductCounter.ProductCounterComponent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -25,6 +26,8 @@ public class QProductListItemComponent extends GridPane {
 
 	@FXML
 	private Button addButton;
+	@FXML
+	private ProductCounterComponent counter;
 
 	public QProductListItemComponent(Product product) {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("QProductListItemComponent.fxml"));
@@ -50,12 +53,20 @@ public class QProductListItemComponent extends GridPane {
 		nameLabel.setText(product.getName());
 		priceLabel.setText(product.getPrice() + "/" + product.getUnitSuffix());
 
-		addButton.setDisable(isProductInCart(product));
+		addButton.setVisible(!isProductInCart(product));
+		counter.setVisible(isProductInCart(product));
+		for (ShoppingItem item : cart.getItems()) {
+			if (item.getProduct() == product) {
+				counter.setShoppingItem(item);
+			}
+		}
 	}
 
 	@FXML
 	private void addProduct() {
-		cart.addProduct(product);
+		if (!isProductInCart(product)) {
+			cart.addProduct(product);
+		}
 	}
 
 	private void onCartEvent(CartEvent e) {
@@ -64,7 +75,14 @@ public class QProductListItemComponent extends GridPane {
 		}
 
 		if (e.getShoppingItem().getProduct() == product) {
-			addButton.setDisable(isProductInCart(product));
+			addButton.setVisible(!isProductInCart(product));
+			counter.setVisible(isProductInCart(product));
+
+			if (e.isAddEvent() && e.getShoppingItem() != counter.getShoppingItem()) {
+				counter.setShoppingItem(e.getShoppingItem());
+			}
+
+			counter.onCartEvent(e);
 		}
 	}
 
