@@ -67,7 +67,7 @@ public class DeliveryComponent extends AnchorPane implements Initializable {
 
     public void updateReceipt(final Order order) {
         this.orderContentsGrid.getChildren().clear();
-        this.orderContentsGrid.gridLinesVisibleProperty().setValue(true);
+        this.orderContentsGrid.setGridLinesVisible(true);
         this.orderContentsGrid.addRow(0, new Label("Vara"), new Label("Antal"), new Label("Totalt"));
 
         Double orderTotal = new Double(0);
@@ -80,7 +80,7 @@ public class DeliveryComponent extends AnchorPane implements Initializable {
             orderTotal += shoppingItem.getTotal();
         }
 
-        Label orderTotalText = new Label("Totalt");
+        Label orderTotalText = new Label("Ordertotal");
         Label orderTotalCost = new Label(orderTotal.toString());
         this.orderContentsGrid.addRow(this.getGridRowCount(this.orderContentsGrid), orderTotalText, new Label(), orderTotalCost);
     }
