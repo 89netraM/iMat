@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import se.chalmers.cse.dat216.project.CreditCard;
 import se.chalmers.cse.dat216.project.Customer;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
+import se.chalmers.cse.dat216.project.Order;
 
 import java.io.File;
 import java.io.IOException;
@@ -212,9 +213,10 @@ public class OrderForm extends AnchorPane implements Initializable {
 
     @FXML
     private void onNextButton() {
-        OrderForm.OrderFormEvent onNextEvent = new OrderForm.OrderFormEvent(this, OrderFormEvent.ON_NEXT);
-        fireEvent(onNextEvent);
+        this.iMatDataHandler.placeOrder();
 
+        OrderForm.OrderFormEvent onNextEvent = new OrderForm.OrderFormEvent(this, this.iMatDataHandler.getOrders().iterator().next(), OrderFormEvent.ON_NEXT);
+        fireEvent(onNextEvent);
     }
 
     public EventHandler<OrderFormEvent> getOnNext() {
@@ -230,10 +232,13 @@ public class OrderForm extends AnchorPane implements Initializable {
     }
 
     public static class OrderFormEvent extends Event {
+        public Order order;
         public static final EventType<OrderForm.OrderFormEvent> ROOT_EVENT = new EventType<>(Event.ANY, "ORDER_FORM_ROOT_EVENT");
         public static final EventType<OrderForm.OrderFormEvent> ON_NEXT = new EventType<>(ROOT_EVENT, "ON_NEXT");
-        public OrderFormEvent(OrderForm source, EventType<OrderForm.OrderFormEvent> eventType) {
+
+        public OrderFormEvent(OrderForm source, Order order, EventType<OrderForm.OrderFormEvent> eventType) {
             super(source, null, eventType);
+            this.order = order;
         }
     }
 }

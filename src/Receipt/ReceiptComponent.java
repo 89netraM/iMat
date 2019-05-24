@@ -68,6 +68,12 @@ public class ReceiptComponent extends AnchorPane {
 	}
 
 	private void shoppingCartListener(CartEvent e) {
+
+		// When order is placeed CartEvent is fired but contains no items
+		if (e.getShoppingItem() == null) {
+			return;
+		}
+
 		Product product = e.getShoppingItem().getProduct();
 
 		if (e.isAddEvent()) {

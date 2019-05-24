@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
+import se.chalmers.cse.dat216.project.IMatDataHandler;
 
 import java.io.File;
 import java.net.URL;
@@ -21,6 +22,10 @@ import java.util.ResourceBundle;
 public class MainWindow implements Initializable {
     @FXML
     private CategoryCarouselComponent categoryCarousel;
+
+    @FXML
+    private DeliveryComponent delivery;
+
     @FXML private ImageView logo;
 
     @Override
@@ -116,6 +121,8 @@ public class MainWindow implements Initializable {
     private void toDelivery() {
         slideToDelivery();
         receipt.setCheckoutButtonEnabled(true);
+        this.delivery.updateCustomerAddress();
+        this.delivery.updateReceipt(IMatDataHandler.getInstance().getOrders().iterator().next());
     }
 
     //endregion Receipt Events

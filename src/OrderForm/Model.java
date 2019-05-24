@@ -88,7 +88,6 @@ public class Model {
         return iMatDataHandler.getCustomer();
     }
 
-
     public void shutDown() {
         iMatDataHandler.shutDown();
     }

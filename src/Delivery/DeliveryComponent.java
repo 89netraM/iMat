@@ -66,13 +66,17 @@ public class DeliveryComponent extends AnchorPane implements Initializable {
     }
 
     public void updateReceipt(final Order order) {
-        this.orderContentsGrid.getChildren().removeIf(node -> GridPane.getRowIndex(node) > 0);
+        //this.orderContentsGrid.getChildren().removeIf(node -> GridPane.getRowIndex(node) > 0);
 
         Double orderTotal = new Double(0);
+
         for (final ShoppingItem shoppingItem : order.getItems()) {
-            Label name = new Label(shoppingItem.toString());
+            Label name = new Label(shoppingItem.getProduct().getName());
+            name.getStyleClass().add("order-item");
             Label amount = new Label(Double.toString(shoppingItem.getAmount()));
+            amount.getStyleClass().add("order-item");
             Label totalCost = new Label(Double.toString(shoppingItem.getTotal()));
+            totalCost.getStyleClass().add("order-item");
             this.orderContentsGrid.addRow(this.getGridRowCount(this.orderContentsGrid), name, amount, totalCost);
             orderTotal += shoppingItem.getTotal();
         }
@@ -88,6 +92,10 @@ public class DeliveryComponent extends AnchorPane implements Initializable {
         customerName.setText(
             String.format("%s %s", customer.getFirstName(), customer.getLastName())
         );
+    }
+
+    public void setCustomer(final Customer customer) {
+        this.customer = customer;
     }
 
     // Shamelessly stolen from https://stackoverflow.com/questions/20766363/get-the-number-of-rows-in-a-javafx-gridpane

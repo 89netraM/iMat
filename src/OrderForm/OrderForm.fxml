@@ -15,85 +15,6 @@
 
 <fx:root prefHeight="800.0" prefWidth="940.0" stylesheets="@OrderForm.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
 <children>
-    <AnchorPane fx:id="OrderForm" prefHeight="800.0" prefWidth="940.0" style="-fx-background-color: #467f6d#467f6d;">
-        <children>
-            <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#f4fff5" height="351.0" layoutX="12.0" layoutY="91.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="rectangle" width="450.0" />
-            <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#f4fff5" height="351.0" layoutX="472.0" layoutY="91.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="rectangle" width="450.0" />
-            <Button fx:id="changeAdress" layoutX="117.0" layoutY="312.0" mnemonicParsing="false" onAction="#addressFormToFront" prefHeight="116.0" prefWidth="247.0" styleClass="buttonInfo" text="Klicka här för att ändra leveransuppgifter" textAlignment="CENTER" wrapText="true">
-                <font>
-                    <Font name="System Font" size="18.0" />
-                </font>
-            </Button>
-            <Button fx:id="changePaymentMethod" layoutX="569.0" layoutY="312.0" mnemonicParsing="false" onAction="#paymentFormToFront" prefHeight="116.0" prefWidth="247.0" styleClass="buttonInfo" text="Klicka här för att ändra betalningsuppgifter" textAlignment="CENTER" wrapText="true">
-                <font>
-                    <Font name="System Font" size="18.0" />
-                </font>
-            </Button>
-            <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#467f6d" height="30.0" layoutX="98.0" layoutY="112.0" stroke="TRANSPARENT" strokeType="INSIDE" width="288.0" />
-            <Label layoutX="145.0" layoutY="112.0" prefHeight="30.0" prefWidth="194.0" text="Adressinformation" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="22.0" />
-               </font>
-            </Label>
-            <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#467f6d" height="30.0" layoutX="554.0" layoutY="113.0" stroke="TRANSPARENT" strokeType="INSIDE" width="288.0" />
-            <Label layoutX="585.0" layoutY="113.0" prefHeight="30.0" prefWidth="227.0" text="Betalningsinformation" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="22.0" />
-               </font>
-            </Label>
-            <Button layoutX="784.0" layoutY="733.0" mnemonicParsing="false" onAction="#onNextButton" prefHeight="57.0" prefWidth="146.0" styleClass="buttonForm" text="Slutför köp">
-               <font>
-                  <Font size="18.0" />
-               </font></Button>
-            <ImageView fx:id="logo" fitHeight="64.0" fitWidth="176.0" layoutX="384.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../resources/images/iMatLogo.png" />
-               </image>
-            </ImageView>
-            <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#f4fff5" height="174.0" layoutX="151.0" layoutY="473.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="rectangle" width="631.0" />
-            <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#467f6d" height="30.0" layoutX="323.0" layoutY="488.0" stroke="TRANSPARENT" strokeType="INSIDE" width="288.0" />
-            <Label layoutX="388.0" layoutY="488.0" prefHeight="30.0" prefWidth="168.0" text="Leveransmetod" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="22.0" />
-               </font>
-            </Label>
-            <RadioButton fx:id="pickUp" layoutX="172.0" layoutY="587.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="227.0" text="Hämta varorna i butik">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </RadioButton>
-            <RadioButton fx:id="delivery" layoutX="172.0" layoutY="547.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="361.0" text="Hemleverans till given address">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </RadioButton>
-            <Label fx:id="namePreview" layoutX="106.0" layoutY="185.0" prefHeight="20.0" prefWidth="288.0" textAlignment="CENTER">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="adressPreview" layoutX="105.0" layoutY="218.0" prefHeight="20.0" prefWidth="288.0" textAlignment="CENTER">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="cardTypePreview" layoutX="547.0" layoutY="185.0" prefHeight="20.0" prefWidth="288.0" textAlignment="CENTER">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="cardPreview" layoutX="547.0" layoutY="218.0" prefHeight="20.0" prefWidth="288.0" textAlignment="CENTER">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="logoMini" fitHeight="37.0" fitWidth="121.0" layoutX="417.0" layoutY="748.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../resources/images/iMatLogo.png" />
-               </image>
-            </ImageView>
-        </children>
-    </AnchorPane>
     <StackPane prefHeight="600.0" prefWidth="700.0">
         <children>
             <AnchorPane fx:id="AdressForm" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="940.0" style="-fx-background-color: rgba(0, 0, 0, 0.4);">
@@ -213,5 +134,84 @@
             </AnchorPane>
         </children>
     </StackPane>
+    <AnchorPane fx:id="OrderForm" prefHeight="800.0" prefWidth="940.0" style="-fx-background-color: #467f6d#467f6d;">
+        <children>
+            <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#f4fff5" height="351.0" layoutX="12.0" layoutY="91.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="rectangle" width="450.0" />
+            <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#f4fff5" height="351.0" layoutX="472.0" layoutY="91.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="rectangle" width="450.0" />
+            <Button fx:id="changeAdress" layoutX="117.0" layoutY="312.0" mnemonicParsing="false" onAction="#addressFormToFront" prefHeight="116.0" prefWidth="247.0" styleClass="buttonInfo" text="Klicka här för att ändra leveransuppgifter" textAlignment="CENTER" wrapText="true">
+                <font>
+                    <Font name="System Font" size="18.0" />
+                </font>
+            </Button>
+            <Button fx:id="changePaymentMethod" layoutX="569.0" layoutY="312.0" mnemonicParsing="false" onAction="#paymentFormToFront" prefHeight="116.0" prefWidth="247.0" styleClass="buttonInfo" text="Klicka här för att ändra betalningsuppgifter" textAlignment="CENTER" wrapText="true">
+                <font>
+                    <Font name="System Font" size="18.0" />
+                </font>
+            </Button>
+            <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#467f6d" height="30.0" layoutX="98.0" layoutY="112.0" stroke="TRANSPARENT" strokeType="INSIDE" width="288.0" />
+            <Label layoutX="145.0" layoutY="112.0" prefHeight="30.0" prefWidth="194.0" text="Adressinformation" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#467f6d" height="30.0" layoutX="554.0" layoutY="113.0" stroke="TRANSPARENT" strokeType="INSIDE" width="288.0" />
+            <Label layoutX="585.0" layoutY="113.0" prefHeight="30.0" prefWidth="227.0" text="Betalningsinformation" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Button layoutX="784.0" layoutY="733.0" mnemonicParsing="false" onAction="#onNextButton" prefHeight="57.0" prefWidth="146.0" styleClass="buttonForm" text="Slutför köp">
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
+            <ImageView fx:id="logo" fitHeight="64.0" fitWidth="176.0" layoutX="384.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/images/iMatLogo.png" />
+               </image>
+            </ImageView>
+            <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#f4fff5" height="174.0" layoutX="151.0" layoutY="473.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="rectangle" width="631.0" />
+            <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#467f6d" height="30.0" layoutX="323.0" layoutY="488.0" stroke="TRANSPARENT" strokeType="INSIDE" width="288.0" />
+            <Label layoutX="388.0" layoutY="488.0" prefHeight="30.0" prefWidth="168.0" text="Leveransmetod" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <RadioButton fx:id="pickUp" layoutX="172.0" layoutY="587.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="227.0" text="Hämta varorna i butik">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="delivery" layoutX="172.0" layoutY="547.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="361.0" text="Hemleverans till given address">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </RadioButton>
+            <Label fx:id="namePreview" layoutX="106.0" layoutY="185.0" prefHeight="20.0" prefWidth="288.0" textAlignment="CENTER">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="adressPreview" layoutX="105.0" layoutY="218.0" prefHeight="20.0" prefWidth="288.0" textAlignment="CENTER">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="cardTypePreview" layoutX="547.0" layoutY="185.0" prefHeight="20.0" prefWidth="288.0" textAlignment="CENTER">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="cardPreview" layoutX="547.0" layoutY="218.0" prefHeight="20.0" prefWidth="288.0" textAlignment="CENTER">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="logoMini" fitHeight="37.0" fitWidth="121.0" layoutX="417.0" layoutY="748.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/images/iMatLogo.png" />
+               </image>
+            </ImageView>
+        </children>
+    </AnchorPane>
 </children>
 </fx:root>

@@ -44,6 +44,6 @@
 
       <OrderForm fx:id="order" prefWidth="940" onNext="#toDelivery" />
 
-      <DeliveryComponent prefWidth="1280" onReset="#toStart" />
+      <DeliveryComponent fx:id="delivery" prefWidth="1280" onReset="#toStart" />
    </HBox>
 </Pane>

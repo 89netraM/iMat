@@ -59,6 +59,10 @@ public class QProductListItemComponent extends GridPane {
 	}
 
 	private void onCartEvent(CartEvent e) {
+		if (e.getShoppingItem() == null) {
+			return;
+		}
+
 		if (e.getShoppingItem().getProduct() == product) {
 			addButton.setDisable(isProductInCart(product));
 		}
