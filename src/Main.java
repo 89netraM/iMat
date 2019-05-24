@@ -18,6 +18,8 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
 		primaryStage.setScene(new Scene(root, 1280, 800));
+		primaryStage.setResizable(false);
+		primaryStage.sizeToScene();
 		primaryStage.setTitle("iMat");
 		primaryStage.show();
 	}
