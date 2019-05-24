@@ -53,4 +53,12 @@ public class DoubleAnimation extends Transition {
 		length = to - start;
 		super.play();
 	}
+
+	/**
+	 * Sets the duration of the animation.
+	 * @param    duration    The new duration.
+	 */
+	public void setDuration(Duration duration) {
+		super.setCycleDuration(duration);
+	}
 }

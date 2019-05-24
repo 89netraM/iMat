@@ -15,6 +15,9 @@ import java.io.File;
 import java.io.IOException;
 
 public class CategoryCarouselItemComponent extends GridPane {
+	private static final Duration selectDuration = Duration.millis(300);
+	private static final Duration hoverDuration = Duration.millis(75);
+
 	@FXML
 	private ImageView image;
 
@@ -22,7 +25,7 @@ public class CategoryCarouselItemComponent extends GridPane {
 	private Label label;
 
 	private boolean isSelected = false;
-	private final DoubleAnimation selectedAnimation = new DoubleAnimation(this::animationAction, Duration.millis(300));
+	private final DoubleAnimation heightAnimation = new DoubleAnimation(this::animationAction);
 
 	private final ProductCategory category;
 
@@ -45,7 +48,7 @@ public class CategoryCarouselItemComponent extends GridPane {
 
 		//Sets the image from a category icon.
 		File file = new File(IMatDataHandler.getInstance().imatDirectory() + "/category_icons/" + category + ".png");
-		Image imageSrc = new Image(file.toURI().toString(), 100.0d, 100.0d, true, true, true);
+		Image imageSrc = new Image(file.toURI().toString(), imageSizeAt(1.0d), imageSizeAt(1.0d), true, true, true);
 		image.setImage(imageSrc);
 	}
 
@@ -56,7 +59,8 @@ public class CategoryCarouselItemComponent extends GridPane {
 	 */
 	public void setIsSelected(boolean isSelected) {
 		if (this.isSelected != isSelected) {
-			selectedAnimation.play(image.getFitHeight(), isSelected ? 100.0d : 50.0d);
+			heightAnimation.setDuration(selectDuration);
+			heightAnimation.play(image.getFitHeight(), isSelected ? imageSizeAt(1.0d) : imageSizeAt(0.0d));
 		}
 
 		this.isSelected = isSelected;
@@ -65,11 +69,34 @@ public class CategoryCarouselItemComponent extends GridPane {
 		return isSelected;
 	}
 
-	//Is the action of the `selectedAnimation`.
+	//Is the action of the `heightAnimation`.
 	//Every step of the animation this method updates the height of the image.
 	private void animationAction(double value) {
 		image.setFitHeight(value);
 	}
+
+	private double imageSizeAt(double percentage) {
+		return percentage * 50.0d + 50.0d;
+	}
+
+	//region Hover effect
+
+	@FXML
+	private void mouseEntered() {
+		if (!getIsSelected()) {
+			heightAnimation.setDuration(hoverDuration);
+			heightAnimation.play(image.getFitHeight(), imageSizeAt(0.2d));
+		}
+	}
+	@FXML
+	private void mouseExited() {
+		if (!getIsSelected()) {
+			heightAnimation.setDuration(hoverDuration);
+			heightAnimation.play(image.getFitHeight(), imageSizeAt(0.0d));
+		}
+	}
+
+	//endregion Hover effect
 
 	/**
 	 * Turns a `ProductCategory` enum into a human readable name.
