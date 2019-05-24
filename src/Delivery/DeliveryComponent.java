@@ -66,24 +66,23 @@ public class DeliveryComponent extends AnchorPane implements Initializable {
     }
 
     public void updateReceipt(final Order order) {
-        //this.orderContentsGrid.getChildren().removeIf(node -> GridPane.getRowIndex(node) > 0);
+        this.orderContentsGrid.getChildren().clear();
+        this.orderContentsGrid.gridLinesVisibleProperty().setValue(true);
+        this.orderContentsGrid.addRow(0, new Label("Vara"), new Label("Antal"), new Label("Totalt"));
 
         Double orderTotal = new Double(0);
 
         for (final ShoppingItem shoppingItem : order.getItems()) {
             Label name = new Label(shoppingItem.getProduct().getName());
-            name.getStyleClass().add("order-item");
             Label amount = new Label(Double.toString(shoppingItem.getAmount()));
-            amount.getStyleClass().add("order-item");
             Label totalCost = new Label(Double.toString(shoppingItem.getTotal()));
-            totalCost.getStyleClass().add("order-item");
             this.orderContentsGrid.addRow(this.getGridRowCount(this.orderContentsGrid), name, amount, totalCost);
             orderTotal += shoppingItem.getTotal();
         }
 
         Label orderTotalText = new Label("Totalt");
         Label orderTotalCost = new Label(orderTotal.toString());
-        this.orderContentsGrid.addRow(this.getGridRowCount(this.orderContentsGrid), orderTotalText, orderTotalCost);
+        this.orderContentsGrid.addRow(this.getGridRowCount(this.orderContentsGrid), orderTotalText, new Label(), orderTotalCost);
     }
 
     public void updateCustomerAddress() {

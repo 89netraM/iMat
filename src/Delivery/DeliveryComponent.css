@@ -39,6 +39,6 @@
 -fx-background-color: rgba(70, 127, 109, 1)rgba(70, 127, 109, 1);
 }
 
-.orderItem {
+#orderContentsGrid .label {
 -fx-font-size: 18;
 }
