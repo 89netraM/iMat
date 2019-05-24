@@ -1,6 +1,7 @@
 package Delivery;
 
 import OrderForm.Model;
+import OrderForm.OrderForm;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
@@ -37,6 +38,24 @@ public class DeliveryComponent extends AnchorPane implements Initializable {
     @FXML
     private ImageView logo;
 
+    @FXML
+    private Label pickUpName;
+
+    @FXML
+    private Label pickUpAdress;
+
+    @FXML
+    private Label pickUpPostAdress;
+
+    @FXML
+    private Label pickUpPostCode;
+
+    @FXML
+    public AnchorPane deliveryInfo;
+
+    @FXML
+    public AnchorPane pickUpInfo;
+
     private EventHandler<DeliveryComponentEvent> onResetHandler;
 
     private final Model model = Model.getInstance();
@@ -63,6 +82,9 @@ public class DeliveryComponent extends AnchorPane implements Initializable {
         logo.setImage(imageSrc);
 
         updateCustomerAddress();
+        pickUpAdress();
+
+
     }
 
     public void updateReceipt(final Order order) {
@@ -92,6 +114,14 @@ public class DeliveryComponent extends AnchorPane implements Initializable {
         customerName.setText(
             String.format("%s %s", customer.getFirstName(), customer.getLastName())
         );
+    }
+
+    public void pickUpAdress(){
+
+        pickUpName.setText("iMat");
+        pickUpAdress.setText("Chalmersplatsen 4");
+        pickUpPostAdress.setText("Göteborg");
+        pickUpPostCode.setText("412 58");
     }
 
     public void setCustomer(final Customer customer) {
@@ -142,4 +172,5 @@ public class DeliveryComponent extends AnchorPane implements Initializable {
         public static final EventType<DeliveryComponentEvent> ROOT_EVENT = new EventType<>(Event.ANY, "DELIVERY_COMPONENTROOT_EVENT");
         public static final EventType<DeliveryComponentEvent> ON_RESET = new EventType<>(ROOT_EVENT, "ON_RESET");
     }
+
 }

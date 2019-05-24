@@ -2,6 +2,8 @@ package OrderForm;
 
 import Delivery.DeliveryComponent;
 import javafx.event.Event;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
@@ -26,6 +28,8 @@ public class OrderForm extends AnchorPane implements Initializable {
     private final IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
     CreditCard card = model.getCreditCard();
     Customer customer = model.getCustomer();
+    DeliveryComponent deliveryComponent = new DeliveryComponent();
+
     @FXML
     private AnchorPane OrderFormComponent;
     @FXML
@@ -82,7 +86,8 @@ public class OrderForm extends AnchorPane implements Initializable {
     private Label adressPreview;
     @FXML
     private ImageView logo;
-    @FXML ImageView logoMini;
+    @FXML
+    private ImageView logoMini;
 
 
     private EventHandler<OrderFormEvent> onNextHandler;
@@ -99,10 +104,27 @@ public class OrderForm extends AnchorPane implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ToggleGroup difficultyToggleGroup = new ToggleGroup();
-        delivery.setToggleGroup(difficultyToggleGroup);
-        pickUp.setToggleGroup(difficultyToggleGroup);
+        ToggleGroup deliveryToggleGroup = new ToggleGroup();
+        delivery.setToggleGroup(deliveryToggleGroup);
+        pickUp.setToggleGroup(deliveryToggleGroup);
         delivery.setSelected(true);
+
+
+        deliveryToggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+
+            @Override
+            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
+
+                RadioButton selected = (RadioButton) deliveryToggleGroup.getSelectedToggle();
+
+                if (selected == delivery) {
+                    //deliveryInfo.toFront();
+                }else if(selected == pickUp){
+                    //pickUpInfo.toFront();
+                }
+            }
+        });
+
         // iMatDataHandler.resetFirstRun();      //kallas bara för att återställa hela programmet
         if (iMatDataHandler.isFirstRun()) {
             iMatDataHandler.reset();
@@ -241,4 +263,6 @@ public class OrderForm extends AnchorPane implements Initializable {
             this.order = order;
         }
     }
+
+
 }

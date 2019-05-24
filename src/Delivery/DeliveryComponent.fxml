@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
@@ -27,12 +28,6 @@
          </font>
       </Label>
       <Button layoutX="551.0" layoutY="678.0" mnemonicParsing="false" onAction="#onResetButtonClick" prefHeight="48.0" prefWidth="178.0" styleClass="buttonInfo" text="Till startsidan" />
-      <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#467f6d" height="30.0" layoutX="682.0" layoutY="298.0" stroke="TRANSPARENT" strokeType="INSIDE" width="288.0" />
-      <Label layoutX="755.0" layoutY="299.0" prefHeight="30.0" prefWidth="134.0" text="Levereras till" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="22.0" />
-         </font>
-      </Label>
       <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#467f6d" height="30.0" layoutX="318.0" layoutY="299.0" stroke="TRANSPARENT" strokeType="INSIDE" width="288.0" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="319.0" layoutY="298.0" prefHeight="32.0" prefWidth="288.0" text="Orderinnehåll" textAlignment="CENTER" textFill="WHITE">
          <font>
@@ -75,25 +70,77 @@
             </Label>
          </children>
       </GridPane>
-      <Label fx:id="customerName" layoutX="682.0" layoutY="341.0" prefHeight="23.0" prefWidth="332.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="customerAddress" layoutX="681.0" layoutY="369.0" prefHeight="23.0" prefWidth="335.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="customerPostAddress" layoutX="681.0" layoutY="396.0" prefHeight="23.0" prefWidth="334.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
       <ImageView fx:id="logo" fitHeight="64.0" fitWidth="176.0" layoutX="10.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../resources/images/iMatLogo.png" />
          </image>
       </ImageView>
+      <StackPane layoutX="618.0" layoutY="287.0" prefHeight="324.0" prefWidth="389.0">
+         <children>
+            <AnchorPane fx:id="deliveryInfo" prefHeight="324.0" prefWidth="389.0" style="-fx-background-color: #f4fff5;">
+               <children>
+                  <AnchorPane prefHeight="324.0" prefWidth="389.0">
+                     <children>
+                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#467f6d" height="30.0" layoutX="53.0" layoutY="12.0" stroke="TRANSPARENT" strokeType="INSIDE" width="288.0" />
+                        <Label layoutX="131.0" layoutY="13.0" prefHeight="30.0" prefWidth="134.0" text="Levereras till" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="22.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="customerName" layoutX="30.0" layoutY="75.0" prefHeight="23.0" prefWidth="332.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="customerAddress" layoutX="30.0" layoutY="113.0" prefHeight="23.0" prefWidth="334.0" textAlignment="CENTER">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="customerPostAddress" layoutX="30.0" layoutY="165.0" prefHeight="23.0" prefWidth="334.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="pickUpInfo" prefHeight="324.0" prefWidth="389.0" style="-fx-background-color: #f4fff5;">
+               <children>
+                  <AnchorPane prefHeight="325.0" prefWidth="388.0">
+                     <children>
+                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#467f6d" height="30.0" layoutX="53.0" layoutY="12.0" stroke="TRANSPARENT" strokeType="INSIDE" width="288.0" />
+                        <Label layoutX="102.0" layoutY="13.0" prefHeight="30.0" prefWidth="194.0" text="Varor hämtas här" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="22.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="pickUpName" layoutX="30.0" layoutY="75.0" prefHeight="23.0" prefWidth="332.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="pickUpAdress" layoutX="30.0" layoutY="113.0" prefHeight="23.0" prefWidth="334.0" textAlignment="CENTER">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="pickUpPostAdress" layoutX="30.0" layoutY="165.0" prefHeight="23.0" prefWidth="334.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="pickUpPostCode" layoutX="30.0" layoutY="200.0" prefHeight="23.0" prefWidth="334.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
    </children>
 </fx:root>

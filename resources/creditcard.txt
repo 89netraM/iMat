@@ -1,1 +1,1 @@
-Visa;johan gottlander;4;18;1234123412341234;0;end
+MasterCard;Johan Gottlander;8;26;1234123412341234;123;end
