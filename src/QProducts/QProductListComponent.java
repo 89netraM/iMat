@@ -70,21 +70,21 @@ public class QProductListComponent extends GridPane {
 	public void setPrevious(String previous) {
 		if (previous == null) {
 			previousButton.setText("⬅");
-			previousButton.setDisable(true);
+			previousButton.setVisible(false);
 		}
 		else {
 			previousButton.setText("⬅ " + previous);
-			previousButton.setDisable(false);
+			previousButton.setVisible(true);
 		}
 	}
 	public void setNext(String next) {
 		if (next == null) {
 			nextButton.setText("➡");
-			nextButton.setDisable(true);
+			nextButton.setVisible(false);
 		}
 		else {
 			nextButton.setText(next + " ➡");
-			nextButton.setDisable(false);
+			nextButton.setVisible(true);
 		}
 	}
 
