@@ -94,7 +94,16 @@ public class ReceiptComponent extends AnchorPane {
 			clearUndoItem();
 		}
 		else {
-			if (e.getShoppingItem().getAmount() <= 0.0d || !cart.getItems().contains(e.getShoppingItem())) {
+			if (cart.getItems().contains(e.getShoppingItem())) {
+				if (e.getShoppingItem().getAmount() <= 0.0d) {
+					cart.removeItem(e.getShoppingItem());
+				}
+				else {
+					//Just updating the amount of an item
+					receiptItems.get(product.getProductId()).onCartEvent(e);
+				}
+			}
+			else {
 				//Removing the item. Either from actually removing it, or because the amount is under zero
 
 				//Updates existing UI component for the shopping item
@@ -106,8 +115,6 @@ public class ReceiptComponent extends AnchorPane {
 
 					receiptList.getChildren().remove(lastRemoved);
 
-					cart.removeItem(lastRemoved.getItem());
-
 					if (lastRemoved.getItem().getAmount() <= 0.0d) {
 						lastRemoved.getItem().setAmount(1.0d);
 					}
@@ -116,13 +123,9 @@ public class ReceiptComponent extends AnchorPane {
 					undoPane.setVisible(true);
 				}
 			}
-			else {
-				//Just updating the amount of an item
-				receiptItems.get(product.getProductId()).onCartEvent(e);
-			}
 		}
 
-		total.setText("Totalt: " + cart.getTotal() + " kr");
+		total.setText(String.format("Totalt: %1s kr", cart.getTotal()));
 	}
 
 	private void addShoppingItem(ShoppingItem shoppingItem) {
