@@ -83,6 +83,7 @@ public class DeliveryComponent extends AnchorPane implements Initializable {
 
         updateCustomerAddress();
         pickUpAdress();
+        deliveryInfo();
 
 
     }
@@ -121,6 +122,19 @@ public class DeliveryComponent extends AnchorPane implements Initializable {
         pickUpAdress.setText("Chalmersplatsen 4");
         pickUpPostAdress.setText("Göteborg");
         pickUpPostCode.setText("412 58");
+    }
+
+    public void deliveryInfo(){
+        System.out.println(model.getDeliveryStatus());
+        if(model.getDeliveryStatus()){
+            deliveryInfo.toFront();
+            pickUpInfo.toBack();
+            //System.out.println("Hemleverans2");
+        }else{
+            pickUpInfo.toFront();
+            deliveryInfo.toBack();
+            //System.out.println("pick up2");
+        }
     }
 
     public void setCustomer(final Customer customer) {

@@ -32,6 +32,8 @@ public class Model {
     private static Model instance = null;
     private IMatDataHandler iMatDataHandler;
 
+    private boolean deliveryStatus;
+
     private final ArrayList<String> availableCardTypes = new ArrayList<String>(Arrays.asList("MasterCard", "Visa", "American Express"));
     private final ArrayList<String> months = new ArrayList<String>(Arrays.asList("1", "2","3", "4", "5", "6", "7", "8","9", "10", "11", "12"));
     private final ArrayList<String> years = new ArrayList<String>(Arrays.asList("19", "20", "21", "22", "23", "24", "25", "26", "27"));
@@ -87,6 +89,13 @@ public class Model {
     public Customer getCustomer() {
         return iMatDataHandler.getCustomer();
     }
+
+
+
+    public void setDeliveryStatus(boolean deliveryStatus) { this.deliveryStatus = deliveryStatus; }
+    public boolean getDeliveryStatus() { return this.deliveryStatus; }
+
+
 
     public void shutDown() {
         iMatDataHandler.shutDown();

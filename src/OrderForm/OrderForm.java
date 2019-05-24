@@ -28,7 +28,6 @@ public class OrderForm extends AnchorPane implements Initializable {
     private final IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
     CreditCard card = model.getCreditCard();
     Customer customer = model.getCustomer();
-    DeliveryComponent deliveryComponent = new DeliveryComponent();
 
     @FXML
     private AnchorPane OrderFormComponent;
@@ -115,12 +114,19 @@ public class OrderForm extends AnchorPane implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
 
-                RadioButton selected = (RadioButton) deliveryToggleGroup.getSelectedToggle();
+                if (deliveryToggleGroup.getSelectedToggle() != null) {
+                    RadioButton selected = (RadioButton) deliveryToggleGroup.getSelectedToggle();
 
-                if (selected == delivery) {
-                    //deliveryInfo.toFront();
-                }else if(selected == pickUp){
-                    //pickUpInfo.toFront();
+                    if (selected == delivery) {
+                        model.setDeliveryStatus(true);
+                        System.out.println("Hemleverans");
+                        System.out.println(model.getDeliveryStatus());
+                    } else if(selected == pickUp) {
+                        model.setDeliveryStatus(false);
+                        System.out.println("pickup");
+                        System.out.println(model.getDeliveryStatus());
+
+                    }
                 }
             }
         });
