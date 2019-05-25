@@ -1,10 +1,13 @@
 package Receipt;
 
+import javafx.beans.value.ObservableValue;
 import javafx.event.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Bounds;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -20,6 +23,12 @@ public class ReceiptComponent extends AnchorPane {
 
 	@FXML
 	private Label total;
+
+	//region Scrolling
+	private ReceiptItemComponent scrollTarget = null;
+	@FXML
+	private ScrollPane scrollPane;
+	//endregion
 
 	//region Undo
 	private ReceiptItemComponent lastRemoved;
@@ -85,10 +94,12 @@ public class ReceiptComponent extends AnchorPane {
 
 				//It shouldn't be out of sync, but for safety's sake:
 				lastRemoved.onCartEvent(e);
+
+				scrollTo(lastRemoved);
 			}
 			else {
 				//Regular adding event
-				addShoppingItem(e.getShoppingItem());
+				scrollTo(addShoppingItem(e.getShoppingItem()));
 			}
 
 			clearUndoItem();
@@ -128,7 +139,7 @@ public class ReceiptComponent extends AnchorPane {
 		total.setText(String.format("Totalt: %1s kr", cart.getTotal()));
 	}
 
-	private void addShoppingItem(ShoppingItem shoppingItem) {
+	private ReceiptItemComponent addShoppingItem(ShoppingItem shoppingItem) {
 		//Creates new UI component for the shopping item
 		ReceiptItemComponent item = new ReceiptItemComponent();
 		item.setItem(shoppingItem);
@@ -136,6 +147,8 @@ public class ReceiptComponent extends AnchorPane {
 
 		receiptItems.put(shoppingItem.getProduct().getProductId(), item);
 		receiptList.getChildren().add(item);
+
+		return item;
 	}
 
 	/**
@@ -157,6 +170,40 @@ public class ReceiptComponent extends AnchorPane {
 			cart.addItem(lastRemoved.getItem());
 		}
 	}
+
+	//region Scrolling
+	private void scrollTo(ReceiptItemComponent item) {
+		//Scrolls to the item after it's been inserted
+		item.layoutYProperty().addListener(this::itemOffsetUpdate);
+		scrollTarget = item;
+	}
+
+	private void itemOffsetUpdate(ObservableValue<? extends Number> observable, Number oldvalue, Number newValue) {
+		if (scrollTarget != null) {
+			//Borrowed from: https://stackoverflow.com/a/35782732/5069211
+			Bounds viewport = scrollPane.getViewportBounds();
+			double contentHeight = scrollPane.getContent().localToScene(scrollPane.getContent().getBoundsInLocal()).getHeight();
+			double nodeMinY = scrollTarget.localToScene(scrollTarget.getBoundsInLocal()).getMinY();
+			double nodeMaxY = scrollTarget.localToScene(scrollTarget.getBoundsInLocal()).getMaxY();
+
+			double vValueDelta = 0;
+			double vValueCurrent = scrollPane.getVvalue();
+
+			if (nodeMaxY < 0) {
+				//Currently located above (remember, top left is (0,0))
+				vValueDelta = (nodeMinY - viewport.getHeight()) / contentHeight;
+			} else if (nodeMinY > viewport.getHeight()) {
+				//Currently located below
+				vValueDelta = (nodeMinY + viewport.getHeight()) / contentHeight;
+			}
+			scrollPane.setVvalue(vValueCurrent + vValueDelta);
+
+			//Only update once
+			scrollTarget.layoutYProperty().removeListener(this::itemOffsetUpdate);
+			scrollTarget = null;
+		}
+	}
+	//endregion Scrolling
 
 	//region Navigation Buttons
 	public void setBackButtonEnabled(boolean enabled) {
