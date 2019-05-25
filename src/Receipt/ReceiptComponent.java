@@ -1,5 +1,6 @@
 package Receipt;
 
+import Animations.DoubleAnimation;
 import javafx.beans.value.ObservableValue;
 import javafx.event.*;
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import se.chalmers.cse.dat216.project.*;
 
 import java.io.IOException;
@@ -18,6 +20,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ReceiptComponent extends AnchorPane {
+	private static double addAnimationHeight = 1.0d;
+
 	@FXML
 	private VBox receiptList;
 
@@ -96,10 +100,13 @@ public class ReceiptComponent extends AnchorPane {
 				lastRemoved.onCartEvent(e);
 
 				scrollTo(lastRemoved);
+				playAddAnimation(lastRemoved);
 			}
 			else {
 				//Regular adding event
-				scrollTo(addShoppingItem(e.getShoppingItem()));
+				ReceiptItemComponent item = addShoppingItem(e.getShoppingItem());
+				scrollTo(item);
+				playAddAnimation(item);
 			}
 
 			clearUndoItem();
@@ -169,6 +176,17 @@ public class ReceiptComponent extends AnchorPane {
 			//If an undo is possible: add it back to the cart, and let the event do the rest.
 			cart.addItem(lastRemoved.getItem());
 		}
+	}
+
+	private void playAddAnimation(ReceiptItemComponent item) {
+		DoubleAnimation da = new DoubleAnimation(
+			v -> {
+				item.setScaleX(v);
+				item.setScaleY(v);
+			},
+			Duration.millis(150)
+		);
+		da.play(0.75d, 1.0d);
 	}
 
 	//region Scrolling
