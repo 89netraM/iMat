@@ -7,9 +7,12 @@
     -fx-background-radius: 10;
     -fx-padding: 10;
 }
+.receipt .undoPane > .label, .receipt .undoPane > .imat-button {
+    -fx-font-size: 16;
+}
 
 .receipt .receipt-pane {
-    -fx-background-color: #C7EADB;
+    -fx-background-color: #f4fff5;
     -fx-background-radius: 0 0 10 10;
     -fx-padding: 5;
 }

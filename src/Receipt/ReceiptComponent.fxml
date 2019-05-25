@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <fx:root prefHeight="600.0" prefWidth="300.0" styleClass="receipt" stylesheets="@../styles.css,@styles.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
-    <AnchorPane styleClass="receipt-pane" AnchorPane.bottomAnchor="110" AnchorPane.leftAnchor="5" AnchorPane.rightAnchor="5" AnchorPane.topAnchor="0">
+    <AnchorPane styleClass="receipt-pane" AnchorPane.bottomAnchor="120" AnchorPane.leftAnchor="5" AnchorPane.rightAnchor="5" AnchorPane.topAnchor="0">
         <ScrollPane fx:id="scrollPane" fitToWidth="true" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
             <VBox fx:id="receiptList" spacing="5.0">
                 <padding>
