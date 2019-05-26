@@ -2,6 +2,11 @@
     -fx-background-color: #ffc99e;
     -fx-background-radius: 5;
 }
+
+.product-item: hover {
+-fx-scale-x: 1.04;
+-fx-scale-y: 1.04;
+}
 .product-item .label {
     -fx-font-size: 14;
     -fx-text-fill: black;
