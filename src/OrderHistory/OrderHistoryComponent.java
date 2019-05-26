@@ -4,12 +4,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
+import se.chalmers.cse.dat216.project.IMatDataHandler;
+import se.chalmers.cse.dat216.project.Order;
 
 import java.io.IOException;
+import java.util.List;
 
 public class OrderHistoryComponent extends ScrollPane {
 	@FXML
 	private VBox ordersListBox;
+
+	private List<Order> orders;
 
 	public OrderHistoryComponent() {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("OrderHistoryComponent.fxml"));
@@ -21,6 +26,12 @@ public class OrderHistoryComponent extends ScrollPane {
 		}
 		catch (IOException ex) {
 			throw new RuntimeException(ex);
+		}
+
+		orders = IMatDataHandler.getInstance().getOrders();
+
+		for (Order order : orders) {
+			ordersListBox.getChildren().add(new OrderHistoryItemComponent(order));
 		}
 	}
 }
