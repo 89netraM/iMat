@@ -10,6 +10,10 @@
     -fx-font-weight: bold;
 }
 
+.product-list {
+    -fx-background-color: #f4fff5;
+    -fx-background-radius: 0 10 0 0;
+}
 .product-list .arrow {
     -fx-font-size: 18;
 }

@@ -26,7 +26,6 @@
                   <Image url="@../../resources/images/iMatLogo.png" />
               </image>
           </ImageView>
-          <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#F4FFF5" height="615.0" layoutX="2" layoutY="185" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="rectangle" width="938.0" />
          <AnchorPane AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="340" AnchorPane.topAnchor="0">
              <QSearchComponent onSearch="#onSearch"
                                AnchorPane.leftAnchor="120" AnchorPane.rightAnchor="120" AnchorPane.topAnchor="10" prefHeight="50"/>
