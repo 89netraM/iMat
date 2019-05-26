@@ -1,23 +1,27 @@
 package Receipt;
 
+import Animations.DoubleAnimation;
 import javafx.beans.value.ObservableValue;
 import javafx.event.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Bounds;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import se.chalmers.cse.dat216.project.*;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class ReceiptComponent extends AnchorPane {
+	private static double addAnimationHeight = 1.0d;
+
 	@FXML
 	private VBox receiptList;
 
@@ -96,10 +100,13 @@ public class ReceiptComponent extends AnchorPane {
 				lastRemoved.onCartEvent(e);
 
 				scrollTo(lastRemoved);
+				playAddAnimation(lastRemoved);
 			}
 			else {
 				//Regular adding event
-				scrollTo(addShoppingItem(e.getShoppingItem()));
+				ReceiptItemComponent item = addShoppingItem(e.getShoppingItem());
+				scrollTo(item);
+				playAddAnimation(item);
 			}
 
 			clearUndoItem();
@@ -124,7 +131,7 @@ public class ReceiptComponent extends AnchorPane {
 				if (lastRemoved != null) {
 					lastIndex = receiptList.getChildren().indexOf(lastRemoved);
 
-					receiptList.getChildren().remove(lastRemoved);
+					playRemoveAnimation(lastRemoved);
 
 					if (lastRemoved.getItem().getAmount() <= 0.0d) {
 						lastRemoved.getItem().setAmount(1.0d);
@@ -170,6 +177,77 @@ public class ReceiptComponent extends AnchorPane {
 			cart.addItem(lastRemoved.getItem());
 		}
 	}
+
+	//region Animations
+	private void playAddAnimation(ReceiptItemComponent item) {
+		List<ReceiptItemComponent> below = getItemsBelow(item);
+
+		DoubleAnimation da = new DoubleAnimation(
+				v -> {
+					double offset = -v * item.getHeight() + receiptList.getSpacing();
+
+					item.setTranslateY(0.5d * offset);
+					item.setScaleY(1.0d - v);
+					item.setOpacity(1.0d - v);
+
+					below.forEach(i -> i.setTranslateY(offset));
+				},
+				Duration.millis(300)
+		);
+		da.setOnFinished(v -> {
+			item.setTranslateY(0.0d);
+			item.setScaleY(1.0d);
+			item.setOpacity(1.0d);
+			below.forEach(i -> i.setTranslateY(0.0d));
+		});
+		da.play(1.0d, 0.0d);
+	}
+
+	private void playRemoveAnimation(ReceiptItemComponent item) {
+		List<ReceiptItemComponent> below = getItemsBelow(item);
+
+		DoubleAnimation da = new DoubleAnimation(
+				v -> {
+					double offset = -v * item.getHeight() + receiptList.getSpacing();
+
+					item.setTranslateY(0.5d * offset);
+					item.setScaleY(1.0d - v);
+					item.setOpacity(1.0d - v);
+
+					below.forEach(i -> i.setTranslateY(offset));
+				},
+				Duration.millis(300)
+		);
+		da.setOnFinished(v -> {
+			item.setTranslateY(0.0d);
+			item.setScaleY(1.0d);
+			item.setOpacity(1.0d);
+			below.forEach(i -> i.setTranslateY(0.0d));
+
+			receiptList.getChildren().remove(item);
+		});
+		da.play(0.0d, 1.0d);
+	}
+
+	private List<ReceiptItemComponent> getItemsBelow(ReceiptItemComponent item) {
+		List<ReceiptItemComponent> items = new ArrayList<>();
+
+		int i = receiptList.getChildren().indexOf(item);
+
+		if (i != -1) {
+			ListIterator<Node> nodes = receiptList.getChildren().listIterator(i + 1);
+			while (nodes.hasNext()) {
+				Node node = nodes.next();
+
+				if (node instanceof ReceiptItemComponent) {
+					items.add((ReceiptItemComponent)node);
+				}
+			}
+		}
+
+		return items;
+	}
+	//endregion Animations
 
 	//region Scrolling
 	private void scrollTo(ReceiptItemComponent item) {
