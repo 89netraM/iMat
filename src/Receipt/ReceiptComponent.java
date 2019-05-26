@@ -143,7 +143,7 @@ public class ReceiptComponent extends AnchorPane {
 			}
 		}
 
-		total.setText(String.format("Totalt: %1s kr", cart.getTotal()));
+		total.setText(String.format("Totalt: %.2f kr", cart.getTotal()));
 	}
 
 	private ReceiptItemComponent addShoppingItem(ShoppingItem shoppingItem) {

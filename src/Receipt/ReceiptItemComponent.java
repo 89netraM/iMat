@@ -49,7 +49,7 @@ public class ReceiptItemComponent extends VBox {
 
 	private void updateUI() {
 		nameLabel.setText(item.getProduct().getName());
-		totalLabel.setText(item.getTotal() + " kr");
+		totalLabel.setText(String.format("%.2f kr", item.getTotal()));
 	}
 
 	@FXML
