@@ -131,7 +131,7 @@ public class ReceiptComponent extends AnchorPane {
 				if (lastRemoved != null) {
 					lastIndex = receiptList.getChildren().indexOf(lastRemoved);
 
-					receiptList.getChildren().remove(lastRemoved);
+					playRemoveAnimation(lastRemoved);
 
 					if (lastRemoved.getItem().getAmount() <= 0.0d) {
 						lastRemoved.getItem().setAmount(1.0d);
@@ -178,16 +178,34 @@ public class ReceiptComponent extends AnchorPane {
 		}
 	}
 
+	//region Animations
 	private void playAddAnimation(ReceiptItemComponent item) {
 		DoubleAnimation da = new DoubleAnimation(
-			v -> {
-				item.setScaleX(v);
-				item.setScaleY(v);
-			},
-			Duration.millis(150)
+				v -> {
+					item.setScaleX(v);
+					item.setScaleY(v);
+					item.setOpacity(v);
+				},
+				Duration.millis(150)
 		);
 		da.play(0.75d, 1.0d);
 	}
+
+	private void playRemoveAnimation(ReceiptItemComponent item) {
+		DoubleAnimation da = new DoubleAnimation(
+				v -> {
+					item.setScaleX(v);
+					item.setScaleY(v);
+					item.setOpacity(v);
+				},
+				Duration.millis(150)
+		);
+		da.setOnFinished(v -> {
+			receiptList.getChildren().remove(item);
+		});
+		da.play(1.0d, 0.75d);
+	}
+	//endregion Animations
 
 	//region Scrolling
 	private void scrollTo(ReceiptItemComponent item) {
