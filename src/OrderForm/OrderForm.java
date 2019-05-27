@@ -232,11 +232,7 @@ public class OrderForm extends AnchorPane implements Initializable {
     }
 
     private String formatCard(CreditCard card) {
-        String cardNumber = card.getCardNumber();
-        String fc = cardNumber;
-        if (fc == null) return null;
-        char delimiter = ' ';
-        return fc.replaceAll(".{4}(?!$)", "$0" + delimiter);
+        return card.getCardNumber() != null ? card.getCardNumber().replaceAll(".{4}(?!$)", "**** ") : "";
     }
 
     @FXML
