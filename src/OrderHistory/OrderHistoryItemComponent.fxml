@@ -6,6 +6,8 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
 <fx:root stylesheets="@../styles.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
 	<AnchorPane prefHeight="50.0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
 		<GridPane alignment="CENTER_LEFT" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="120" AnchorPane.topAnchor="10.0">
@@ -18,6 +20,13 @@
 			<Label fx:id="date" GridPane.columnIndex="1" />
 			<Label fx:id="total" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
 		</GridPane>
-		<Button onAction="#open" prefWidth="100" styleClass="imat-button" text="Visa" AnchorPane.bottomAnchor="12.5" AnchorPane.rightAnchor="10" AnchorPane.topAnchor="12.5" />
+		<Button fx:id="stateButton" onAction="#open" prefWidth="100" styleClass="imat-button" text="Visa" AnchorPane.bottomAnchor="12.5" AnchorPane.rightAnchor="10" AnchorPane.topAnchor="12.5" />
+	</AnchorPane>
+
+	<AnchorPane fx:id="infoPane" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="50" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0">
+		<ScrollPane AnchorPane.leftAnchor="20" AnchorPane.topAnchor="0" AnchorPane.rightAnchor="20" AnchorPane.bottomAnchor="40">
+			<VBox fx:id="productList" />
+		</ScrollPane>
+		<Label fx:id="infoTotal" alignment="CENTER_RIGHT" AnchorPane.leftAnchor="20" AnchorPane.bottomAnchor="10" AnchorPane.rightAnchor="20"/>
 	</AnchorPane>
 </fx:root>
