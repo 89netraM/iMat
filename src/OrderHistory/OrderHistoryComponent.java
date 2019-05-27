@@ -29,6 +29,8 @@ public class OrderHistoryComponent extends ScrollPane {
 		}
 
 		orders = IMatDataHandler.getInstance().getOrders();
+		//Reverse chronological order
+		orders.sort((a, b) -> (int)(b.getDate().getTime() - a.getDate().getTime()));
 
 		for (int i = 0; i < orders.size(); i++) {
 			OrderHistoryItemComponent item = new OrderHistoryItemComponent(orders.get(i));
