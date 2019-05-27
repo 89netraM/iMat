@@ -51,16 +51,21 @@ public class DeliveryComponent extends AnchorPane implements Initializable {
     private Label pickUpPostCode;
 
     @FXML
-    public AnchorPane deliveryInfo;
+    private AnchorPane deliveryInfo;
 
     @FXML
-    public AnchorPane pickUpInfo;
+    private AnchorPane pickUpInfo;
+
+    @FXML
+    private Label deliveryDescription;
 
     private EventHandler<DeliveryComponentEvent> onResetHandler;
 
     private final Model model = Model.getInstance();
+    private final OrderForm orderForm = OrderForm.getInstance();
     private final IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
     Customer customer = model.getCustomer();
+   // OrderForm orderForm = new OrderForm();
 
     public DeliveryComponent() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DeliveryComponent.fxml"));
@@ -84,8 +89,6 @@ public class DeliveryComponent extends AnchorPane implements Initializable {
         updateCustomerAddress();
         pickUpAdress();
         deliveryInfo();
-
-
     }
 
     public void updateReceipt(final Order order) {
@@ -116,7 +119,7 @@ public class DeliveryComponent extends AnchorPane implements Initializable {
         );
     }
 
-    public void pickUpAdress(){
+    private void pickUpAdress(){
 
         pickUpName.setText("iMat");
         pickUpAdress.setText("Chalmersplatsen 4");
@@ -124,15 +127,22 @@ public class DeliveryComponent extends AnchorPane implements Initializable {
         pickUpPostCode.setText("412 58");
     }
 
-    public void deliveryInfo(){
-        System.out.println(model.getDeliveryStatus());
-        if(model.getDeliveryStatus()){
+    private void deliveryInfo(){
+       // System.out.println(model.getDeliveryStatus2());
+        if//(model.getDeliveryStatus2() == ("delivery"))
+        (orderForm.delivery.isSelected()){
+            updateCustomerAddress();
             deliveryInfo.toFront();
             pickUpInfo.toBack();
+            deliveryDescription.setText("Dina varor kommer levereras till dig samma dag om du lagt din beställning innan 12:00." +
+                    " Annars kommer leverensen imorgon - gäller även helgdagar.");
             //System.out.println("Hemleverans2");
-        }else{
+        }else if (orderForm.pickUp.isSelected()){
+            pickUpAdress();
             pickUpInfo.toFront();
             deliveryInfo.toBack();
+            deliveryDescription.setText("Du har möjlighet att hämta dina varor hos oss senast två timmar efter du lagt din beställning." +
+                    " Ibland går det t.o.m. snabbare än så och då får du ett SMS när dina varor är redo för upphämtning.");
             //System.out.println("pick up2");
         }
     }

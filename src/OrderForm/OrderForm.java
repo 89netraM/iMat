@@ -13,10 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import se.chalmers.cse.dat216.project.CreditCard;
-import se.chalmers.cse.dat216.project.Customer;
-import se.chalmers.cse.dat216.project.IMatDataHandler;
-import se.chalmers.cse.dat216.project.Order;
+import se.chalmers.cse.dat216.project.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -72,9 +69,9 @@ public class OrderForm extends AnchorPane implements Initializable {
     @FXML
     private TextField cvcCode;
     @FXML
-    private RadioButton pickUp;
+    public RadioButton pickUp;
     @FXML
-    private RadioButton delivery;
+    public RadioButton delivery;
     @FXML
     private Label namePreview;
     @FXML
@@ -87,6 +84,28 @@ public class OrderForm extends AnchorPane implements Initializable {
     private ImageView logo;
     @FXML
     private ImageView logoMini;
+    @FXML
+    private AnchorPane confirmOrder;
+    @FXML
+    private Button declineOrder;
+    @FXML
+    private Button completeOrder;
+    @FXML
+    private Label totalPrice;
+
+
+    private static OrderForm instance = null;
+
+    public static OrderForm getInstance() {
+        if (instance == null) {
+            instance = new OrderForm();
+        }
+        return instance;
+    }
+
+
+
+
 
 
     private EventHandler<OrderFormEvent> onNextHandler;
@@ -118,17 +137,20 @@ public class OrderForm extends AnchorPane implements Initializable {
                     RadioButton selected = (RadioButton) deliveryToggleGroup.getSelectedToggle();
 
                     if (selected == delivery) {
-                        model.setDeliveryStatus(true);
+                        model.setDeliveryStatus2("delivery");
                         System.out.println("Hemleverans");
-                        System.out.println(model.getDeliveryStatus());
+                        System.out.println(model.getDeliveryStatus2());
                     } else if(selected == pickUp) {
-                        model.setDeliveryStatus(false);
+                        model.setDeliveryStatus2("pickUp");
                         System.out.println("pickup");
-                        System.out.println(model.getDeliveryStatus());
+                        System.out.println(model.getDeliveryStatus2());
 
                     }
                 }
+
+
             }
+
         });
 
         // iMatDataHandler.resetFirstRun();      //kallas bara för att återställa hela programmet
@@ -138,11 +160,12 @@ public class OrderForm extends AnchorPane implements Initializable {
         File file = new File("resources/images/iMatLogo.png");
         Image imageSrc = new Image(file.toURI().toString());
         logo.setImage(imageSrc);
-        File file2 = new File("resources/images/iMatLogo.png");
+        /*File file2 = new File("resources/images/iMatLogo.png");
         Image imageSrc2 = new Image(file2.toURI().toString());
-        logoMini.setImage(imageSrc);
+        logoMini.setImage(imageSrc);*/
         setupPaymentPane();
         updatePreview();
+        OrderForm.toFront();
     }
 
     private void updatePreview() {
@@ -230,6 +253,20 @@ public class OrderForm extends AnchorPane implements Initializable {
         updateCreditCard();
         updatePreview();
     }
+    @FXML
+    private void confirmOrder(){
+        String total = Double.toString(iMatDataHandler.getShoppingCart().getTotal());
+        totalPrice.setText(total + " kr");
+        confirmOrder.toFront();
+
+
+    }
+
+    @FXML
+    private void declineOrder(){
+        confirmOrder.toBack();
+        OrderForm.toFront();
+    }
 
     private String formatCard(CreditCard card) {
         return card.getCardNumber() != null ? card.getCardNumber().replaceAll(".{4}(?!$)", "**** ") : "";
@@ -241,6 +278,8 @@ public class OrderForm extends AnchorPane implements Initializable {
 
         OrderForm.OrderFormEvent onNextEvent = new OrderForm.OrderFormEvent(this, this.iMatDataHandler.getOrders().iterator().next(), OrderFormEvent.ON_NEXT);
         fireEvent(onNextEvent);
+        confirmOrder.toBack();
+
     }
 
     public EventHandler<OrderFormEvent> getOnNext() {

@@ -3,12 +3,14 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<fx:root styleClass="carousel" stylesheets="@styles.css,@../styles.css" type="GridPane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root styleClass="carousel" stylesheets="@styles.css,@../styles.css" type="GridPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>
       <ColumnConstraints hgrow="ALWAYS" />
       <ColumnConstraints hgrow="ALWAYS" />
@@ -18,18 +20,32 @@
       <RowConstraints vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <Button mnemonicParsing="false" onAction="#leftClick" styleClass="imat-button,arrow" text="⬅" textOverrun="CLIP" GridPane.columnIndex="0">
+      <Button mnemonicParsing="false" onAction="#leftClick" styleClass="imat-button,arrow" textOverrun="CLIP" GridPane.columnIndex="0">
          <GridPane.margin>
             <Insets right="10.0" />
-         </GridPane.margin></Button>
+         </GridPane.margin>
+         <graphic>
+            <ImageView fx:id="arrowLeft" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../Downloads/Arrow_-_Left-512.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
       <ScrollPane fx:id="scrollBox" fitToHeight="true" hbarPolicy="NEVER" vbarPolicy="NEVER" GridPane.columnIndex="1">
          <content>
             <HBox fx:id="box" alignment="BOTTOM_CENTER" />
          </content>
       </ScrollPane>
-      <Button mnemonicParsing="false" onAction="#rightClick" styleClass="imat-button,arrow" text="➡" textOverrun="CLIP" GridPane.columnIndex="2">
+      <Button mnemonicParsing="false" onAction="#rightClick" prefWidth="34.0" styleClass="imat-button,arrow" textOverrun="CLIP" GridPane.columnIndex="2">
          <GridPane.margin>
             <Insets left="10.0" />
-         </GridPane.margin></Button>
+         </GridPane.margin>
+         <graphic>
+            <ImageView fx:id="arrowRight" fitHeight="40.0" fitWidth="40.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../Downloads/Arrow_-_Left-512.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
    </children>
 </fx:root>

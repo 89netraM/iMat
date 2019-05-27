@@ -1,5 +1,6 @@
 package CategoryCarousel;
 
+
 import Animations.DoubleAnimation;
 import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
@@ -9,6 +10,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
@@ -16,6 +19,7 @@ import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ProductCategory;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
@@ -31,11 +35,17 @@ public class CategoryCarouselComponent extends GridPane {
 
 	@FXML
 	private ScrollPane scrollBox;
-
+	@FXML
+	private ImageView arrowRight;
+	@FXML
+	private ImageView arrowLeft;
 	private EventHandler<CategoryCarouselComponentEvent> onSelectHandler;
 
 	private final List<CategoryCarouselItemComponent> carouselItems;
 	private ProductCategory selectedCategory = ProductCategory.BREAD;
+
+	File file2 = new File("resources/images/Arrow_-_Left-512.png");
+	Image imageSrc2 = new Image(file2.toURI().toString());
 
 	public CategoryCarouselComponent() {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CategoryCarouselComponent.fxml"));
@@ -55,7 +65,12 @@ public class CategoryCarouselComponent extends GridPane {
 		box.getChildren().addAll(carouselItems);
 
 		scrollBox.widthProperty().addListener(this::widthListener);
+
+		arrowRight.setImage(imageSrc2);
+		arrowLeft.setImage(imageSrc2);
 	}
+
+
 
 	private void widthListener(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 		calculateInnerPadding();

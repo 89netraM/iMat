@@ -7,11 +7,14 @@ import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 import se.chalmers.cse.dat216.project.Product;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +30,10 @@ public class QProductListComponent extends GridPane {
 	private Button previousButton;
 	@FXML
 	private Button nextButton;
+	@FXML
+	private ImageView arrowRight;
+	@FXML
+	private ImageView arrowLeft;
 
 	private Map<Product, QProductListItemComponent> productComponents = new HashMap<>();
 
@@ -34,6 +41,9 @@ public class QProductListComponent extends GridPane {
 
 	private EventHandler<QProductListComponentEvent> onPreviousEventHandler;
 	private EventHandler<QProductListComponentEvent> onNextEventHandler;
+
+	File file2 = new File("resources/images/Arrow_-_Left-512.png");
+	Image imageSrc2 = new Image(file2.toURI().toString());
 
 	public QProductListComponent() {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("QProductListComponent.fxml"));
@@ -73,7 +83,8 @@ public class QProductListComponent extends GridPane {
 			previousButton.setVisible(false);
 		}
 		else {
-			previousButton.setText("⬅ " + previous);
+			arrowLeft.setImage(imageSrc2);
+			previousButton.setText(previous);
 			previousButton.setVisible(true);
 		}
 	}
@@ -83,8 +94,10 @@ public class QProductListComponent extends GridPane {
 			nextButton.setVisible(false);
 		}
 		else {
-			nextButton.setText(next + " ➡");
+			arrowRight.setImage(imageSrc2);
+			nextButton.setText(next);
 			nextButton.setVisible(true);
+
 		}
 	}
 

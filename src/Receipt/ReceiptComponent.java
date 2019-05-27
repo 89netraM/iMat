@@ -10,12 +10,15 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import se.chalmers.cse.dat216.project.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
@@ -54,6 +57,11 @@ public class ReceiptComponent extends AnchorPane {
 	private Button backButton;
 	@FXML
 	private Button checkoutButton;
+	@FXML
+	private ImageView arrowRight;
+
+	File file2 = new File("resources/images/Arrow_-_Left-512.png");
+	Image imageSrc2 = new Image(file2.toURI().toString());
 
 	private EventHandler<ReceiptComponentEvent> onBackEventHandler;
 	private EventHandler<ReceiptComponentEvent> onCheckoutEventHandler;
@@ -82,6 +90,8 @@ public class ReceiptComponent extends AnchorPane {
 		for (ShoppingItem item : cart.getItems()) {
 			addShoppingItem(item);
 		}
+
+		arrowRight.setImage(imageSrc2);
 	}
 
 	private void shoppingCartListener(CartEvent e) {

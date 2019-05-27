@@ -36,3 +36,25 @@
 -fx-border-radius : 30;
 }
 
+.paneForm2{
+-fx-background-radius : 20;
+-fx-border-radius : 20;
+}
+
+
+.buttonDecline{
+ -fx-background-color: rgba(199, 234, 219, 1);
+ -fx-font-weight: bold;
+ -fx-background-radius: 10;
+ -fx-font-size: 18;
+ -fx-text-fill: black;
+}
+
+.buttonDecline:hover{
+-fx-background-color: #d11f3c;
+-fx-font-weight: bold;
+-fx-background-radius: 10;
+-fx-font-size: 18;
+-fx-text-fill: white;
+}
+

@@ -16,6 +16,51 @@
 
 <fx:root prefHeight="800.0" prefWidth="940.0" stylesheets="@OrderForm.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
 <children>
+      <AnchorPane fx:id="confirmOrder" prefHeight="800.0" prefWidth="940.0" style="-fx-background-color: rgba(0, 0, 0, 0.7);">
+         <children>
+            <AnchorPane layoutX="271.0" layoutY="283.0" prefHeight="232.0" prefWidth="409.0" style="-fx-background-color: rgba(244, 255, 245, 1) rgba(244, 255, 245, 1);" styleClass="paneForm2">
+               <children>
+                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#467f6d" height="30.0" layoutX="104.0" layoutY="14.0" stroke="TRANSPARENT" strokeType="INSIDE" width="216.0" />
+                  <Label layoutX="148.0" layoutY="13.0" prefHeight="30.0" prefWidth="136.0" text="Bekräfta köp" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="58.0" layoutY="36.0" prefHeight="79.0" prefWidth="314.0" text="Är du säker på att du vill slutföra din beställning på iMat?" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="declineOrder" layoutX="89.0" layoutY="171.0" mnemonicParsing="false" onAction="#declineOrder" prefHeight="45.0" prefWidth="87.0" styleClass="buttonDecline" text="Nej" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="completeOrder" layoutX="229.0" layoutY="171.0" mnemonicParsing="false" onAction="#onNextButton" prefHeight="45.0" prefWidth="87.0" styleClass="buttonInfo" text="Ja" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Label layoutX="117.0" layoutY="116.0" text="Totalt pris:">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="totalPrice" layoutX="215.0" layoutY="116.0" prefHeight="23.0" prefWidth="125.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
     <StackPane prefHeight="600.0" prefWidth="700.0">
         <children>
             <AnchorPane fx:id="AdressForm" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="940.0" style="-fx-background-color: rgba(0, 0, 0, 0.4);">
@@ -115,7 +160,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="month" layoutX="250.0" layoutY="257.0" prefHeight="27.0" prefWidth="66.0" />
+                        <ComboBox fx:id="month" layoutX="250.0" layoutY="257.0" prefHeight="27.0" prefWidth="66.0" promptText="18" />
                         <ComboBox fx:id="year" layoutX="364.0" layoutY="257.0" prefHeight="27.0" prefWidth="66.0" />
                         <Label layoutX="41.0" layoutY="77.0" prefHeight="26.0" prefWidth="209.0" text="Kortinnehavarens namn:" textAlignment="RIGHT" wrapText="true">
                            <font>
@@ -149,17 +194,11 @@
                 <font>
                     <Font name="System Font" size="18.0" />
                 </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
             </Button>
             <Button fx:id="changePaymentMethod" layoutX="569.0" layoutY="312.0" mnemonicParsing="false" onAction="#paymentFormToFront" prefHeight="116.0" prefWidth="247.0" styleClass="buttonInfo" text="Klicka här för att ändra betalningsuppgifter" textAlignment="CENTER" wrapText="true">
                 <font>
                     <Font name="System Font" size="18.0" />
                 </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
             </Button>
             <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#467f6d" height="30.0" layoutX="98.0" layoutY="112.0" stroke="TRANSPARENT" strokeType="INSIDE" width="288.0" />
             <Label layoutX="145.0" layoutY="112.0" prefHeight="30.0" prefWidth="194.0" text="Adressinformation" textAlignment="CENTER" textFill="WHITE">
@@ -173,13 +212,10 @@
                   <Font name="System Bold" size="22.0" />
                </font>
             </Label>
-            <Button layoutX="784.0" layoutY="733.0" mnemonicParsing="false" onAction="#onNextButton" prefHeight="57.0" prefWidth="146.0" styleClass="buttonForm" text="Slutför köp">
+            <Button layoutX="760.0" layoutY="733.0" mnemonicParsing="false" onAction="#confirmOrder" prefHeight="57.0" prefWidth="170.0" styleClass="buttonForm" text="Slutför köp" textAlignment="CENTER">
                <font>
                   <Font size="18.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Button>
+               </font></Button>
             <ImageView fx:id="logo" fitHeight="64.0" fitWidth="176.0" layoutX="384.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../resources/images/iMatLogo.png" />
@@ -196,41 +232,35 @@
                <font>
                   <Font size="18.0" />
                </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
             </RadioButton>
             <RadioButton fx:id="delivery" layoutX="172.0" layoutY="547.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="361.0" text="Hemleverans till given address">
                <font>
                   <Font size="18.0" />
                </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
             </RadioButton>
-            <Label fx:id="namePreview" layoutX="106.0" layoutY="185.0" prefHeight="20.0" prefWidth="288.0" textAlignment="CENTER">
+            <Label fx:id="namePreview" layoutX="98.0" layoutY="185.0" prefHeight="20.0" prefWidth="288.0" text="hej" textAlignment="CENTER">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label fx:id="adressPreview" layoutX="105.0" layoutY="218.0" prefHeight="20.0" prefWidth="288.0" textAlignment="CENTER">
+            <Label fx:id="adressPreview" layoutX="98.0" layoutY="218.0" prefHeight="20.0" prefWidth="288.0" text="hej" textAlignment="CENTER">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label fx:id="cardTypePreview" layoutX="547.0" layoutY="185.0" prefHeight="20.0" prefWidth="288.0" textAlignment="CENTER">
+            <Label fx:id="cardTypePreview" layoutX="554.0" layoutY="185.0" prefHeight="20.0" prefWidth="288.0" text="hej" textAlignment="CENTER">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label fx:id="cardPreview" layoutX="547.0" layoutY="218.0" prefHeight="20.0" prefWidth="288.0" textAlignment="CENTER">
+            <Label fx:id="cardPreview" layoutX="554.0" layoutY="218.0" prefHeight="20.0" prefWidth="288.0" text="hej" textAlignment="CENTER">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <ImageView fx:id="logoMini" fitHeight="37.0" fitWidth="121.0" layoutX="417.0" layoutY="748.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="50.0" fitWidth="40.0" layoutX="893.0" layoutY="742.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../resources/images/iMatLogo.png" />
+                  <Image url="@../../../../../../../Downloads/Arrow_-_Left-512.png" />
                </image>
             </ImageView>
         </children>
