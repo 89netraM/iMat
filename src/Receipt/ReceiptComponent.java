@@ -28,6 +28,10 @@ public class ReceiptComponent extends AnchorPane {
 	@FXML
 	private Label total;
 
+	private boolean isClearing = false;
+	@FXML
+	private Button clearButton;
+
 	//region Scrolling
 	private ReceiptItemComponent scrollTarget = null;
 	@FXML
@@ -121,27 +125,36 @@ public class ReceiptComponent extends AnchorPane {
 					receiptItems.get(product.getProductId()).onCartEvent(e);
 				}
 			}
+			else if (isClearing) {
+				ReceiptItemComponent item = receiptItems.remove(product.getProductId());
+				playRemoveAnimation(item);
+			}
 			else {
 				//Removing the item. Either from actually removing it, or because the amount is under zero
 
 				//Updates existing UI component for the shopping item
-				lastRemoved = receiptItems.remove(product.getProductId());
+				ReceiptItemComponent item = receiptItems.remove(product.getProductId());
 
 				//If for some reason it's already gone, we can't remove it again.
-				if (lastRemoved != null) {
-					lastIndex = receiptList.getChildren().indexOf(lastRemoved);
+				if (item != null) {
+					playRemoveAnimation(item);
 
-					playRemoveAnimation(lastRemoved);
+					if (!isClearing) {
+						lastRemoved = item;
+						lastIndex = receiptList.getChildren().indexOf(lastRemoved);
 
-					if (lastRemoved.getItem().getAmount() <= 0.0d) {
-						lastRemoved.getItem().setAmount(1.0d);
+						if (lastRemoved.getItem().getAmount() <= 0.0d) {
+							lastRemoved.getItem().setAmount(1.0d);
+						}
+
+						undoText.setText(String.format("\"%1s\" togs bort", lastRemoved.getItem().getProduct().getName()));
+						undoPane.setVisible(true);
 					}
-
-					undoText.setText(String.format("\"%1s\" togs bort", lastRemoved.getItem().getProduct().getName()));
-					undoPane.setVisible(true);
 				}
 			}
 		}
+
+		clearButton.setVisible(receiptItems.size() > 0);
 
 		total.setText(String.format("Totalt: %.2f kr", cart.getTotal()));
 	}
@@ -176,6 +189,17 @@ public class ReceiptComponent extends AnchorPane {
 			//If an undo is possible: add it back to the cart, and let the event do the rest.
 			cart.addItem(lastRemoved.getItem());
 		}
+	}
+
+	@FXML
+	private void clearReceipt() {
+		isClearing = true;
+
+		while (cart.getItems().size() > 0) {
+			cart.removeItem(0);
+		}
+
+		isClearing = false;
 	}
 
 	//region Animations

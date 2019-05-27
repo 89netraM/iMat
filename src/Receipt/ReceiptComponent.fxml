@@ -12,13 +12,17 @@
 
 <fx:root prefHeight="600.0" prefWidth="300.0" styleClass="receipt" stylesheets="@../styles.css,@styles.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
     <AnchorPane styleClass="receipt-pane" AnchorPane.bottomAnchor="120" AnchorPane.leftAnchor="5" AnchorPane.rightAnchor="5" AnchorPane.topAnchor="0">
-        <ScrollPane fx:id="scrollPane" fitToWidth="true" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+        <Button fx:id="clearButton" text="Töm varukorgen" onAction="#clearReceipt" styleClass="imat-button"
+                visible="false" AnchorPane.topAnchor="5" AnchorPane.rightAnchor="0"/>
+
+        <ScrollPane fx:id="scrollPane" fitToWidth="true" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="40">
             <VBox fx:id="receiptList" spacing="5.0">
                 <padding>
                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                 </padding>
             </VBox>
         </ScrollPane>
+
         <Label fx:id="total" alignment="CENTER_RIGHT" styleClass="total" text="Totalt: 0.0 kr" textAlignment="RIGHT" AnchorPane.bottomAnchor="5" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" />
     </AnchorPane>
 
