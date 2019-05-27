@@ -32,6 +32,7 @@ public class OrderHistoryComponent extends ScrollPane {
 		//Reverse chronological order
 		orders.sort((a, b) -> (int)(b.getDate().getTime() - a.getDate().getTime()));
 
+		//Adds every order to the list
 		for (int i = 0; i < orders.size(); i++) {
 			OrderHistoryItemComponent item = new OrderHistoryItemComponent(orders.get(i));
 			if (i % 2 == 0) {

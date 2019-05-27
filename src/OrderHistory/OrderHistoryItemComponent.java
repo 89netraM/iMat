@@ -51,6 +51,7 @@ public class OrderHistoryItemComponent extends AnchorPane {
 		date.setText(String.format("%1$tF %1$tR", this.order.getDate()));
 		total.setText(String.format("Totalt: %.2f kr", getTotalSum()));
 
+		//Removes the `infoPane` so that this item won't appear open from the beginning.
 		this.getChildren().remove(infoPane);
 
 		infoTotal.setText(String.format("Totalt: %.2f kr", getTotalSum()));
@@ -62,6 +63,10 @@ public class OrderHistoryItemComponent extends AnchorPane {
 		stateButton.setText(isOpen() ? "Stäng" : "Visa");
 	}
 
+	/**
+	 * Calculates the sum of all items in this order.
+	 * @return    The total sum.
+	 */
 	private double getTotalSum() {
 		double sum = 0.0d;
 
@@ -72,6 +77,11 @@ public class OrderHistoryItemComponent extends AnchorPane {
 		return sum;
 	}
 
+	/**
+	 * Sets the open state. If it's the first time this order is opened, the product list is populated with the orders
+	 * items.
+	 * @param    open    Open or closed.
+	 */
 	public void setOpen(boolean open) {
 		if (open != isOpen) {
 			if (open) {
@@ -89,6 +99,9 @@ public class OrderHistoryItemComponent extends AnchorPane {
 		return isOpen;
 	}
 
+	/**
+	 * Adds a new shopping item to the product list for each order item.
+	 */
 	private void populateProductList() {
 		if (productList.getChildren().size() == 0) {
 			for (int i = 0; i < order.getItems().size(); i++) {
