@@ -10,6 +10,7 @@ import se.chalmers.cse.dat216.project.Order;
 import se.chalmers.cse.dat216.project.ShoppingItem;
 
 import java.io.IOException;
+import java.util.stream.Collectors;
 
 public class OrderHistoryItemComponent extends AnchorPane {
 	@FXML
@@ -75,6 +76,7 @@ public class OrderHistoryItemComponent extends AnchorPane {
 		if (open != isOpen) {
 			if (open) {
 				this.getChildren().add(infoPane);
+				populateProductList();
 			}
 			else {
 				this.getChildren().remove(infoPane);
@@ -85,5 +87,11 @@ public class OrderHistoryItemComponent extends AnchorPane {
 	}
 	public boolean isOpen() {
 		return isOpen;
+	}
+
+	private void populateProductList() {
+		if (productList.getChildren().size() == 0) {
+			productList.getChildren().addAll(order.getItems().stream().map(OrderHistoryShoppingItemComponent::new).collect(Collectors.toList()));
+		}
 	}
 }

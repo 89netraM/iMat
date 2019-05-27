@@ -24,7 +24,7 @@
 	</AnchorPane>
 
 	<AnchorPane fx:id="infoPane" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="50" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0">
-		<ScrollPane AnchorPane.leftAnchor="20" AnchorPane.topAnchor="0" AnchorPane.rightAnchor="20" AnchorPane.bottomAnchor="40">
+		<ScrollPane fitToWidth="true" AnchorPane.leftAnchor="20" AnchorPane.topAnchor="0" AnchorPane.rightAnchor="20" AnchorPane.bottomAnchor="30">
 			<VBox fx:id="productList" />
 		</ScrollPane>
 		<Label fx:id="infoTotal" alignment="CENTER_RIGHT" AnchorPane.leftAnchor="20" AnchorPane.bottomAnchor="10" AnchorPane.rightAnchor="20"/>
