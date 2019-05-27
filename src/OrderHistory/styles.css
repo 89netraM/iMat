@@ -1,0 +1,8 @@
+.productList > .odd, .ordersList > .odd {
+    -fx-background-color: rgba(0, 0, 0, 0.05);
+}
+
+.infoTotal {
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
+}

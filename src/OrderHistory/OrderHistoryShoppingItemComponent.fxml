@@ -10,13 +10,13 @@
 		<Insets top="2.5" bottom="2.5"/>
 	</padding>
 
-	<HBox alignment="CENTER_LEFT" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0">
+	<HBox alignment="CENTER_LEFT" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0">
 		<Label fx:id="name"/>
 	</HBox>
-	<HBox alignment="CENTER_RIGHT" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="80">
+	<HBox alignment="CENTER_RIGHT" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="85">
 		<Label fx:id="amount"/>
 	</HBox>
-	<HBox alignment="CENTER_RIGHT" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0">
+	<HBox alignment="CENTER_RIGHT" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="5">
 		<Label fx:id="total"/>
 	</HBox>
 </fx:root>

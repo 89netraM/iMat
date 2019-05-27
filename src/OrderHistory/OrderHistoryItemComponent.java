@@ -91,7 +91,13 @@ public class OrderHistoryItemComponent extends AnchorPane {
 
 	private void populateProductList() {
 		if (productList.getChildren().size() == 0) {
-			productList.getChildren().addAll(order.getItems().stream().map(OrderHistoryShoppingItemComponent::new).collect(Collectors.toList()));
+			for (int i = 0; i < order.getItems().size(); i++) {
+				OrderHistoryShoppingItemComponent item = new OrderHistoryShoppingItemComponent(order.getItems().get(i));
+				if (i % 2 == 0) {
+					item.getStyleClass().add("odd");
+				}
+				productList.getChildren().add(item);
+			}
 		}
 	}
 }

@@ -30,8 +30,12 @@ public class OrderHistoryComponent extends ScrollPane {
 
 		orders = IMatDataHandler.getInstance().getOrders();
 
-		for (Order order : orders) {
-			ordersListBox.getChildren().add(new OrderHistoryItemComponent(order));
+		for (int i = 0; i < orders.size(); i++) {
+			OrderHistoryItemComponent item = new OrderHistoryItemComponent(orders.get(i));
+			if (i % 2 == 0) {
+				item.getStyleClass().add("odd");
+			}
+			ordersListBox.getChildren().add(item);
 		}
 	}
 }

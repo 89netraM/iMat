@@ -8,7 +8,12 @@
 
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.VBox?>
-<fx:root stylesheets="@../styles.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.geometry.Insets?>
+<fx:root stylesheets="@../styles.css,@styles.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+	<padding>
+		<Insets top="2.5" bottom="2.5"/>
+	</padding>
+
 	<AnchorPane prefHeight="50.0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
 		<GridPane alignment="CENTER_LEFT" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="120" AnchorPane.topAnchor="10.0">
 			<columnConstraints>
@@ -24,9 +29,9 @@
 	</AnchorPane>
 
 	<AnchorPane fx:id="infoPane" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="50" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0">
-		<ScrollPane fitToWidth="true" AnchorPane.leftAnchor="20" AnchorPane.topAnchor="0" AnchorPane.rightAnchor="20" AnchorPane.bottomAnchor="30">
-			<VBox fx:id="productList" />
+		<ScrollPane maxHeight="250" fitToWidth="true" AnchorPane.leftAnchor="20" AnchorPane.topAnchor="0" AnchorPane.rightAnchor="20" AnchorPane.bottomAnchor="40">
+			<VBox fx:id="productList" styleClass="productList" />
 		</ScrollPane>
-		<Label fx:id="infoTotal" alignment="CENTER_RIGHT" AnchorPane.leftAnchor="20" AnchorPane.bottomAnchor="10" AnchorPane.rightAnchor="20"/>
+		<Label fx:id="infoTotal" styleClass="infoTotal" alignment="CENTER_RIGHT" AnchorPane.leftAnchor="20" AnchorPane.bottomAnchor="10" AnchorPane.rightAnchor="20"/>
 	</AnchorPane>
 </fx:root>
