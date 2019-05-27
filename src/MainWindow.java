@@ -2,6 +2,7 @@ import Animations.DoubleAnimation;
 import CategoryCarousel.CategoryCarouselComponent;
 import Delivery.DeliveryComponent;
 import OrderForm.OrderForm;
+import OrderHistory.OrderHistoryComponent;
 import ProductList.ProductListComponent;
 import QProducts.QProductListComponent;
 import QSearch.QSearchComponent;
@@ -11,6 +12,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
@@ -126,4 +129,27 @@ public class MainWindow implements Initializable {
     }
 
     //endregion Receipt Events
+
+    //region Order History
+
+    @FXML
+    private AnchorPane orderHistory;
+
+    @FXML
+    private void goToHistory() {
+        orderHistory.setVisible(true);
+    }
+
+    @FXML
+    private void onHistoryBackdrop(MouseEvent e) {
+        if (e.getTarget() == orderHistory) {
+            orderHistory.setVisible(false);
+        }
+    }
+    @FXML
+    private void closeHistory() {
+        orderHistory.setVisible(false);
+    }
+
+    //endregion Order History
 }

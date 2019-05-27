@@ -15,3 +15,25 @@
 .imat-button:hover {
     -fx-background-color: #8dbca8;
 }
+
+.imat-button.big {
+    -fx-font-size: 19;
+}
+
+.imat-button.close {
+    -fx-text-fill: #ff0000;
+}
+
+.orderHistory {
+     -fx-background-color: #f4fff5;
+     -fx-background-radius: 10;
+}
+
+.label.big {
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+}
+.label.title {
+    -fx-font-size: 40;
+    -fx-font-weight: bold;
+}
