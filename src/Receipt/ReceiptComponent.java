@@ -57,6 +57,9 @@ public class ReceiptComponent extends AnchorPane {
 	private Button backButton;
 	@FXML
 	private Button checkoutButton;
+
+	@FXML
+	private ImageView arrowLeft;
 	@FXML
 	private ImageView arrowRight;
 
@@ -91,6 +94,7 @@ public class ReceiptComponent extends AnchorPane {
 			addShoppingItem(item);
 		}
 
+		arrowLeft.setImage(imageSrc2);
 		arrowRight.setImage(imageSrc2);
 	}
 

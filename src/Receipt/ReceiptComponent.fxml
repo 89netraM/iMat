@@ -41,8 +41,16 @@
         <Button fx:id="undoButton" mnemonicParsing="false" onAction="#onUndoButton" styleClass="imat-button" text="Ångra" GridPane.columnIndex="1" />
     </GridPane>
 
-    <Button fx:id="backButton" mnemonicParsing="false" onAction="#onBackButton" styleClass="imat-button,back" text="⬅ Tillbaka" visible="false" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10" />
-    <Button fx:id="checkoutButton" layoutX="184.0" layoutY="543.0" mnemonicParsing="false" onAction="#onCheckoutButton" prefHeight="52.0" prefWidth="140.0" styleClass="imat-button,checkout" text="Kassan" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0">
+    <Button fx:id="backButton" mnemonicParsing="false" onAction="#onBackButton" styleClass="imat-button,back" text="Tillbaka" visible="false" prefHeight="52.0" prefWidth="140.0" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10">
+        <graphic>
+            <ImageView fx:id="arrowLeft" fitHeight="28.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../../../../../../../Downloads/Arrow_-_Left-512.png" />
+                </image>
+            </ImageView>
+        </graphic>
+    </Button>
+    <Button fx:id="checkoutButton" layoutX="184.0" layoutY="543.0" mnemonicParsing="false" onAction="#onCheckoutButton" prefHeight="52.0" prefWidth="140.0" styleClass="imat-button,checkout" text="Kassan" contentDisplay="RIGHT" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0">
       <graphic>
          <ImageView fx:id="arrowRight" fitHeight="28.0" fitWidth="30.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
             <image>
