@@ -27,9 +27,9 @@ public class CategoryCarouselItemComponent extends GridPane {
 	private boolean isSelected = false;
 	private final DoubleAnimation heightAnimation = new DoubleAnimation(this::animationAction);
 
-	private final ProductCategory category;
+	private final Categories.Category category;
 
-	public CategoryCarouselItemComponent(ProductCategory category) {
+	public CategoryCarouselItemComponent(Categories.Category category) {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CategoryCarouselItemComponent.fxml"));
 		fxmlLoader.setRoot(this);
 		fxmlLoader.setController(this);
@@ -44,12 +44,10 @@ public class CategoryCarouselItemComponent extends GridPane {
 		this.category = category;
 
 		//Sets the label to a nice name.
-		label.setText(getCategoryName(category));
+		label.setText(category.getName());
 
 		//Sets the image from a category icon.
-		File file = new File(IMatDataHandler.getInstance().imatDirectory() + "/category_icons/" + category + ".png");
-		Image imageSrc = new Image(file.toURI().toString(), imageSizeAt(1.0d), imageSizeAt(1.0d), true, true, true);
-		image.setImage(imageSrc);
+		image.setImage(category.getImage(imageSizeAt(1.0d), imageSizeAt(1.0d)));
 	}
 
 	/**
@@ -97,58 +95,4 @@ public class CategoryCarouselItemComponent extends GridPane {
 	}
 
 	//endregion Hover effect
-
-	/**
-	 * Turns a `ProductCategory` enum into a human readable name.
-	 * @param    category    The category.
-	 * @return    Returns a human readable name.
-	 */
-	public static String getCategoryName(ProductCategory category) {
-		switch (category) {
-			case POD:
-				return "Baljväxter";
-			case BREAD:
-				return "Bröd";
-			case BERRY:
-				return "Bär";
-			case CITRUS_FRUIT:
-				return "Citrus frukter";
-			case HOT_DRINKS:
-				return "Varma drycker";
-			case COLD_DRINKS:
-				return "Kalla drycker";
-			case EXOTIC_FRUIT:
-				return "Exotiska frukter";
-			case FISH:
-				return "Fisk";
-			case VEGETABLE_FRUIT:
-				return "Grönsaker";
-			case CABBAGE:
-				return "Kol";
-			case MEAT:
-				return "Kött";
-			case DAIRIES:
-				return "Mejeri";
-			case MELONS:
-				return "Meloner";
-			case FLOUR_SUGAR_SALT:
-				return "Torra varor";
-			case NUTS_AND_SEEDS:
-				return "Nötter och frön";
-			case PASTA:
-				return "Pasta";
-			case POTATO_RICE:
-				return "Potatis och ris";
-			case ROOT_VEGETABLE:
-				return "Rotfrukter";
-			case FRUIT:
-				return "Frukter";
-			case SWEET:
-				return "Godis";
-			case HERB:
-				return "Örter";
-		}
-
-		return category.toString();
-	}
 }

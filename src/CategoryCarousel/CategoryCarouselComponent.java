@@ -42,7 +42,7 @@ public class CategoryCarouselComponent extends GridPane {
 	private EventHandler<CategoryCarouselComponentEvent> onSelectHandler;
 
 	private final List<CategoryCarouselItemComponent> carouselItems;
-	private ProductCategory selectedCategory = ProductCategory.BREAD;
+	private Categories.Category selectedCategory = Categories.get(0);
 
 	File file2 = new File("resources/images/Arrow_-_Left-512.png");
 	Image imageSrc2 = new Image(file2.toURI().toString());
@@ -104,9 +104,9 @@ public class CategoryCarouselComponent extends GridPane {
 	private List<CategoryCarouselItemComponent> generateCarouselItems() {
 		List<CategoryCarouselItemComponent> items = new LinkedList<>();
 
-		for (ProductCategory pc : ProductCategory.values()) {
-			CategoryCarouselItemComponent item = new CategoryCarouselItemComponent(pc);
-			item.setOnMouseClicked(m -> setSelectedCategory(pc));
+		for (Categories.Category c : Categories.values()) {
+			CategoryCarouselItemComponent item = new CategoryCarouselItemComponent(c);
+			item.setOnMouseClicked(m -> setSelectedCategory(c));
 
 			items.add(item);
 		}
@@ -114,13 +114,14 @@ public class CategoryCarouselComponent extends GridPane {
 		return items;
 	}
 
-	public void setSelectedCategory(ProductCategory selectedCategory) {
+	public void setSelectedCategory(Categories.Category selectedCategory) {
 		this.selectedCategory = selectedCategory;
 
 		clearSelection();
 
-		carouselItems.get(selectedCategory.ordinal()).setIsSelected(true);
-		scrollAnimation.play(scrollBox.getHvalue(), getScrollPositionOfIndex(selectedCategory.ordinal()));
+		int index = Categories.indexOf(selectedCategory);
+		carouselItems.get(index).setIsSelected(true);
+		scrollAnimation.play(scrollBox.getHvalue(), getScrollPositionOfIndex(index));
 
 		Event event = new CategoryCarouselComponentEvent(
 				this,
@@ -139,7 +140,7 @@ public class CategoryCarouselComponent extends GridPane {
 		return index / (carouselItems.size() - 1.0d);
 	}
 
-	public ProductCategory getSelectedCategory() {
+	public Categories.Category getSelectedCategory() {
 		return selectedCategory;
 	}
 
@@ -155,7 +156,7 @@ public class CategoryCarouselComponent extends GridPane {
 	 * @return    Returns the currently selected category.
 	 */
 	public List<Product> getSelectedCategoryProducts() {
-		return dataHandler.getProducts(selectedCategory);
+		return selectedCategory.getProducts();
 	}
 
 	/**
@@ -176,23 +177,23 @@ public class CategoryCarouselComponent extends GridPane {
 	}
 
 	public void setSelectedIndex(Integer selectedIndex) {
-		setSelectedCategory(selectedIndex != null ? ProductCategory.values()[selectedIndex] : null);
+		setSelectedCategory(selectedIndex != null ? Categories.get(selectedIndex) : null);
 	}
 	public Integer getSelectedIndex() {
-		return selectedCategory != null ? selectedCategory.ordinal() : null;
+		return selectedCategory != null ? Categories.indexOf(selectedCategory) : null;
 	}
 
 	public String getPreviousCategoryName() {
 		if (getSelectedIndex() != null && getSelectedIndex() > 0) {
-			return CategoryCarouselItemComponent.getCategoryName(ProductCategory.values()[getSelectedIndex() - 1]);
+			return Categories.get(getSelectedIndex() - 1).getName();
 		}
 		else {
 			return null;
 		}
 	}
 	public String getNextCategoryName() {
-		if (getSelectedIndex() != null && getSelectedIndex() < ProductCategory.values().length - 1) {
-			return CategoryCarouselItemComponent.getCategoryName(ProductCategory.values()[getSelectedIndex() + 1]);
+		if (getSelectedIndex() != null && getSelectedIndex() < Categories.size() - 1) {
+			return Categories.get(getSelectedIndex() + 1).getName();
 		}
 		else {
 			return null;
