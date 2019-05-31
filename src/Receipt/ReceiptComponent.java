@@ -94,6 +94,9 @@ public class ReceiptComponent extends AnchorPane {
 			addShoppingItem(item);
 		}
 
+		clearButton.setVisible(cart.getItems().size() > 0);
+		activateCheckoutButton();
+
 		arrowLeft.setImage(imageSrc2);
 		arrowRight.setImage(imageSrc2);
 	}
@@ -168,7 +171,8 @@ public class ReceiptComponent extends AnchorPane {
 			}
 		}
 
-		clearButton.setVisible(receiptItems.size() > 0);
+		clearButton.setVisible(cart.getItems().size() > 0);
+		activateCheckoutButton();
 
 		total.setText(String.format("Totalt: %.2f kr", cart.getTotal()));
 	}
@@ -328,6 +332,10 @@ public class ReceiptComponent extends AnchorPane {
 	}
 	public void setCheckoutButtonEnabled(boolean enabled) {
 		setBackButtonEnabled(!enabled);
+	}
+
+	public void activateCheckoutButton() {
+		checkoutButton.setDisable(cart.getItems().size() == 0);
 	}
 
 	//These buttons are for sending events about global navigation to the `MainController`.
