@@ -102,71 +102,76 @@ public class ReceiptComponent extends AnchorPane {
 	}
 
 	private void shoppingCartListener(CartEvent e) {
-
 		// When order is placeed CartEvent is fired but contains no items
 		if (e.getShoppingItem() == null) {
-			return;
-		}
-
-		Product product = e.getShoppingItem().getProduct();
-
-		if (e.isAddEvent()) {
-			if (lastRemoved != null && lastRemoved.size() == 1 && e.getShoppingItem() == lastRemoved.get(0).getItem()) {
-				//For when this add event in fact is a undo event
-
-				receiptItems.put(product.getProductId(), lastRemoved.get(0));
-				receiptList.getChildren().add(lastIndex, lastRemoved.get(0));
-
-				//It shouldn't be out of sync, but for safety's sake:
-				lastRemoved.get(0).onCartEvent(e);
-
-				scrollTo(lastRemoved.get(0));
-				playAddAnimation(lastRemoved.get(0));
-			}
-			else {
-				//Regular adding event
-				ReceiptItemComponent item = addShoppingItem(e.getShoppingItem());
-				scrollTo(item);
-				playAddAnimation(item);
+			for (ReceiptItemComponent item : receiptItems.values()) {
+				receiptList.getChildren().remove(item);
 			}
 
-			clearUndoItem();
+			receiptItems.clear();
+			undoPane.setVisible(false);
 		}
 		else {
-			if (cart.getItems().contains(e.getShoppingItem())) {
-				if (e.getShoppingItem().getAmount() <= 0.0d) {
-					cart.removeItem(e.getShoppingItem());
+			Product product = e.getShoppingItem().getProduct();
+
+			if (e.isAddEvent()) {
+				if (lastRemoved != null && lastRemoved.size() == 1 && e.getShoppingItem() == lastRemoved.get(0).getItem()) {
+					//For when this add event in fact is a undo event
+
+					receiptItems.put(product.getProductId(), lastRemoved.get(0));
+					receiptList.getChildren().add(lastIndex, lastRemoved.get(0));
+
+					//It shouldn't be out of sync, but for safety's sake:
+					lastRemoved.get(0).onCartEvent(e);
+
+					scrollTo(lastRemoved.get(0));
+					playAddAnimation(lastRemoved.get(0));
 				}
 				else {
-					//Just updating the amount of an item
-					receiptItems.get(product.getProductId()).onCartEvent(e);
+					//Regular adding event
+					ReceiptItemComponent item = addShoppingItem(e.getShoppingItem());
+					scrollTo(item);
+					playAddAnimation(item);
 				}
-			}
-			else if (isClearing) {
-				ReceiptItemComponent item = receiptItems.remove(product.getProductId());
-				lastRemoved.add(item);
-				playRemoveAnimation(item);
+
+				clearUndoItem();
 			}
 			else {
-				//Removing the item. Either from actually removing it, or because the amount is under zero
-
-				//Updates existing UI component for the shopping item
-				ReceiptItemComponent item = receiptItems.remove(product.getProductId());
-
-				//If for some reason it's already gone, we can't remove it again.
-				if (item != null) {
+				if (cart.getItems().contains(e.getShoppingItem())) {
+					if (e.getShoppingItem().getAmount() <= 0.0d) {
+						cart.removeItem(e.getShoppingItem());
+					}
+					else {
+						//Just updating the amount of an item
+						receiptItems.get(product.getProductId()).onCartEvent(e);
+					}
+				}
+				else if (isClearing) {
+					ReceiptItemComponent item = receiptItems.remove(product.getProductId());
+					lastRemoved.add(item);
 					playRemoveAnimation(item);
+				}
+				else {
+					//Removing the item. Either from actually removing it, or because the amount is under zero
 
-					if (!isClearing) {
-						lastRemoved = Collections.singletonList(item);
-						lastIndex = receiptList.getChildren().indexOf(lastRemoved.get(0));
+					//Updates existing UI component for the shopping item
+					ReceiptItemComponent item = receiptItems.remove(product.getProductId());
 
-						if (lastRemoved.get(0).getItem().getAmount() <= 0.0d) {
-							lastRemoved.get(0).getItem().setAmount(1.0d);
+					//If for some reason it's already gone, we can't remove it again.
+					if (item != null) {
+						playRemoveAnimation(item);
+
+						if (!isClearing) {
+							lastRemoved = Collections.singletonList(item);
+							lastIndex = receiptList.getChildren().indexOf(lastRemoved.get(0));
+
+							if (lastRemoved.get(0).getItem().getAmount() <= 0.0d) {
+								lastRemoved.get(0).getItem().setAmount(1.0d);
+							}
+
+							undoText.setText(String.format("\"%1s\" togs bort", lastRemoved.get(0).getItem().getProduct().getName()));
+							undoPane.setVisible(true);
 						}
-
-						undoText.setText(String.format("\"%1s\" togs bort", lastRemoved.get(0).getItem().getProduct().getName()));
-						undoPane.setVisible(true);
 					}
 				}
 			}
