@@ -22,3 +22,7 @@
 .product-list .arrow {
     -fx-font-size: 18;
 }
+
+.progress-indicator {
+    -fx-progress-color: #467f6d;
+}

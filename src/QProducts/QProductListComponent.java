@@ -8,6 +8,7 @@ import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
@@ -26,6 +27,9 @@ public class QProductListComponent extends GridPane {
 
 	@FXML
 	private FlowPane holder;
+
+	@FXML
+	private ProgressIndicator loadingCircle;
 
 	@FXML
 	private Button previousButton;
@@ -61,6 +65,7 @@ public class QProductListComponent extends GridPane {
 
 	public void setProducts(List<Product> products) {
 		holder.getChildren().clear();
+		loadingCircle.setVisible(true);
 
 		Thread t = new Thread(() -> {
 			for (Product p : products) {
@@ -70,6 +75,7 @@ public class QProductListComponent extends GridPane {
 			}
 
 			Platform.runLater(() -> {
+				loadingCircle.setVisible(false);
 				for (Product p : products) {
 					holder.getChildren().add(productComponents.get(p.getProductId()));
 				}
