@@ -8,7 +8,7 @@
 -fx-scale-y: 1.04;
 }
 .product-item .label {
-    -fx-font-size: 14;
+    -fx-font-size: 16;
     -fx-text-fill: black;
 }
 .product-item .label.bold {
