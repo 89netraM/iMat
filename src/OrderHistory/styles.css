@@ -6,3 +6,7 @@
     -fx-font-weight: bold;
     -fx-font-size: 20;
 }
+
+.label {
+    -fx-font-size: 18;
+}
