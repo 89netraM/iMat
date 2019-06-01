@@ -64,7 +64,6 @@ public class DeliveryComponent extends AnchorPane implements Initializable {
     private final Model model = Model.getInstance();
     private final OrderForm orderForm = OrderForm.getInstance();
     private final IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
-    Customer customer = model.getCustomer();
    // OrderForm orderForm = new OrderForm();
 
     public DeliveryComponent() {
@@ -85,10 +84,6 @@ public class DeliveryComponent extends AnchorPane implements Initializable {
         File file = new File("resources/images/iMatLogo.png");
         Image imageSrc = new Image(file.toURI().toString());
         logo.setImage(imageSrc);
-
-        updateCustomerAddress();
-        pickUpAdress();
-        deliveryInfo();
     }
 
     public void updateReceipt(final Order order) {
@@ -109,9 +104,14 @@ public class DeliveryComponent extends AnchorPane implements Initializable {
         Label orderTotalText = new Label("Ordertotal");
         Label orderTotalCost = new Label(orderTotal.toString());
         this.orderContentsGrid.addRow(this.getGridRowCount(this.orderContentsGrid), orderTotalText, new Label(), orderTotalCost);
+
+        updateCustomerAddress();
+        pickUpAdress();
+        deliveryInfo();
     }
 
     public void updateCustomerAddress() {
+        Customer customer = IMatDataHandler.getInstance().getCustomer();
         customerAddress.setText(customer.getAddress());
         customerPostAddress.setText(customer.getPostAddress());
         customerName.setText(
@@ -128,27 +128,20 @@ public class DeliveryComponent extends AnchorPane implements Initializable {
     }
 
     private void deliveryInfo(){
-       // System.out.println(model.getDeliveryStatus2());
-        if//(model.getDeliveryStatus2() == ("delivery"))
-        (orderForm.delivery.isSelected()){
+        if (model.getDeliveryStatus2() != null && model.getDeliveryStatus2().equals("pickUp")) {
+            pickUpAdress();
+            pickUpInfo.toFront();
+            deliveryInfo.toBack();
+            deliveryDescription.setText("Du har möjlighet att hämta dina varor hos oss tidigast två timmar efter du lagt din beställning." +
+                    " Ibland går det t.o.m. snabbare än så och då får du ett SMS när dina varor är redo för upphämtning.");
+        }
+        else {
             updateCustomerAddress();
             deliveryInfo.toFront();
             pickUpInfo.toBack();
             deliveryDescription.setText("Dina varor kommer levereras till dig samma dag om du lagt din beställning innan 12:00." +
                     " Annars kommer leverensen imorgon - gäller även helgdagar.");
-            //System.out.println("Hemleverans2");
-        }else if (orderForm.pickUp.isSelected()){
-            pickUpAdress();
-            pickUpInfo.toFront();
-            deliveryInfo.toBack();
-            deliveryDescription.setText("Du har möjlighet att hämta dina varor hos oss senast två timmar efter du lagt din beställning." +
-                    " Ibland går det t.o.m. snabbare än så och då får du ett SMS när dina varor är redo för upphämtning.");
-            //System.out.println("pick up2");
         }
-    }
-
-    public void setCustomer(final Customer customer) {
-        this.customer = customer;
     }
 
     // Shamelessly stolen from https://stackoverflow.com/questions/20766363/get-the-number-of-rows-in-a-javafx-gridpane
