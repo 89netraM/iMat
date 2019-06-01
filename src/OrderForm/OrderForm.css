@@ -58,3 +58,24 @@
 -fx-text-fill: white;
 }
 
+.text-field {
+    -fx-padding: 4px;
+    -fx-font-size: 18px;
+}
+
+.combo-box {
+    -fx-padding: 2px;
+    -fx-font-size: 18px;
+}
+
+.label {
+    -fx-font-size: 18px;
+}
+
+.label.separator {
+    -fx-font-size: 32px;
+}
+
+.header {
+    -fx-font-size: 22px;
+}

@@ -36,8 +36,10 @@
 }
 
 .receipt-item .label.name {
+    -fx-alignment: top_left;
     -fx-font-weight: bold;
 }
+
 .receipt-item .label {
     -fx-font-size: 14;
 }
