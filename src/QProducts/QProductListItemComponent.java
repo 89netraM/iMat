@@ -71,10 +71,10 @@ public class QProductListItemComponent extends GridPane {
 
 	private void onCartEvent(CartEvent e) {
 		if (e.getShoppingItem() == null) {
-			return;
+			addButton.setVisible(true);
+			counter.setVisible(false);
 		}
-
-		if (e.getShoppingItem().getProduct() == product) {
+		else if (e.getShoppingItem().getProduct() == product) {
 			addButton.setVisible(!isProductInCart(product));
 			counter.setVisible(isProductInCart(product));
 
