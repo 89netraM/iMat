@@ -42,7 +42,7 @@ public class ReceiptComponent extends AnchorPane {
 	//endregion
 
 	//region Undo
-	private ReceiptItemComponent lastRemoved;
+	private List<ReceiptItemComponent> lastRemoved;
 	private int lastIndex;
 	@FXML
 	private GridPane undoPane;
@@ -111,17 +111,17 @@ public class ReceiptComponent extends AnchorPane {
 		Product product = e.getShoppingItem().getProduct();
 
 		if (e.isAddEvent()) {
-			if (lastRemoved != null && e.getShoppingItem() == lastRemoved.getItem()) {
+			if (lastRemoved != null && lastRemoved.size() == 1 && e.getShoppingItem() == lastRemoved.get(0).getItem()) {
 				//For when this add event in fact is a undo event
 
-				receiptItems.put(product.getProductId(), lastRemoved);
-				receiptList.getChildren().add(lastIndex, lastRemoved);
+				receiptItems.put(product.getProductId(), lastRemoved.get(0));
+				receiptList.getChildren().add(lastIndex, lastRemoved.get(0));
 
 				//It shouldn't be out of sync, but for safety's sake:
-				lastRemoved.onCartEvent(e);
+				lastRemoved.get(0).onCartEvent(e);
 
-				scrollTo(lastRemoved);
-				playAddAnimation(lastRemoved);
+				scrollTo(lastRemoved.get(0));
+				playAddAnimation(lastRemoved.get(0));
 			}
 			else {
 				//Regular adding event
@@ -144,6 +144,7 @@ public class ReceiptComponent extends AnchorPane {
 			}
 			else if (isClearing) {
 				ReceiptItemComponent item = receiptItems.remove(product.getProductId());
+				lastRemoved.add(item);
 				playRemoveAnimation(item);
 			}
 			else {
@@ -157,14 +158,14 @@ public class ReceiptComponent extends AnchorPane {
 					playRemoveAnimation(item);
 
 					if (!isClearing) {
-						lastRemoved = item;
-						lastIndex = receiptList.getChildren().indexOf(lastRemoved);
+						lastRemoved = Collections.singletonList(item);
+						lastIndex = receiptList.getChildren().indexOf(lastRemoved.get(0));
 
-						if (lastRemoved.getItem().getAmount() <= 0.0d) {
-							lastRemoved.getItem().setAmount(1.0d);
+						if (lastRemoved.get(0).getItem().getAmount() <= 0.0d) {
+							lastRemoved.get(0).getItem().setAmount(1.0d);
 						}
 
-						undoText.setText(String.format("\"%1s\" togs bort", lastRemoved.getItem().getProduct().getName()));
+						undoText.setText(String.format("\"%1s\" togs bort", lastRemoved.get(0).getItem().getProduct().getName()));
 						undoPane.setVisible(true);
 					}
 				}
@@ -204,8 +205,18 @@ public class ReceiptComponent extends AnchorPane {
 	@FXML
 	private void onUndoButton() {
 		if (lastRemoved != null) {
-			//If an undo is possible: add it back to the cart, and let the event do the rest.
-			cart.addItem(lastRemoved.getItem());
+			if (lastRemoved.size() == 1) {
+				//If an undo is possible: add it back to the cart, and let the event do the rest.
+				cart.addItem(lastRemoved.get(0).getItem());
+			}
+			else if (lastRemoved.size() > 1) {
+				for (ReceiptItemComponent item : lastRemoved) {
+					cart.addItem(item.getItem());
+				}
+
+				clearButton.setVisible(cart.getItems().size() > 0);
+				activateCheckoutButton();
+			}
 		}
 	}
 
@@ -213,9 +224,13 @@ public class ReceiptComponent extends AnchorPane {
 	private void clearReceipt() {
 		isClearing = true;
 
+		lastRemoved = new ArrayList<>();
 		while (cart.getItems().size() > 0) {
 			cart.removeItem(0);
 		}
+
+		undoText.setText("Varukorgen tömdes");
+		undoPane.setVisible(true);
 
 		isClearing = false;
 	}
