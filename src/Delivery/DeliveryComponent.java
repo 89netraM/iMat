@@ -87,9 +87,11 @@ public class DeliveryComponent extends AnchorPane implements Initializable {
     }
 
     public void updateReceipt(final Order order) {
+        int gridRow = 0;
+
         this.orderContentsGrid.getChildren().clear();
         this.orderContentsGrid.setGridLinesVisible(true);
-        this.orderContentsGrid.addRow(0, new Label("Vara"), new Label("Antal"), new Label("Totalt"));
+        this.orderContentsGrid.addRow(gridRow++, new Label("Vara"), new Label("Antal"), new Label("Totalt"));
 
         Double orderTotal = new Double(0);
 
@@ -97,13 +99,13 @@ public class DeliveryComponent extends AnchorPane implements Initializable {
             Label name = new Label(shoppingItem.getProduct().getName());
             Label amount = new Label(Double.toString(shoppingItem.getAmount()));
             Label totalCost = new Label(Double.toString(shoppingItem.getTotal()));
-            this.orderContentsGrid.addRow(this.getGridRowCount(this.orderContentsGrid), name, amount, totalCost);
+            this.orderContentsGrid.addRow(gridRow++, name, amount, totalCost);
             orderTotal += shoppingItem.getTotal();
         }
 
         Label orderTotalText = new Label("Ordertotal");
         Label orderTotalCost = new Label(orderTotal.toString());
-        this.orderContentsGrid.addRow(this.getGridRowCount(this.orderContentsGrid), orderTotalText, new Label(), orderTotalCost);
+        this.orderContentsGrid.addRow(gridRow, orderTotalText, new Label(), orderTotalCost);
 
         updateCustomerAddress();
         pickUpAdress();
@@ -142,22 +144,6 @@ public class DeliveryComponent extends AnchorPane implements Initializable {
             deliveryDescription.setText("Dina varor kommer levereras till dig samma dag om du lagt din beställning innan 12:00." +
                     " Annars kommer leverensen imorgon - gäller även helgdagar.");
         }
-    }
-
-    // Shamelessly stolen from https://stackoverflow.com/questions/20766363/get-the-number-of-rows-in-a-javafx-gridpane
-    private int getGridRowCount(GridPane pane) {
-        int numRows = pane.getRowConstraints().size();
-        for (int i = 0; i < pane.getChildren().size(); i++) {
-            Node child = pane.getChildren().get(i);
-            if (child.isManaged()) {
-                Integer rowIndex = GridPane.getRowIndex(child);
-                if(rowIndex != null){
-                    numRows = Math.max(numRows,rowIndex+1);
-                }
-            }
-        }
-
-        return numRows;
     }
 
     @FXML

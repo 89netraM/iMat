@@ -118,11 +118,11 @@ public class MainWindow implements Initializable {
     }
 
     @FXML
-    private void toDelivery() {
+    private void toDelivery(OrderForm.OrderFormEvent e) {
         slideToDelivery();
         receipt.setCheckoutButtonEnabled(true);
         this.delivery.updateCustomerAddress();
-        this.delivery.updateReceipt(IMatDataHandler.getInstance().getOrders().iterator().next());
+        this.delivery.updateReceipt(e.order);
     }
 
     //endregion Receipt Events

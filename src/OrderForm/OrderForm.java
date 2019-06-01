@@ -274,9 +274,9 @@ public class OrderForm extends AnchorPane implements Initializable {
 
     @FXML
     private void onNextButton() {
-        this.iMatDataHandler.placeOrder();
+        Order order = this.iMatDataHandler.placeOrder();
 
-        OrderForm.OrderFormEvent onNextEvent = new OrderForm.OrderFormEvent(this, this.iMatDataHandler.getOrders().iterator().next(), OrderFormEvent.ON_NEXT);
+        OrderForm.OrderFormEvent onNextEvent = new OrderForm.OrderFormEvent(this, order, OrderFormEvent.ON_NEXT);
         fireEvent(onNextEvent);
         confirmOrder.toBack();
 
