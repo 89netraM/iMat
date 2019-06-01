@@ -258,11 +258,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <ImageView fitHeight="50.0" fitWidth="40.0" layoutX="893.0" layoutY="742.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../../../Downloads/Arrow_-_Left-512.png" />
-               </image>
-            </ImageView>
+            <ImageView fitHeight="50.0" fitWidth="40.0" layoutX="893.0" layoutY="742.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true"/>
         </children>
     </AnchorPane>
 </children>

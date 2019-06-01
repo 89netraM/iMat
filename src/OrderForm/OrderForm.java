@@ -255,8 +255,7 @@ public class OrderForm extends AnchorPane implements Initializable {
     }
     @FXML
     private void confirmOrder(){
-        String total = Double.toString(iMatDataHandler.getShoppingCart().getTotal());
-        totalPrice.setText(total + " kr");
+        totalPrice.setText(String.format("%.2f kr", iMatDataHandler.getShoppingCart().getTotal()));
         confirmOrder.toFront();
 
 
