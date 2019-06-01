@@ -32,7 +32,6 @@ public class MainWindow implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 	    categoryCarousel.setSelectedIndex(0);
 
-        productList.setProducts(categoryCarousel.getSelectedCategoryProducts());
 	    productList.setPrevious(categoryCarousel.getPreviousCategoryName());
 	    productList.setNext(categoryCarousel.getNextCategoryName());
 

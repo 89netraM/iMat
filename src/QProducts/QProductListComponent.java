@@ -1,6 +1,7 @@
 package QProducts;
 
 import Animations.DoubleAnimation;
+import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
@@ -35,7 +36,7 @@ public class QProductListComponent extends GridPane {
 	@FXML
 	private ImageView arrowLeft;
 
-	private Map<Product, QProductListItemComponent> productComponents = new HashMap<>();
+	private Map<Integer, QProductListItemComponent> productComponents = new HashMap<>();
 
 	private DoubleAnimation revealAnimation = new DoubleAnimation(this::revealAction, Duration.millis(300));
 
@@ -61,15 +62,21 @@ public class QProductListComponent extends GridPane {
 	public void setProducts(List<Product> products) {
 		holder.getChildren().clear();
 
-		for (Product p : products) {
-			if (!productComponents.containsKey(p)) {
-				productComponents.put(p, new QProductListItemComponent(p));
+		Thread t = new Thread(() -> {
+			for (Product p : products) {
+				if (!productComponents.containsKey(p.getProductId())) {
+					productComponents.put(p.getProductId(), new QProductListItemComponent(p));
+				}
 			}
 
-			holder.getChildren().add(productComponents.get(p));
-		}
-
-		revealAnimation.play();
+			Platform.runLater(() -> {
+				for (Product p : products) {
+					holder.getChildren().add(productComponents.get(p.getProductId()));
+				}
+				revealAnimation.play();
+			});
+		});
+		t.start();
 	}
 
 	private void revealAction(double value) {
