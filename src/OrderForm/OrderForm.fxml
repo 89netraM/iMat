@@ -199,7 +199,7 @@
                   <Font name="System Bold" size="22.0" />
                </font>
             </Label>
-            <Button layoutX="760.0" layoutY="733.0" mnemonicParsing="false" onAction="#confirmOrder" prefHeight="57.0" prefWidth="170.0" styleClass="buttonForm" text="Slutför köp" textAlignment="CENTER">
+            <Button fx:id="confirmButton" layoutX="760.0" layoutY="733.0" mnemonicParsing="false" onAction="#confirmOrder" prefHeight="57.0" prefWidth="170.0" styleClass="buttonForm" text="Slutför köp" textAlignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font></Button>
