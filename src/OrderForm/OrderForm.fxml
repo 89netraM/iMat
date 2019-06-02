@@ -79,8 +79,8 @@
                         <TextField fx:id="firstAndLastName" layoutX="261.0" layoutY="148.0" prefHeight="27.0" prefWidth="308.0" promptText="Förnamn, Efternamn" />
                         <ComboBox fx:id="cardType" layoutX="261.0" layoutY="208.0" prefHeight="27.0" prefWidth="181.0" />
                         <ValidatingTextField fx:id="cardNumber" promptText="1234 5678 9012 3456"
-                                             validator="(^(\d{4} ?){4}$)?" errorText="Okänt kortnummer"
-                                             layoutX="261.0" layoutY="268.0" prefHeight="27.0" prefWidth="168.0" />
+                                             validator="(^(\d{4} ?){4}$)?" errorText="Okänt kortnummer. Kontrollera din inmatning och försök igen."
+                                             layoutX="261.0" layoutY="268.0" prefHeight="27.0" prefWidth="450.0" />
                         <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="72.0" layoutY="268.0" prefHeight="35.0" prefWidth="181.0" text="Kortnummer:">
                            <font>
                               <Font size="18.0" />
@@ -111,7 +111,7 @@
                         </Label>
                         <ValidatingTextField fx:id="cvcCode" promptText="123"
                                              validator="(^\d{3}$)?" errorText="Okänd CVC"
-                                             layoutX="261.0" layoutY="388.0" prefHeight="27.0" prefWidth="80.0" />
+                                             layoutX="261.0" layoutY="388.0" prefHeight="27.0" prefWidth="80" />
                         <Separator layoutX="30.0" layoutY="480.0" prefHeight="3.0" prefWidth="800.0" />
                         </children>
                     </AnchorPane>
@@ -134,16 +134,16 @@
                                 </font>
                             </Label>
                             <ValidatingTextField fx:id="email" promptText="exampleemail@outlook.com"
-                                       validator="^(([\w\-\_]+\.?)+@([\w\-\_]+\.?)\.\w{2,})?$" errorText="Okänd e-post adress"
-                                       layoutX="261.0" layoutY="208.0" prefHeight="27.0" prefWidth="227.0" />
+                                       validator="^(([\w\-\_]+\.?)+@([\w\-\_]+\.?)\.\w{2,})?$" errorText="Okänd e-post adress. Kontrollera din inmatning och försök igen."
+                                       layoutX="261.0" layoutY="208.0" prefHeight="27.0" prefWidth="500.0" />
                             <Label alignment="CENTER_RIGHT" layoutX="149.0" layoutY="265.0" prefHeight="35.0" prefWidth="106.0" text="Telefon:">
                                 <font>
                                     <Font size="18.0" />
                                 </font>
                             </Label>
                             <ValidatingTextField fx:id="phone" promptText="+46733123456"
-                                                 validator="(^(0|\+\d{2})[\d\- ]{7,}$)?" errorText="Okänt telefonnummer"
-                                                 layoutX="261.0" layoutY="268.0" prefHeight="27.0" prefWidth="168.0" />
+                                                 validator="(^(0|\+\d{2})[\d\- ]{7,}$)?" errorText="Okänt telefonnummer. Kontrollera din inmatning och försök igen."
+                                                 layoutX="261.0" layoutY="268.0" prefHeight="27.0" prefWidth="500.0" />
                             <Label alignment="CENTER_RIGHT" layoutX="171.0" layoutY="324.0" prefHeight="35.0" prefWidth="84.0" text="Adress:">
                                 <font>
                                     <Font size="18.0" />
