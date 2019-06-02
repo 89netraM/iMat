@@ -9,7 +9,7 @@
     -fx-background-color: rgba(199, 234, 219, 1);
     -fx-font-weight: bold;
     -fx-background-radius: 10;
-    -fx-font-size: 12;
+    -fx-font-size: 18;
     -fx-text-fill: black;
 }
 .imat-button:hover {
@@ -36,4 +36,8 @@
 .label.title {
     -fx-font-size: 40;
     -fx-font-weight: bold;
+}
+
+.scroll-bar {
+    -fx-font-size: 24px;
 }
