@@ -12,17 +12,14 @@
 <?import QProducts.QProductListComponent?>
 <?import QSearch.QSearchComponent?>
 <?import Receipt.ReceiptComponent?>
+<?import ValidatingTextField.ValidatingTextField?>
 <StackPane stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainWindow">
     <Pane>
         <HBox fx:id="masterBox" maxHeight="800" style="-fx-background-color: #467f6d;">
             <AnchorPane prefWidth="1280">
                 <AnchorPane AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="340" AnchorPane.topAnchor="0">
                     <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0">
-                        <ImageView fx:id="logo" fitHeight="44.0" fitWidth="125.0" AnchorPane.leftAnchor="4.0" AnchorPane.topAnchor="10.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../../resources/images/iMatLogo.png" />
-                            </image>
-                        </ImageView>
+                        <ImageView fx:id="logo" fitHeight="44.0" fitWidth="125.0" AnchorPane.leftAnchor="4.0" AnchorPane.topAnchor="10.0" pickOnBounds="true" preserveRatio="true"/>
 
                         <QSearchComponent onSearch="#onSearch"
                                           AnchorPane.leftAnchor="130" AnchorPane.rightAnchor="130" AnchorPane.topAnchor="10" prefHeight="50"/>
@@ -36,6 +33,9 @@
 
                     <QProductListComponent fx:id="productList" onPrevious="#listPrevious" onNext="#listNext"
                                            AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="180"/>
+
+                    <ValidatingTextField validator="^\d*$"
+                                         AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="250"/>
                 </AnchorPane>
 
                 <ReceiptComponent fx:id="receipt" onCheckout="#toCheckout" onBack="#toStart"
