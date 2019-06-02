@@ -1,1 +1,1 @@
-Namn;Namnsson;+4672123123123;;namn.namnsson@outlook.com;Adressvägen 4;123 45;Göteborg;end
+Kalle;Kalleson;;;;Chalmersgatan 2;;Göteborg;end
