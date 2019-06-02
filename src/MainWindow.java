@@ -1,5 +1,4 @@
 import Animations.DoubleAnimation;
-import CategoryCarousel.Categories;
 import CategoryCarousel.CategoryCarouselComponent;
 import Delivery.DeliveryComponent;
 import OrderForm.OrderForm;
@@ -31,7 +30,7 @@ public class MainWindow implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-	    categoryCarousel.setSelectedIndex(((int) Math.floor(Categories.size() / 2)));
+	    categoryCarousel.setSelectedIndex(0);
 
 	    productList.setPrevious(categoryCarousel.getPreviousCategoryName());
 	    productList.setNext(categoryCarousel.getNextCategoryName());
