@@ -74,7 +74,7 @@
                                 </font>
                             </Label>
                             <ValidatingTextField fx:id="email" promptText="exampleemail@outlook.com"
-                                                 validator="^(([\w\-\_]+\.?)+@([\w\-\_]+\.?)\.\w{2,})?$" errorText="Skriv en riktigt e-post adress"
+                                                 validator="^(([\w\-\_]+\.?)+@([\w\-\_]+\.?)\.\w{2,})?$" errorText="Oöknd e-post adress"
                                                  layoutX="140.0" layoutY="137.0" prefHeight="27.0" prefWidth="408.0"/>
                             <Label alignment="CENTER_RIGHT" layoutX="56.0" layoutY="197.0" prefHeight="35.0" prefWidth="76.0" text="Telefon:">
                                 <font>
@@ -82,7 +82,7 @@
                                 </font>
                             </Label>
                             <ValidatingTextField fx:id="phone" promptText="+46733123456"
-                                                 validator="(^(0|\+\d{2})[\d\- ]{7,}$)?" errorText="Skriv ett riktigt telefonnummer"
+                                                 validator="(^(0|\+\d{2})[\d\- ]{7,}$)?" errorText="Okänt telefonnummer"
                                                  layoutX="140.0" layoutY="197.0" prefHeight="27.0" prefWidth="408.0"/>
                             <Label alignment="CENTER_RIGHT" layoutX="48.0" layoutY="257.0" prefHeight="35.0" prefWidth="84.0" text="Adress:">
                                 <font>
@@ -96,7 +96,7 @@
                                 </font>
                             </Label>
                             <ValidatingTextField fx:id="postCode" promptText="412 81"
-                                                 validator="(^(\d{5}|(\d{3} \d{2}))$)?" errorText="Skriv ett riktigt postnummer"
+                                                 validator="(^(\d{5}|(\d{3} \d{2}))$)?" errorText="Okänt postnummer"
                                                  layoutX="140.0" layoutY="317.0" prefHeight="27.0" prefWidth="408.0"/>
                             <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="37.0" layoutY="377.0" prefHeight="35.0" prefWidth="98.0" text="Postadress:" textAlignment="RIGHT">
                                 <font>
@@ -144,7 +144,7 @@
                         <TextField fx:id="firstAndLastName" layoutX="250.0" layoutY="77.0" prefHeight="27.0" prefWidth="308.0" promptText="Förnamn, Efternamn" />
                         <ComboBox fx:id="cardType" layoutX="250.0" layoutY="137.0" prefHeight="27.0" prefWidth="181.0" />
                         <ValidatingTextField fx:id="cardNumber" promptText="1234 5678 9012 3456"
-                                             validator="(^(\d{4} ?){4}$)?" errorText="Skriv ett riktigt kortnummer"
+                                             validator="(^(\d{4} ?){4}$)?" errorText="Okänt kortnummer"
                                              layoutX="250.0" layoutY="197.0" prefHeight="27.0" prefWidth="168.0"/>
                         <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="125.0" layoutY="197.0" prefHeight="35.0" prefWidth="117.0" text="Kortnummer:">
                            <font>
@@ -175,7 +175,7 @@
                            </font>
                         </Label>
                         <ValidatingTextField fx:id="cvcCode" promptText="123"
-                                             validator="(^\d{3}$)?" errorText="Skriv en riktig CVC kod"
+                                             validator="(^\d{3}$)?" errorText="Okänd CVC kod"
                                              layoutX="250.0" layoutY="317.0" prefHeight="27.0" prefWidth="50.0"/>
                         <Separator layoutX="30.0" layoutY="426.0" prefHeight="3.0" prefWidth="800.0" />
                         </children>
