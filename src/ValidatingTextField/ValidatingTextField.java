@@ -1,13 +1,9 @@
 package ValidatingTextField;
 
 import javafx.beans.value.ObservableValue;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.InputMethodEvent;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
 import javafx.scene.paint.Paint;
 
 import java.io.IOException;
@@ -15,6 +11,8 @@ import java.io.IOException;
 public class ValidatingTextField extends TextField {
 	private String validator = ".*";
 	private Paint errorPaint = Paint.valueOf("#ff0000");
+
+	private Label errorLabel;
 
 	public ValidatingTextField() {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ValidatingTextField.fxml"));
@@ -29,6 +27,16 @@ public class ValidatingTextField extends TextField {
 		}
 
 		this.textProperty().addListener(this::onTextChanged);
+
+		//region Error label
+		errorLabel = new Label("Error Message");
+		this.heightProperty().addListener((ob, o, n) -> {
+			errorLabel.setTranslateY(n.doubleValue());
+		});
+		errorLabel.setVisible(false);
+
+		this.getChildren().add(errorLabel);
+		//endregion Error label
 	}
 
 	private void onTextChanged(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -38,9 +46,11 @@ public class ValidatingTextField extends TextField {
 	private void runValidation(String value) {
 		if (value == null || value.matches(validator)) {
 			this.setStyle("");
+			errorLabel.setVisible(false);
 		}
 		else {
 			this.setStyle(getErrorStyle());
+			errorLabel.setVisible(true);
 		}
 	}
 
@@ -70,6 +80,7 @@ public class ValidatingTextField extends TextField {
 	 */
 	public void setErrorPaint(Paint value) {
 		errorPaint = value;
+		errorLabel.setStyle("-fx-font-color: #" + errorPaint.toString().substring(2, 8) + ";");
 	}
 	public Paint getErrorPaint() {
 		return errorPaint;

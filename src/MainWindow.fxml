@@ -35,7 +35,7 @@
                                            AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="180"/>
 
                     <ValidatingTextField validator="^\d*$"
-                                         AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="250"/>
+                                         AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="220" AnchorPane.topAnchor="250"/>
                 </AnchorPane>
 
                 <ReceiptComponent fx:id="receipt" onCheckout="#toCheckout" onBack="#toStart"
