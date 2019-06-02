@@ -12,7 +12,6 @@
 <?import QProducts.QProductListComponent?>
 <?import QSearch.QSearchComponent?>
 <?import Receipt.ReceiptComponent?>
-<?import ValidatingTextField.ValidatingTextField?>
 <StackPane stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainWindow">
     <Pane>
         <HBox fx:id="masterBox" maxHeight="800" style="-fx-background-color: #467f6d;">
@@ -33,9 +32,6 @@
 
                     <QProductListComponent fx:id="productList" onPrevious="#listPrevious" onNext="#listNext"
                                            AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="180"/>
-
-                    <ValidatingTextField validator="^\d*$"
-                                         AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="220" AnchorPane.topAnchor="250"/>
                 </AnchorPane>
 
                 <ReceiptComponent fx:id="receipt" onCheckout="#toCheckout" onBack="#toStart"
