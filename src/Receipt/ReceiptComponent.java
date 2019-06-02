@@ -5,6 +5,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -24,6 +25,8 @@ import java.util.*;
 
 public class ReceiptComponent extends AnchorPane {
 	private static double addAnimationHeight = 1.0d;
+
+	public MainWindow.MainWindow mainWindow;
 
 	@FXML
 	private VBox receiptList;
@@ -99,6 +102,10 @@ public class ReceiptComponent extends AnchorPane {
 
 		arrowLeft.setImage(imageSrc2);
 		arrowRight.setImage(imageSrc2);
+	}
+
+	public void setMainWindow(MainWindow.MainWindow mainWindow) {
+		this.mainWindow = mainWindow;
 	}
 
 	private void shoppingCartListener(CartEvent e) {
@@ -179,6 +186,11 @@ public class ReceiptComponent extends AnchorPane {
 
 		clearButton.setVisible(cart.getItems().size() > 0);
 		activateCheckoutButton();
+
+		if (cart.getItems().size() == 0) {
+			this.mainWindow.slideToStart();
+			this.setBackButtonEnabled(false);
+		}
 
 		total.setText(String.format("Totalt: %.2f kr", cart.getTotal()));
 	}
