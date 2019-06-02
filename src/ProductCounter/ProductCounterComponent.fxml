@@ -10,10 +10,7 @@
 
 <fx:root styleClass="counter" stylesheets="@styles.css,@../styles.css" type="HBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-	   <Button minHeight="49.0" minWidth="49.0" onAction="#onDecrease" styleClass="imat-button,minus" text="-" HBox.hgrow="NEVER">
-         <font>
-            <Font size="18.0" />
-         </font></Button>
+	   <Button minHeight="49.0" minWidth="49.0" onAction="#onDecrease" styleClass="imat-button,minus" text="-" HBox.hgrow="NEVER"/>
       <AnchorPane prefHeight="50.0" HBox.hgrow="ALWAYS">
          <children>
       	   <TextField fx:id="amountTextField" alignment="CENTER_RIGHT" onAction="#readTextValue" styleClass="field" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
@@ -27,9 +24,6 @@
             </Label>
          </children>
       </AnchorPane>
-	   <Button minHeight="49.0" minWidth="49.0" onAction="#onIncrease" styleClass="imat-button,plus" text="+" HBox.hgrow="NEVER">
-         <font>
-            <Font size="18.0" />
-         </font></Button>
+	   <Button minHeight="49.0" minWidth="49.0" onAction="#onIncrease" styleClass="imat-button,plus" text="+" HBox.hgrow="NEVER"/>
    </children>
 </fx:root>
