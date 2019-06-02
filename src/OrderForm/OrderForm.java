@@ -1,6 +1,7 @@
 package OrderForm;
 
 import Delivery.DeliveryComponent;
+import ValidatingTextField.ValidatingTextField;
 import javafx.event.Event;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -41,13 +42,13 @@ public class OrderForm extends AnchorPane implements Initializable {
     @FXML
     private TextField lastName;
     @FXML
-    private TextField email;
+    private ValidatingTextField email;
     @FXML
-    private TextField phone;
+    private ValidatingTextField phone;
     @FXML
     private TextField address;
     @FXML
-    private TextField postCode;
+    private ValidatingTextField postCode;
     @FXML
     private TextField postAddress;
     @FXML
@@ -61,13 +62,13 @@ public class OrderForm extends AnchorPane implements Initializable {
     @FXML
     private ComboBox cardType;
     @FXML
-    private TextField cardNumber;
+    private ValidatingTextField cardNumber;
     @FXML
     private ComboBox month;
     @FXML
     private ComboBox year;
     @FXML
-    private TextField cvcCode;
+    private ValidatingTextField cvcCode;
     @FXML
     public RadioButton pickUp;
     @FXML
@@ -185,7 +186,9 @@ public class OrderForm extends AnchorPane implements Initializable {
     }
 
     private void updateCreditCard() {
-        card.setCardNumber(cardNumber.getText());
+        if (cardNumber.isValid()) {
+            card.setCardNumber(cardNumber.getText().replaceAll("\\s", ""));
+        }
         card.setHoldersName(firstAndLastName.getText());
         String selectedValue = (String) cardType.getSelectionModel().getSelectedItem();
         card.setCardType(selectedValue);
@@ -193,16 +196,24 @@ public class OrderForm extends AnchorPane implements Initializable {
         card.setValidMonth(Integer.parseInt(selectedValue));
         selectedValue = (String) year.getSelectionModel().getSelectedItem();
         card.setValidYear(Integer.parseInt(selectedValue));
-        card.setVerificationCode(Integer.parseInt(cvcCode.getText()));
+        if (cvcCode.isValid()) {
+            card.setVerificationCode(Integer.parseInt(cvcCode.getText()));
+        }
     }
 
     private void updateCustomer() {
         customer.setFirstName(firstName.getText());
         customer.setLastName(lastName.getText());
-        customer.setEmail(email.getText());
-        customer.setPhoneNumber(phone.getText());
+        if (email.isValid()) {
+            customer.setEmail(email.getText());
+        }
+        if (phone.isValid()) {
+            customer.setPhoneNumber(phone.getText());
+        }
         customer.setAddress(address.getText());
-        customer.setPostCode(postCode.getText());
+        if (postCode.isValid()) {
+            customer.setPostCode(postCode.getText());
+        }
         customer.setPostAddress(postAddress.getText());
     }
 

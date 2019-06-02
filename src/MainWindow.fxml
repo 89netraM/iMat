@@ -18,11 +18,7 @@
             <AnchorPane prefWidth="1280">
                 <AnchorPane AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="340" AnchorPane.topAnchor="0">
                     <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0">
-                        <ImageView fx:id="logo" fitHeight="44.0" fitWidth="125.0" AnchorPane.leftAnchor="4.0" AnchorPane.topAnchor="10.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../../resources/images/iMatLogo.png" />
-                            </image>
-                        </ImageView>
+                        <ImageView fx:id="logo" fitHeight="44.0" fitWidth="125.0" AnchorPane.leftAnchor="4.0" AnchorPane.topAnchor="10.0" pickOnBounds="true" preserveRatio="true"/>
 
                         <QSearchComponent onSearch="#onSearch"
                                           AnchorPane.leftAnchor="130" AnchorPane.rightAnchor="130" AnchorPane.topAnchor="10" prefHeight="50"/>
