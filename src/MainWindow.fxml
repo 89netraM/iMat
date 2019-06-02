@@ -12,7 +12,7 @@
 <?import QProducts.QProductListComponent?>
 <?import QSearch.QSearchComponent?>
 <?import Receipt.ReceiptComponent?>
-<StackPane stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainWindow.MainWindow">
+<StackPane stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainWindow">
     <Pane>
         <HBox fx:id="masterBox" maxHeight="800" style="-fx-background-color: #467f6d;">
             <AnchorPane prefWidth="1280">

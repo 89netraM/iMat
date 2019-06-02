@@ -1,5 +1,3 @@
-package MainWindow;
-
 import Animations.DoubleAnimation;
 import CategoryCarousel.CategoryCarouselComponent;
 import Delivery.DeliveryComponent;
@@ -40,7 +38,6 @@ public class MainWindow implements Initializable {
         File file = new File("resources/images/iMatLogo.png");
         Image imageSrc = new Image(file.toURI().toString());
         logo.setImage(imageSrc);
-        this.receipt.setMainWindow(this);
     }
 
     //region Slide Animation
@@ -57,7 +54,7 @@ public class MainWindow implements Initializable {
         slideAnimation.play(masterBox.getLayoutX(), -940.0d);
     }
 
-    public void slideToStart() {
+    private void slideToStart() {
         slideAnimation.play(masterBox.getLayoutX(), 0.0d);
     }
 
