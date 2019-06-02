@@ -186,7 +186,7 @@ public class OrderForm extends AnchorPane implements Initializable {
     }
 
     private void updateCreditCard() {
-        if (cardNumber.isValid()) {
+        if (cardNumber.isValid() && !cardNumber.getText().isEmpty()) {
             card.setCardNumber(cardNumber.getText().replaceAll("\\s", ""));
         }
         card.setHoldersName(firstAndLastName.getText());
