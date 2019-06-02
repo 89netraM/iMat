@@ -15,7 +15,6 @@ import java.io.IOException;
 public class ValidatingTextField extends TextField {
 	private String validator = ".";
 	private Paint errorPaint = Paint.valueOf("#ff0000");
-	private String errorText = "";
 
 	public ValidatingTextField() {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ValidatingTextField.fxml"));
@@ -29,11 +28,17 @@ public class ValidatingTextField extends TextField {
 			throw new RuntimeException(ex);
 		}
 
-		super.textProperty().addListener(this::onTextChanged);
+		this.textProperty().addListener(this::onTextChanged);
+
+		runValidation(this.getText());
 	}
 
 	private void onTextChanged(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-		if (newValue.matches(validator)) {
+		runValidation(newValue);
+	}
+
+	private void runValidation(String value) {
+		if (value.matches(validator)) {
 			this.setStyle("");
 		}
 		else {
