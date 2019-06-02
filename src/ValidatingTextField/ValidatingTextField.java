@@ -12,6 +12,7 @@ public class ValidatingTextField extends TextField {
 	private String validator = ".*";
 	private Paint errorPaint = Paint.valueOf("#ff0000");
 
+	private String errorText;
 	private Label errorLabel;
 
 	public ValidatingTextField() {
@@ -27,15 +28,6 @@ public class ValidatingTextField extends TextField {
 		}
 
 		this.textProperty().addListener(this::onTextChanged);
-
-		//region Error label
-		errorLabel = new Label();
-		setLabelStyle();
-		this.heightProperty().addListener((ob, o, n) -> errorLabel.setTranslateY(n.doubleValue() * 0.85d));
-		errorLabel.setVisible(false);
-
-		this.getChildren().add(errorLabel);
-		//endregion Error label
 	}
 
 	private void onTextChanged(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -45,11 +37,15 @@ public class ValidatingTextField extends TextField {
 	private void runValidation() {
 		if (isValid()) {
 			this.setStyle("");
-			errorLabel.setVisible(false);
+			if (errorLabel != null) {
+				errorLabel.setVisible(false);
+			}
 		}
 		else {
 			this.setStyle(getErrorStyle());
-			errorLabel.setVisible(true);
+			if (errorLabel != null) {
+				errorLabel.setVisible(true);
+			}
 		}
 	}
 
@@ -59,7 +55,7 @@ public class ValidatingTextField extends TextField {
 	}
 
 	private void setLabelStyle() {
-		errorLabel.setStyle("-fx-font-color: #" + errorPaint.toString().substring(2, 8) + "; -fx-font-size: 0.75em;");
+		errorLabel.setStyle("-fx-font-color: #" + errorPaint.toString().substring(2, 8) + ";");
 	}
 
 	/**
@@ -95,10 +91,28 @@ public class ValidatingTextField extends TextField {
 	 * @param    value    The error text.
 	 */
 	public void setErrorText(String value) {
-		errorLabel.setText(value);
+		errorText = value;
+		if (errorLabel != null) {
+			errorLabel.setText(value);
+		}
 	}
 	public String getErrorText() {
-		return errorLabel.getText();
+		return errorText;
+	}
+
+	/**
+	 * Used mainly through FXML to set the label that displays the error message.
+	 * Used in FXML like this: `errorLabel="#label"`.
+	 * @param    value    The label.
+	 */
+	public void setErrorLabel(Label value) {
+		errorLabel = value;
+		setLabelStyle();
+		errorLabel.setText(errorText);
+		runValidation();
+	}
+	public Label getErrorLabel() {
+		return errorLabel;
 	}
 
 	public boolean isValid() {
