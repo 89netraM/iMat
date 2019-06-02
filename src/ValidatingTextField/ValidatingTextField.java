@@ -29,7 +29,7 @@ public class ValidatingTextField extends TextField {
 		this.textProperty().addListener(this::onTextChanged);
 
 		//region Error label
-		errorLabel = new Label("Error Message");
+		errorLabel = new Label();
 		this.heightProperty().addListener((ob, o, n) -> {
 			errorLabel.setTranslateY(n.doubleValue());
 		});
@@ -84,6 +84,18 @@ public class ValidatingTextField extends TextField {
 	}
 	public Paint getErrorPaint() {
 		return errorPaint;
+	}
+
+	/**
+	 * Used mainly through FXML to set the error text.
+	 * Used in FXML like this: `errorText="Wrong format"`.
+	 * @param    value    The error text.
+	 */
+	public void setErrorText(String value) {
+		errorLabel.setText(value);
+	}
+	public String getErrorText() {
+		return errorLabel.getText();
 	}
 
 	public boolean isValid() {
