@@ -1,16 +1,9 @@
 .counter {
-    -fx-font-size: 16;
+    -fx-font-size: 18;
 }
 
 .label {
-    -fx-font-size: 16;
-}
-
-.counter .imat-button {
-     -fx-background-color: #f4fff5;
-}
-.counter .imat-button:hover {
-    -fx-background-color: #bec6bf;
+    -fx-font-size: 18;
 }
 
 .counter .minus {
@@ -19,6 +12,7 @@
 .counter .field {
     -fx-background-color: rgba(255, 255, 255, 0.5);
     -fx-background-radius: 0;
+    -fx-font-size: 18;
 }
 .counter .plus {
     -fx-background-radius: 0 10 10 0;
