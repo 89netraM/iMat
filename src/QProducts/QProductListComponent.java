@@ -1,12 +1,14 @@
 package QProducts;
 
 import Animations.DoubleAnimation;
+import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
@@ -27,6 +29,9 @@ public class QProductListComponent extends GridPane {
 	private FlowPane holder;
 
 	@FXML
+	private ProgressIndicator loadingCircle;
+
+	@FXML
 	private Button previousButton;
 	@FXML
 	private Button nextButton;
@@ -35,7 +40,7 @@ public class QProductListComponent extends GridPane {
 	@FXML
 	private ImageView arrowLeft;
 
-	private Map<Product, QProductListItemComponent> productComponents = new HashMap<>();
+	private Map<Integer, QProductListItemComponent> productComponents = new HashMap<>();
 
 	private DoubleAnimation revealAnimation = new DoubleAnimation(this::revealAction, Duration.millis(300));
 
@@ -60,16 +65,24 @@ public class QProductListComponent extends GridPane {
 
 	public void setProducts(List<Product> products) {
 		holder.getChildren().clear();
+		loadingCircle.setVisible(true);
 
-		for (Product p : products) {
-			if (!productComponents.containsKey(p)) {
-				productComponents.put(p, new QProductListItemComponent(p));
+		Thread t = new Thread(() -> {
+			for (Product p : products) {
+				if (!productComponents.containsKey(p.getProductId())) {
+					productComponents.put(p.getProductId(), new QProductListItemComponent(p));
+				}
 			}
 
-			holder.getChildren().add(productComponents.get(p));
-		}
-
-		revealAnimation.play();
+			Platform.runLater(() -> {
+				loadingCircle.setVisible(false);
+				for (Product p : products) {
+					holder.getChildren().add(productComponents.get(p.getProductId()));
+				}
+				revealAnimation.play();
+			});
+		});
+		t.start();
 	}
 
 	private void revealAction(double value) {

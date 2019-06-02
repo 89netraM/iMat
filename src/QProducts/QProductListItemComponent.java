@@ -5,11 +5,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import se.chalmers.cse.dat216.project.*;
 
-import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 
 public class QProductListItemComponent extends GridPane {
@@ -48,7 +49,15 @@ public class QProductListItemComponent extends GridPane {
 		cart = dataHandler.getShoppingCart();
 		cart.addShoppingCartListener(this::onCartEvent);
 
-		image.setImage(dataHandler.getFXImage(product, 100.0d, 100.0d));
+		image.setImage(
+				new Image(
+						"file:" + dataHandler.imatDirectory() + File.separatorChar + "images" + File.separatorChar + this.product.getImageName(),
+						100.0d,
+						100.0d,
+						true,
+						true
+				)
+		);
 
 		nameLabel.setText(product.getName());
 		priceLabel.setText(product.getPrice() + "/" + product.getUnitSuffix());
@@ -71,10 +80,10 @@ public class QProductListItemComponent extends GridPane {
 
 	private void onCartEvent(CartEvent e) {
 		if (e.getShoppingItem() == null) {
-			return;
+			addButton.setVisible(true);
+			counter.setVisible(false);
 		}
-
-		if (e.getShoppingItem().getProduct() == product) {
+		else if (e.getShoppingItem().getProduct() == product) {
 			addButton.setVisible(!isProductInCart(product));
 			counter.setVisible(isProductInCart(product));
 

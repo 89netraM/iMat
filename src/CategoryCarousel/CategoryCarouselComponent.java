@@ -9,6 +9,7 @@ import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,7 +25,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class CategoryCarouselComponent extends GridPane {
-	private static final double scrollLength = 3.0d;
+	private static final double scrollLength = 5.0d;
 
 	private final IMatDataHandler dataHandler;
 
@@ -35,8 +36,14 @@ public class CategoryCarouselComponent extends GridPane {
 
 	@FXML
 	private ScrollPane scrollBox;
+
+	@FXML
+	private Button rightButton;
 	@FXML
 	private ImageView arrowRight;
+
+	@FXML
+	private Button leftButton;
 	@FXML
 	private ImageView arrowLeft;
 	private EventHandler<CategoryCarouselComponentEvent> onSelectHandler;
@@ -65,6 +72,7 @@ public class CategoryCarouselComponent extends GridPane {
 		box.getChildren().addAll(carouselItems);
 
 		scrollBox.widthProperty().addListener(this::widthListener);
+		scrollBox.hvalueProperty().addListener(this::onScrollChange);
 
 		arrowRight.setImage(imageSrc2);
 		arrowLeft.setImage(imageSrc2);
@@ -93,6 +101,11 @@ public class CategoryCarouselComponent extends GridPane {
 	private void rightClick() {
 		//Scrolls `scrollLength` items to the left.
 		scrollAnimation.play(scrollBox.getHvalue(), scrollBox.getHvalue() + (scrollLength / (carouselItems.size() - 1)));
+	}
+
+	private void onScrollChange(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+		leftButton.setDisable(newValue.equals(0.0d));
+		rightButton.setDisable(newValue.equals(1.0d));
 	}
 
 	//Is the action of the `scrollAnimator`.

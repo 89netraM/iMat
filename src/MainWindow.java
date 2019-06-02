@@ -2,12 +2,9 @@ import Animations.DoubleAnimation;
 import CategoryCarousel.CategoryCarouselComponent;
 import Delivery.DeliveryComponent;
 import OrderForm.OrderForm;
-import OrderHistory.OrderHistoryComponent;
-import ProductList.ProductListComponent;
 import QProducts.QProductListComponent;
 import QSearch.QSearchComponent;
 import Receipt.ReceiptComponent;
-import Receipt.ReceiptItemComponent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
@@ -35,7 +32,6 @@ public class MainWindow implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 	    categoryCarousel.setSelectedIndex(0);
 
-        productList.setProducts(categoryCarousel.getSelectedCategoryProducts());
 	    productList.setPrevious(categoryCarousel.getPreviousCategoryName());
 	    productList.setNext(categoryCarousel.getNextCategoryName());
 
@@ -121,11 +117,11 @@ public class MainWindow implements Initializable {
     }
 
     @FXML
-    private void toDelivery() {
+    private void toDelivery(OrderForm.OrderFormEvent e) {
         slideToDelivery();
         receipt.setCheckoutButtonEnabled(true);
         this.delivery.updateCustomerAddress();
-        this.delivery.updateReceipt(IMatDataHandler.getInstance().getOrders().iterator().next());
+        this.delivery.updateReceipt(e.order);
     }
 
     //endregion Receipt Events

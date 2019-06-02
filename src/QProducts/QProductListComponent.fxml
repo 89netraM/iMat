@@ -3,6 +3,7 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -24,19 +25,17 @@
          </padding></FlowPane>
     </ScrollPane>
 
+    <ProgressIndicator fx:id="loadingCircle" maxHeight="50.0" GridPane.rowIndex="0" />
+
     <Button fx:id="previousButton" alignment="CENTER_LEFT" onAction="#onPrevious" styleClass="imat-button,arrow" GridPane.halignment="LEFT" GridPane.rowIndex="1">
       <GridPane.margin>
          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
       </GridPane.margin>
       <graphic>
-         <ImageView fx:id="arrowLeft" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-               <Image url="@../../../../../../../Downloads/Arrow_-_Left-512.png" />
-            </image>
-         </ImageView>
+         <ImageView fx:id="arrowLeft" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true"/>
       </graphic>
     </Button>
-    <Button fx:id="nextButton" onAction="#onNext" GridPane.halignment="RIGHT" contentDisplay="RIGHT" GridPane.rowIndex="1">
+    <Button fx:id="nextButton" contentDisplay="RIGHT" onAction="#onNext" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
       <GridPane.margin>
          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
       </GridPane.margin>
