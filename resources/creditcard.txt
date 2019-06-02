@@ -1,1 +1,1 @@
-MasterCard;Namn Namnsson;8;26;1234123412341234;123;end
+Visa;Kalle Kallesson;8;26;1234123412341234;123;end

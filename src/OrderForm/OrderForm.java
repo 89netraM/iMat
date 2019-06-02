@@ -127,7 +127,7 @@ public class OrderForm extends AnchorPane implements Initializable {
         ToggleGroup deliveryToggleGroup = new ToggleGroup();
         delivery.setToggleGroup(deliveryToggleGroup);
         pickUp.setToggleGroup(deliveryToggleGroup);
-        pickUp.setSelected(true);
+        delivery.setSelected(true);
 
 
         deliveryToggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
