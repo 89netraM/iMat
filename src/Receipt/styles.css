@@ -8,7 +8,7 @@
     -fx-padding: 10;
 }
 .receipt .undoPane > .label, .receipt .undoPane > .imat-button {
-    -fx-font-size: 16;
+    -fx-font-size: 18;
 }
 
 .receipt .receipt-pane {
@@ -36,10 +36,12 @@
 }
 
 .receipt-item .label.name {
+    -fx-alignment: top_left;
     -fx-font-weight: bold;
 }
+
 .receipt-item .label {
-    -fx-font-size: 14;
+    -fx-font-size: 18;
 }
 
 .total {

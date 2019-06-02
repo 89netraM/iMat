@@ -6,20 +6,30 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<fx:root type="HBox" stylesheets="@styles.css,@../styles.css" styleClass="counter" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root styleClass="counter" stylesheets="@styles.css,@../styles.css" type="HBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-	   <Button minHeight="25.0" minWidth="25.0" styleClass="imat-button,minus" onAction="#onDecrease" text="-" HBox.hgrow="NEVER" />
-      <AnchorPane HBox.hgrow="ALWAYS">
+	   <Button minHeight="49.0" minWidth="49.0" onAction="#onDecrease" styleClass="imat-button,minus" text="-" HBox.hgrow="NEVER">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <AnchorPane prefHeight="50.0" HBox.hgrow="ALWAYS">
          <children>
-      	   <TextField fx:id="amountTextField" styleClass="field" alignment="CENTER_RIGHT" onAction="#readTextValue" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      	   <TextField fx:id="amountTextField" alignment="CENTER_RIGHT" onAction="#readTextValue" styleClass="field" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <Label fx:id="unitLabel" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <padding>
                   <Insets left="2.0" right="3.0" />
                </padding>
+               <font>
+                  <Font size="18.0" />
+               </font>
             </Label>
          </children>
       </AnchorPane>
-	   <Button minHeight="25.0" minWidth="25.0" styleClass="imat-button,plus" onAction="#onIncrease" text="+" HBox.hgrow="NEVER" />
+	   <Button minHeight="49.0" minWidth="49.0" onAction="#onIncrease" styleClass="imat-button,plus" text="+" HBox.hgrow="NEVER">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
    </children>
 </fx:root>

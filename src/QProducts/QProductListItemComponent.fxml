@@ -41,7 +41,7 @@
     </Button>
 
     <!-- No idea how maxHeight=0 can work, but it does 🤷 -->
-    <ProductCounterComponent fx:id="counter" maxHeight="0" maxWidth="175" visible="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM" GridPane.rowIndex="1">
+    <ProductCounterComponent fx:id="counter" maxHeight="0" maxWidth="170" visible="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM" GridPane.rowIndex="1">
         <GridPane.margin>
             <Insets left="10.0" bottom="5.0" right="5.0" />
         </GridPane.margin>
