@@ -94,6 +94,8 @@ public class OrderForm extends AnchorPane implements Initializable {
     private Button completeOrder;
     @FXML
     private Label totalPrice;
+    @FXML
+    private Button confirmButton;
 
 
     private static OrderForm instance = null;
@@ -168,6 +170,9 @@ public class OrderForm extends AnchorPane implements Initializable {
         setupPaymentPane();
         updatePreview();
         OrderForm.toFront();
+
+        iMatDataHandler.getShoppingCart().addShoppingCartListener(this::cartListener);
+        confirmButton.setDisable(iMatDataHandler.getShoppingCart().getItems().size() <= 0);
     }
 
     private void updatePreview() {
@@ -268,6 +273,10 @@ public class OrderForm extends AnchorPane implements Initializable {
     private void declineOrder(){
         confirmOrder.toBack();
         OrderForm.toFront();
+    }
+
+    private void cartListener(CartEvent e) {
+        confirmButton.setDisable(iMatDataHandler.getShoppingCart().getItems().size() <= 0);
     }
 
     private String formatCard(CreditCard card) {
