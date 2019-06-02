@@ -42,3 +42,7 @@
 #orderContentsGrid .label {
 -fx-font-size: 18;
 }
+
+.grid {
+-fx-font-size: 18;
+}
