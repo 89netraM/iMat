@@ -13,7 +13,7 @@ import javafx.scene.paint.Paint;
 import java.io.IOException;
 
 public class ValidatingTextField extends TextField {
-	private String validator = ".";
+	private String validator = ".*";
 	private Paint errorPaint = Paint.valueOf("#ff0000");
 
 	public ValidatingTextField() {
@@ -29,8 +29,6 @@ public class ValidatingTextField extends TextField {
 		}
 
 		this.textProperty().addListener(this::onTextChanged);
-
-		runValidation(this.getText());
 	}
 
 	private void onTextChanged(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -38,7 +36,7 @@ public class ValidatingTextField extends TextField {
 	}
 
 	private void runValidation(String value) {
-		if (value.matches(validator)) {
+		if (value == null || value.matches(validator)) {
 			this.setStyle("");
 		}
 		else {
@@ -58,6 +56,8 @@ public class ValidatingTextField extends TextField {
 	 */
 	public void setValidator(String value) {
 		validator = value;
+
+		runValidation(this.getText());
 	}
 	public String getValidator() {
 		return validator;
