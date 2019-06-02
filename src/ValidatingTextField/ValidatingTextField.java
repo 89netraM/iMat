@@ -30,10 +30,8 @@ public class ValidatingTextField extends TextField {
 
 		//region Error label
 		errorLabel = new Label();
-		errorLabel.setStyle("-fx-font-color: #" + errorPaint.toString().substring(2, 8) + ";");
-		this.heightProperty().addListener((ob, o, n) -> {
-			errorLabel.setTranslateY(n.doubleValue());
-		});
+		setLabelStyle();
+		this.heightProperty().addListener((ob, o, n) -> errorLabel.setTranslateY(n.doubleValue() * 0.85d));
 		errorLabel.setVisible(false);
 
 		this.getChildren().add(errorLabel);
@@ -60,6 +58,10 @@ public class ValidatingTextField extends TextField {
 		return "-fx-text-box-border: " + color + "; -fx-focus-color: " + color + "; -fx-faint-focus-color: transparent;";
 	}
 
+	private void setLabelStyle() {
+		errorLabel.setStyle("-fx-font-color: #" + errorPaint.toString().substring(2, 8) + "; -fx-font-size: 0.75em;");
+	}
+
 	/**
 	 * Used mainly through FXML to set the validation Regex string.
 	 * Used in FXML like this: `validator="^\d*$"`.
@@ -81,7 +83,7 @@ public class ValidatingTextField extends TextField {
 	 */
 	public void setErrorPaint(Paint value) {
 		errorPaint = value;
-		errorLabel.setStyle("-fx-font-color: #" + errorPaint.toString().substring(2, 8) + ";");
+		setLabelStyle();
 	}
 	public Paint getErrorPaint() {
 		return errorPaint;
