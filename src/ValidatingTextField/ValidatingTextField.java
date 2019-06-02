@@ -30,6 +30,7 @@ public class ValidatingTextField extends TextField {
 
 		//region Error label
 		errorLabel = new Label();
+		errorLabel.setStyle("-fx-font-color: #" + errorPaint.toString().substring(2, 8) + ";");
 		this.heightProperty().addListener((ob, o, n) -> {
 			errorLabel.setTranslateY(n.doubleValue());
 		});
