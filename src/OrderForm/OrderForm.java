@@ -76,6 +76,8 @@ public class OrderForm extends AnchorPane implements Initializable {
     @FXML
     private Label namePreview;
     @FXML
+    private Label cityPreview;
+    @FXML
     private Label cardPreview;
     @FXML
     private Label cardTypePreview;
@@ -177,13 +179,14 @@ public class OrderForm extends AnchorPane implements Initializable {
     private void updatePreview() {
         namePreview.setText(customer.getFirstName() + " " + customer.getLastName());
         adressPreview.setText(customer.getAddress());
+        cityPreview.setText(customer.getPostAddress());
         //cardPreview.setText(card.getCardNumber());
         cardTypePreview.setText(card.getCardType());
         cardPreview.setText(formatCard(card));
     }
 
     private void updateCreditCard() {
-        if (cardNumber.isValid()) {
+        if (cardNumber.isValid() && !cardNumber.getText().isEmpty()) {
             card.setCardNumber(cardNumber.getText().replaceAll("\\s", ""));
         }
         card.setHoldersName(firstAndLastName.getText());
