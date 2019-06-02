@@ -40,11 +40,11 @@ public class ValidatingTextField extends TextField {
 	}
 
 	private void onTextChanged(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-		runValidation(newValue);
+		runValidation();
 	}
 
-	private void runValidation(String value) {
-		if (value == null || value.matches(validator)) {
+	private void runValidation() {
+		if (isValid()) {
 			this.setStyle("");
 			errorLabel.setVisible(false);
 		}
@@ -67,7 +67,7 @@ public class ValidatingTextField extends TextField {
 	public void setValidator(String value) {
 		validator = value;
 
-		runValidation(this.getText());
+		runValidation();
 	}
 	public String getValidator() {
 		return validator;
@@ -84,5 +84,9 @@ public class ValidatingTextField extends TextField {
 	}
 	public Paint getErrorPaint() {
 		return errorPaint;
+	}
+
+	public boolean isValid() {
+		return this.getText() == null || this.getText().matches(validator);
 	}
 }
